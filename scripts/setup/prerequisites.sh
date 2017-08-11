@@ -17,6 +17,10 @@ sudo apt install gcc -y
 sudo apt install g++ -y
 sudo apt install cmake -y
 sudo apt install cppcheck -y
+sudo apt install autotools-dev -y
+sudo apt install autoconf -y
+sudo apt install libtool -y
+sudo apt install libpam0g-dev -y
 
 # Get CppCMS prerequisites
 sudo apt install libpcre3-dev -y

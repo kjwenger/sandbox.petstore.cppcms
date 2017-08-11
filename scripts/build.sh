@@ -6,5 +6,7 @@ ${CURRENT_DIR}/thirdparty/pcre.sh
 ${CURRENT_DIR}/thirdparty/zlib.sh
 ${CURRENT_DIR}/thirdparty/cppcms.sh
 ${CURRENT_DIR}/thirdparty/googletest.sh
+${CURRENT_DIR}/thirdparty/curl.sh
+${CURRENT_DIR}/thirdparty/curlpp.sh
 
 ${CURRENT_DIR}/app.sh
