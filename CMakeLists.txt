@@ -18,3 +18,18 @@ target_link_libraries(sandbox-cppcms
         pcre
         ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
 )
+
+add_subdirectory(scripts/thirdparty/googletest)
+enable_testing()
+file(GLOB TEST
+        test/src/*.cpp
+)
+add_executable(sandbox-cppcms-test ${TEST})
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+target_link_libraries(sandbox-cppcms-test
+        gtest
+        gtest_main)
+add_test(
+        NAME sandbox-cppcms-test
+        COMMAND sandbox-cppcms-test
+)
