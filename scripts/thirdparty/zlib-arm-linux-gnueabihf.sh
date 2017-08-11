@@ -23,8 +23,12 @@ cd "${CURRENT_DIR}"
 
 cd "${ZLIB_DIR}"
 make -j ${CPUS} distclean
+export CROSS=arm-linux-gnueabihf
+export CC="${CROSS}-gcc"
+export LD="${CROSS}-ld"
+export AS="${CROSS}-as"
 chmod +x ./configure
-./configure --prefix="${USR_DIR}"
+./configure --prefix="${USR_DIR}/arm-linux-gnueabihf"
 make -j ${CPUS}
 make -j ${CPUS} install
 cd "${CURRENT_DIR}"
