@@ -15,3 +15,6 @@ sudo apt install libpcre3-dev:armhf -y
 sudo apt install zlib1g-dev:armhf -y
 sudo apt install libgcrypt11-dev:armhf -y
 sudo apt install libicu-dev:armhf -y
+
+# Get test prerequisites
+sudo apt install libcurl4-openssl-dev:armhf -y

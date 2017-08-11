@@ -24,3 +24,6 @@ sudo apt install zlib1g-dev -y
 sudo apt install libgcrypt11-dev -y
 sudo apt install libicu-dev -y
 sudo apt install python -y
+
+# Get test prerequisites
+sudo apt install libcurl4-openssl-dev -y
