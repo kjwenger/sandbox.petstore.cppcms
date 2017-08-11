@@ -1,0 +1,11 @@
+{
+  "service": {
+    "api": "http",
+    "port": 8910
+  },
+  "http": {
+    "script_names": [
+      "/"
+    ]
+  }
+}

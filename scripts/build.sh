@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-mkdir -p build
-pushd build
-cmake ..
-make
-popd
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+${CURRENT_DIR}/thirdparty/cppcms.sh
+
+${CURRENT_DIR}/app.sh
