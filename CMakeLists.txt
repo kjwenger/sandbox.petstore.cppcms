@@ -4,7 +4,7 @@ if (NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/usr)
 endif (NOT DEFINED CMAKE_PREFIX_PATH)
 file(GLOB SRC
-        "src/*.cpp"
+        src/*.cpp
 )
 add_executable(sandbox-cppcms ${SRC})
 include_directories(
@@ -27,6 +27,11 @@ file(GLOB TEST
 add_executable(sandbox-cppcms-test ${TEST})
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 target_link_libraries(sandbox-cppcms-test
+        ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
+        ${CMAKE_PREFIX_PATH}/lib/libcurl.a
+        ${CMAKE_PREFIX_PATH}/lib/libz.a
+        crypto
+        ssl
         gtest
         gtest_main)
 add_test(
