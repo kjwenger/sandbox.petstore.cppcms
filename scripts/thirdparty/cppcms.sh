@@ -19,7 +19,6 @@ rm -Rf *
 cmake -DCMAKE_INSTALL_PREFIX="${USR_DIR}" \
       ..
 make -j ${CPUS}
-#make -j ${CPUS} test
 make -j ${CPUS} install
 popd
 popd
