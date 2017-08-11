@@ -33,9 +33,7 @@ void pet::create_pet() {
 }
 
 void pet::read_pet(int id) {
-    cppcms::json::value pet;
-
-    response().out() << pet;
+    response().out() << R"({"id":1,"category":{"id":1,"name":"string"},"name":"doggie","photoUrls":["string"],"tags":[{"id":1,"name":"string"}],"status":"available"})";
 }
 
 void pet::update_pet(int id) {

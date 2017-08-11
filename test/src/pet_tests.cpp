@@ -6,7 +6,7 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 
-class v2_tests : public ::testing::Test {
+class pet_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
         cURLpp::initialize();
@@ -17,15 +17,16 @@ protected:
     }
 };
 
-TEST_F(v2_tests, get_info)
+TEST_F(pet_tests, get_pet)
 {
     curlpp::Cleanup cleanup;
     curlpp::Easy request;
-    request.setOpt<curlpp::options::Url>("http://localhost:8910/v2");
+    request.setOpt<curlpp::options::Url>("http://localhost:8910/v2/pet/1");
     std::ostringstream os;
     curlpp::options::WriteStream ws(&os);
     request.setOpt(ws);
     request.perform();
 
-    EXPECT_STREQ(R"({"name":"sandbox-cppcms","version":"0.1.0"})", os.str().c_str());
+    EXPECT_STREQ(R"({"id":1,"category":{"id":1,"name":"string"},"name":"doggie","photoUrls":["string"],"tags":[{"id":1,"name":"string"}],"status":"available"})",
+            os.str().c_str());
 }
