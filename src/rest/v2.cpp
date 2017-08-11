@@ -1,4 +1,4 @@
-#include "rest/rests.hpp"
+#include "rest/v2.hpp"
 #include "rest/pet.hpp"
 #include "rest/store.hpp"
 #include "rest/user.hpp"
@@ -11,7 +11,7 @@
 
 namespace sandbox_cppcms {
 
-rests::rests(cppcms::service& srv) : cppcms::application(srv) {
+v2::v2(cppcms::service& srv) : cppcms::application(srv) {
     cppcms::application::attach(new pet(srv),
             "pet",
             "/pet{1}", // mapping
@@ -28,14 +28,14 @@ rests::rests(cppcms::service& srv) : cppcms::application(srv) {
             "/user((.*))?", // dispatching
             1);
 
-    dispatcher().map("GET","", &rests::get_info, this);
+    dispatcher().map("GET","", &v2::get_info, this);
 };
 
-rests::~rests() {
+v2::~v2() {
 
 }
 
-void rests::get_info() {
+void v2::get_info() {
     cppcms::json::value info;
     info["name"] = "sandbox-cppcms";
     info["version"] = "0.1.0";

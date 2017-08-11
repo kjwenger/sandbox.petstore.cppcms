@@ -5,10 +5,10 @@
 
 namespace sandbox_cppcms {
 
-class rests : public cppcms::application {
+class v2 : public cppcms::application {
 public:
-    rests(cppcms::service& srv);
-    virtual ~rests();
+    v2(cppcms::service& srv);
+    virtual ~v2();
 
     void get_info();
 };
