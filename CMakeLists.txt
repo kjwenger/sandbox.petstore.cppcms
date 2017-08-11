@@ -5,6 +5,7 @@ if (NOT DEFINED CMAKE_PREFIX_PATH)
 endif (NOT DEFINED CMAKE_PREFIX_PATH)
 file(GLOB SRC
         src/*.cpp
+        src/rest/*.cpp
 )
 add_executable(sandbox-cppcms ${SRC})
 include_directories(

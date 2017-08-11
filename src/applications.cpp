@@ -1,14 +1,14 @@
 #include "applications.hpp"
-#include "rests.hpp"
+#include "rest/rests.hpp"
 
 namespace sandbox_cppcms {
 
 applications::applications(cppcms::service& srv)
         : cppcms::application(srv) {
     cppcms::application::attach(new rests(srv),
-            "rest",
-            "/rest{1}", // mapping
-            "/rest((.*))?", // dispatching
+            "v2",
+            "/v2{1}", // mapping
+            "/v2((.*))?", // dispatching
             1);
 }
 

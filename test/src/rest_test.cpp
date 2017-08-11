@@ -21,7 +21,7 @@ TEST_F(rest_test, rest_test_case)
 {
     curlpp::Cleanup cleanup;
     curlpp::Easy request;
-    request.setOpt<curlpp::options::Url>("http://localhost:8910/rest");
+    request.setOpt<curlpp::options::Url>("http://localhost:8910/v2");
     std::ostringstream os;
     curlpp::options::WriteStream ws(&os);
     request.setOpt(ws);
