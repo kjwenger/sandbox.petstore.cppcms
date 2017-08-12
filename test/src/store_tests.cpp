@@ -81,5 +81,19 @@ TEST_F(store_tests, list_store_inventory) {
     GET(url, out, code)
 
     EXPECT_EQ(code, 200L);
-    EXPECT_STREQ(out.c_str(), "{\"1\":1,\"123\":1,\"Sold\":1,\"aaaaaa\":1,\"available\":810,\"dead\":1,\"foo\":1,\"jhjhjhj\":1,\"msvc\":1,\"pending\":21,\"sold\":29,\"string\":4678,\"vbsdbsdbsdbsd\":2}");
+    EXPECT_STREQ(out.c_str(), "{"
+            "\"1\":1,"
+            "\"123\":1,"
+            "\"Sold\":1,"
+            "\"aaaaaa\":1,"
+            "\"available\":810,"
+            "\"dead\":1,"
+            "\"foo\":1,"
+            "\"jhjhjhj\":1,"
+            "\"msvc\":1,"
+            "\"pending\":21,"
+            "\"sold\":29,"
+            "\"string\":4678,"
+            "\"vbsdbsdbsdbsd\":2"
+        "}");
 }
