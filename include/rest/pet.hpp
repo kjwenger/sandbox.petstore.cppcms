@@ -22,7 +22,7 @@ namespace sandbox_cppcms {
     public:
         pet(cppcms::service& srv);
         virtual ~pet();
-
+    private:
         // POST /pet Add a new pet to the store
         void create_pet();                                      // C
         // GET /pet/{petId} Find pet by ID                      //

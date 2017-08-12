@@ -13,7 +13,7 @@ namespace sandbox_cppcms {
         dispatcher().map("GET", "/(\\d+)", &user::read_user, this, 1);
         dispatcher().map("PUT", "/(\\d+)", &user::update_user, this, 1);
         dispatcher().map("DELETE", "/(\\d+)", &user::delete_user, this, 1);
-    };
+    }
 
     user::~user() {
 

@@ -24,10 +24,16 @@ target_link_libraries(sandbox-cppcms
 add_subdirectory(scripts/thirdparty/googletest)
 enable_testing()
 file(GLOB TEST
-        test/src/*.cpp
+        test/src/v2_tests.cpp
+        test/src/pet_tests.cpp
+        test/src/store_tests.cpp
 )
 add_executable(sandbox-cppcms-test ${TEST})
-include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+target_include_directories(sandbox-cppcms-test PUBLIC
+        ${gtest_SOURCE_DIR}/include
+        ${gtest_SOURCE_DIR}
+        test
+)
 target_link_libraries(sandbox-cppcms-test
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
         ${CMAKE_PREFIX_PATH}/lib/libcurl.a

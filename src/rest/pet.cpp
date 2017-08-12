@@ -30,7 +30,7 @@ namespace sandbox_cppcms {
         dispatcher().map("GET", "", &pet::list_pet, this);
         dispatcher().map("GET", "/findByStatus", &pet::search_pet_by_status, this);
         dispatcher().map("GET", "/findByTags", &pet::search_pet_by_tags, this);
-    };
+    }
 
     pet::~pet() {
 

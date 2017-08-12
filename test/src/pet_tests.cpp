@@ -10,76 +10,7 @@
 
 #include <json/value.h>
 
-#define GET(url, out, code)\
-{\
-    curlpp::Cleanup cleanup;\
-    curlpp::Easy request;\
-    request.setOpt<curlpp::options::Url>(url);\
-    std::list<std::string> header;\
-    header.push_back("Content-Type: application/json");\
-    request.setOpt(new curlpp::options::HttpHeader(header));\
-    std::ostringstream os;\
-    curlpp::options::WriteStream ws(&os);\
-    request.setOpt(ws);\
-    request.perform();\
-    out.assign(os.str());\
-    code = curlpp::infos::ResponseCode::get(request);\
-}
-
-#define PUT(url, in, out, code)\
-{\
-    curlpp::Cleanup cleanup;\
-    curlpp::Easy request;\
-    request.setOpt(new curlpp::options::CustomRequest("PUT"));\
-    request.setOpt<curlpp::options::Url>(url);\
-    std::list<std::string> header;\
-    header.push_back("Content-Type: application/json");\
-    request.setOpt(new curlpp::options::HttpHeader(header));\
-    request.setOpt(new curlpp::options::PostFields(in));\
-    request.setOpt(new curlpp::options::PostFieldSize(in.length()));\
-    std::ostringstream os;\
-    curlpp::options::WriteStream ws(&os);\
-    request.setOpt(ws);\
-    request.perform();\
-    out.assign(os.str());\
-    code = curlpp::infos::ResponseCode::get(request);\
-}
-
-#define POST(url, in, out, code)\
-{\
-    curlpp::Cleanup cleanup;\
-    curlpp::Easy request;\
-    request.setOpt<curlpp::options::Url>(url);\
-    std::list<std::string> header;\
-    header.push_back("Content-Type: application/json");\
-    request.setOpt(new curlpp::options::HttpHeader(header));\
-    request.setOpt(new curlpp::options::PostFields(in));\
-    request.setOpt(new curlpp::options::PostFieldSize(in.length()));\
-    std::ostringstream os;\
-    curlpp::options::WriteStream ws(&os);\
-    request.setOpt(ws);\
-    request.perform();\
-    out.assign(os.str());\
-    code = curlpp::infos::ResponseCode::get(request);\
-}
-
-#define DELETE(url, api_key, out, code)\
-{\
-    curlpp::Cleanup cleanup;\
-    curlpp::Easy request;\
-    request.setOpt(new curlpp::options::CustomRequest("DELETE"));\
-    request.setOpt<curlpp::options::Url>(url);\
-    std::list<std::string> header;\
-    header.push_back("Content-Type: application/json");\
-    header.push_back("api_key: " + api_key);\
-    request.setOpt(new curlpp::options::HttpHeader(header));\
-    std::ostringstream os;\
-    curlpp::options::WriteStream ws(&os);\
-    request.setOpt(ws);\
-    request.perform();\
-    out.assign(os.str());\
-    code = curlpp::infos::ResponseCode::get(request);\
-}
+#include "macros.hpp"
 
 class pet_tests : public ::testing::Test {
 protected:
@@ -95,6 +26,7 @@ protected:
 // POST /pet Add a new pet to the store
 TEST_F(pet_tests, create_pet) {
     Json::Value pet;
+    pet["id"] = 2;
     pet["category"]["id"] = 0;
     pet["category"]["name"] = "string";
     pet["name"] = "kittie";
