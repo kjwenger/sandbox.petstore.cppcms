@@ -12,6 +12,16 @@
 
 #include "macros.hpp"
 
+#define USER(user)\
+    user["id"] = 1;\
+    user["username"] = "string";\
+    user["firstName"] = "string";\
+    user["lastName"] = "string";\
+    user["email"] = "string";\
+    user["password"] = "string";\
+    user["phone"] = "string";\
+    user["userStatus"] = 0;\
+
 class user_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
@@ -26,14 +36,7 @@ protected:
 // POST /user Add a new user to the store
 TEST_F(user_tests, create_user) {
     Json::Value user;
-    user["id"] = 2;
-    user["category"]["id"] = 0;
-    user["category"]["name"] = "string";
-    user["name"] = "kittie";
-    user["photoUrls"][0] = "string";
-    user["tag"]["id"] = 0;
-    user["tag"]["name"] = "string";
-    user["status"] = "new";
+    USER(user)
     std::ostringstream os;
     os << user.toStyledString();
     std::string url("http://localhost:8910/v2/user");
@@ -42,10 +45,88 @@ TEST_F(user_tests, create_user) {
     POST(url, os.str(), out, code)
 
     EXPECT_EQ(code, 200L);
-    EXPECT_STREQ(out.c_str(), R"({"category":{"id":0,"name":"string"},"id":2,"name":"kittie","photoUrls":["string"],"status":"new","tag":{"id":0,"name":"string"}})");
+    EXPECT_STREQ(out.c_str(), "{"
+            "\"email\":\"string\","
+            "\"firstName\":\"string\","
+            "\"id\":1,"
+            "\"lastName\":\"string\","
+            "\"password\":\"string\","
+            "\"phone\":\"string\","
+            "\"userStatus\":0,"
+            "\"username\":\"string\""
+        "}");
 }
 
-// GET /user/{userId} Find user by ID                      //
+// POST /user/createWithArray Creates list of users with given input array
+TEST_F(user_tests, create_user_with_array) {
+    Json::Value users;
+    USER(users[0])
+    std::ostringstream os;
+    os << users.toStyledString();
+    std::string url("http://localhost:8910/v2/user");
+    std::string out;
+    long code;
+    POST(url, os.str(), out, code)
+
+    EXPECT_EQ(code, 200L);
+    EXPECT_STREQ(out.c_str(), "[{"
+            "\"email\":\"string\","
+            "\"firstName\":\"string\","
+            "\"id\":1,"
+            "\"lastName\":\"string\","
+            "\"password\":\"string\","
+            "\"phone\":\"string\","
+            "\"userStatus\":0,"
+            "\"username\":\"string\""
+        "}]");
+}
+
+// POST /user/createWithList Creates list of users with given input array
+TEST_F(user_tests, create_user_with_list) {
+    Json::Value users;
+    USER(users[0])
+    std::ostringstream os;
+    os << users.toStyledString();
+    std::string url("http://localhost:8910/v2/user");
+    std::string out;
+    long code;
+    POST(url, os.str(), out, code)
+
+    EXPECT_EQ(code, 200L);
+    EXPECT_STREQ(out.c_str(), "[{"
+            "\"email\":\"string\","
+            "\"firstName\":\"string\","
+            "\"id\":1,"
+            "\"lastName\":\"string\","
+            "\"password\":\"string\","
+            "\"phone\":\"string\","
+            "\"userStatus\":0,"
+            "\"username\":\"string\""
+        "}]");
+}
+
+// GET /user/login Logs user into the system
+TEST_F(user_tests, login_user) {
+    std::string url("http://localhost:8910/v2/user/login?username=string&password=string");
+    std::string out;
+    long code;
+    GET(url, out, code)
+
+    EXPECT_EQ(code, 200L);
+    EXPECT_STREQ(out.c_str(), "\"string\"");
+}
+
+// GET /user/logout Logs out current logged in user session
+TEST_F(user_tests, logout_user) {
+    std::string url("http://localhost:8910/v2/user/logout");
+    std::string out;
+    long code;
+    GET(url, out, code)
+
+    EXPECT_EQ(code, 200L);
+}
+
+// GET /user/{userId} Find user by ID
 TEST_F(user_tests, get_user) {
     std::string url("http://localhost:8910/v2/user/string");
     std::string out;
@@ -65,17 +146,11 @@ TEST_F(user_tests, get_user) {
         "}");
 }
 
-// PUT /user Update an existing user                      //
+// PUT /user Update an existing user
 TEST_F(user_tests, update_user) {
     Json::Value user;
-    user["id"] = 1;\
-    user["username"] = "string";\
-    user["firstName"] = "string";\
-    user["lastName"] = "string";\
-    user["email"] = "string";\
-    user["password"] = "string";\
-    user["phone"] = "string";\
-    user["userStatus"] = 2;\
+    USER(user)
+    user["userStatus"] = 2;
     std::ostringstream os;
     os << user.toStyledString();
     std::string url("http://localhost:8910/v2/user/string");
@@ -96,7 +171,7 @@ TEST_F(user_tests, update_user) {
         "}");
 }
 
-// DELETE /user/{userId} Deletes a user                    //
+// DELETE /user/{userId} Deletes a user
 TEST_F(user_tests, delete_user) {
     std::ostringstream os;
     std::string url("http://localhost:8910/v2/user/string");
