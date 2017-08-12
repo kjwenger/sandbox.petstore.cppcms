@@ -27,6 +27,7 @@ file(GLOB TEST
         test/src/v2_tests.cpp
         test/src/pet_tests.cpp
         test/src/store_tests.cpp
+        test/src/user_tests.cpp
 )
 add_executable(sandbox-cppcms-test ${TEST})
 target_include_directories(sandbox-cppcms-test PUBLIC

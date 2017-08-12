@@ -7,12 +7,12 @@
 #include <cppcms/json.h>
 
 #define STORE_ORDER(order) \
-order["id"] = 2;\
-order["petId"] = 1;\
-order["quantity"] = 1;\
-order["shipDate"] = "2017-08-12T16:23:07.307Z";\
-order["status"] = "placed";\
-order["complete"] = false;\
+    order["id"] = 2;\
+    order["petId"] = 1;\
+    order["quantity"] = 1;\
+    order["shipDate"] = "2017-08-12T16:23:07.307Z";\
+    order["status"] = "placed";\
+    order["complete"] = false;\
 
 namespace sandbox_cppcms {
 
@@ -52,7 +52,6 @@ namespace sandbox_cppcms {
         std::istringstream is(string);
         cppcms::json::value order;
         is >> order;
-        order["id"] = 2;
 
         response().out() << order;
     }

@@ -42,7 +42,6 @@ namespace sandbox_cppcms {
         std::istringstream is(string);
         cppcms::json::value pet;
         is >> pet;
-        pet["id"] = 2;
 
         response().out() << pet;
     }
