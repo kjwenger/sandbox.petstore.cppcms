@@ -31,3 +31,5 @@ sudo apt install python -y
 
 # Get test prerequisites
 sudo apt install libcurl4-openssl-dev -y
+sudo apt install libjsoncpp-dev -y
+sudo apt install libjsoncpp1 -y

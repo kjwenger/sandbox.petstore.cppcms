@@ -11,13 +11,14 @@ add_executable(sandbox-cppcms ${SRC})
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
+        /usr/include/jsoncpp
         /usr/include
         ${CMAKE_SOURCE_DIR}/include
 )
 target_link_libraries(sandbox-cppcms
+        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
         ${CMAKE_PREFIX_PATH}/lib/libbooster.so
         pcre
-        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
 )
 
 add_subdirectory(scripts/thirdparty/googletest)
@@ -31,6 +32,7 @@ target_link_libraries(sandbox-cppcms-test
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
         ${CMAKE_PREFIX_PATH}/lib/libcurl.a
         ${CMAKE_PREFIX_PATH}/lib/libz.a
+        jsoncpp
         crypto
         ssl
         gtest
