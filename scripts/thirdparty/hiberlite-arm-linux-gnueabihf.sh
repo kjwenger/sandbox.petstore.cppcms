@@ -25,5 +25,4 @@ make -j ${CPUS} clean   INSTALL_PREFIX="${INSTALL_PREFIX}" CC="${CC}" CXX="${CXX
 make -j ${CPUS}         INSTALL_PREFIX="${INSTALL_PREFIX}" CC="${CC}" CXX="${CXX}"
 make -j ${CPUS} install INSTALL_PREFIX="${INSTALL_PREFIX}" CC="${CC}" CXX="${CXX}"
 popd
-popd
 cd "${CURRENT_DIR}"
