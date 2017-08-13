@@ -10,6 +10,7 @@ pushd "${PROJECT_DIR}"
 touch petstore_dev.db
 touch petstore_test.db
 touch petstore_prod.db
+touch sqitch.db
 if [ ! -f sqitch.conf ]; then
     sqitch init "sandbox.cppcms" \
            --uri https://github.com/theory/sqitch-sqlite-intro/ \
