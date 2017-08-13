@@ -7,6 +7,10 @@
 #include <curlpp/Options.hpp>
 #include <curlpp/Infos.hpp>
 
+#define INITIALIZE() cURLpp::initialize();
+
+#define TERMINATE() cURLpp::terminate();
+
 #define GET(url, out, code)\
 {\
     curlpp::Cleanup cleanup;\

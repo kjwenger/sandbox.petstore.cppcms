@@ -3,14 +3,9 @@
 
 #include <gtest/gtest.h>
 
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
-#include <curlpp/Options.hpp>
-#include <curlpp/Infos.hpp>
-
 #include <json/value.h>
 
-#include "macros.hpp"
+#include "rest_macros.hpp"
 
 #define USER(user)\
     user["id"] = 1;\
@@ -25,11 +20,11 @@
 class rest_user_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
-        cURLpp::initialize();
+        INITIALIZE()
     }
 
     virtual void TearDown() {
-        cURLpp::terminate();
+        TERMINATE()
     }
 };
 

@@ -3,23 +3,18 @@
 
 #include <gtest/gtest.h>
 
-#include <curlpp/cURLpp.hpp>
-#include <curlpp/Easy.hpp>
-#include <curlpp/Options.hpp>
-#include <curlpp/Infos.hpp>
-
 #include <json/value.h>
 
-#include "macros.hpp"
+#include "rest_macros.hpp"
 
 class rest_pet_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
-        cURLpp::initialize();
+        INITIALIZE()
     }
 
     virtual void TearDown() {
-        cURLpp::terminate();
+        TERMINATE()
     }
 };
 

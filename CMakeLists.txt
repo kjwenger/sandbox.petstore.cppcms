@@ -7,7 +7,9 @@ file(GLOB SRC
         src/*.cpp
         src/rest/*.cpp
 )
-add_executable(sandbox-cppcms ${SRC})
+add_executable(sandbox-cppcms
+        ${SRC}
+)
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
@@ -18,24 +20,30 @@ include_directories(
 target_link_libraries(sandbox-cppcms
         ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
         ${CMAKE_PREFIX_PATH}/lib/libbooster.so
-        pcre
+        ${CMAKE_PREFIX_PATH}/lib/libhiberlite.a
+        ${CMAKE_PREFIX_PATH}/lib/libz.a
+        ${CMAKE_PREFIX_PATH}/lib/libpcre.a
 )
 
 add_subdirectory(scripts/thirdparty/googletest)
 enable_testing()
 file(GLOB TEST
+        test/src/model/model_pet_tests.cpp
         test/src/rest/rest_v2_tests.cpp
         test/src/rest/rest_pet_tests.cpp
         test/src/rest/rest_store_tests.cpp
         test/src/rest/rest_user_tests.cpp
 )
-add_executable(sandbox-cppcms-test ${TEST})
+add_executable(sandbox-cppcms-test
+        ${TEST}
+)
 target_include_directories(sandbox-cppcms-test PUBLIC
         ${gtest_SOURCE_DIR}/include
         ${gtest_SOURCE_DIR}
         test
 )
 target_link_libraries(sandbox-cppcms-test
+        ${CMAKE_PREFIX_PATH}/lib/libhiberlite.a
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
         ${CMAKE_PREFIX_PATH}/lib/libcurl.a
         ${CMAKE_PREFIX_PATH}/lib/libz.a
