@@ -8,5 +8,6 @@ ${CURRENT_DIR}/thirdparty/cppcms-arm-linux-gnueabihf.sh
 ${CURRENT_DIR}/thirdparty/googletest-arm-linux-gnueabihf.sh
 ${CURRENT_DIR}/thirdparty/curl-arm-linux-gnueabihf.sh
 ${CURRENT_DIR}/thirdparty/curlpp-arm-linux-gnueabihf.sh
+${CURRENT_DIR}/thirdparty/hiberlite-arm-linux-gnueabihf.sh
 
 ${CURRENT_DIR}/app-arm-linux-gnueabihf.sh
