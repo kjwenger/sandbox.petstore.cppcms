@@ -6,7 +6,7 @@
 #include <curlpp/Easy.hpp>
 #include <curlpp/Options.hpp>
 
-class v2_tests : public ::testing::Test {
+class rest_v2_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
         cURLpp::initialize();
@@ -17,7 +17,7 @@ protected:
     }
 };
 
-TEST_F(v2_tests, get_info)
+TEST_F(rest_v2_tests, get_info)
 {
     curlpp::Cleanup cleanup;
     curlpp::Easy request;

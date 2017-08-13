@@ -22,7 +22,7 @@
     user["phone"] = "string";\
     user["userStatus"] = 0;\
 
-class user_tests : public ::testing::Test {
+class rest_user_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
         cURLpp::initialize();
@@ -34,7 +34,7 @@ protected:
 };
 
 // POST /user Add a new user to the store
-TEST_F(user_tests, create_user) {
+TEST_F(rest_user_tests, create_user) {
     Json::Value user;
     USER(user)
     std::ostringstream os;
@@ -58,7 +58,7 @@ TEST_F(user_tests, create_user) {
 }
 
 // POST /user/createWithArray Creates list of users with given input array
-TEST_F(user_tests, create_user_with_array) {
+TEST_F(rest_user_tests, create_user_with_array) {
     Json::Value users;
     USER(users[0])
     std::ostringstream os;
@@ -82,7 +82,7 @@ TEST_F(user_tests, create_user_with_array) {
 }
 
 // POST /user/createWithList Creates list of users with given input array
-TEST_F(user_tests, create_user_with_list) {
+TEST_F(rest_user_tests, create_user_with_list) {
     Json::Value users;
     USER(users[0])
     std::ostringstream os;
@@ -106,7 +106,7 @@ TEST_F(user_tests, create_user_with_list) {
 }
 
 // GET /user/login Logs user into the system
-TEST_F(user_tests, login_user) {
+TEST_F(rest_user_tests, login_user) {
     std::string url("http://localhost:8910/v2/user/login?username=string&password=string");
     std::string out;
     long code;
@@ -117,7 +117,7 @@ TEST_F(user_tests, login_user) {
 }
 
 // GET /user/logout Logs out current logged in user session
-TEST_F(user_tests, logout_user) {
+TEST_F(rest_user_tests, logout_user) {
     std::string url("http://localhost:8910/v2/user/logout");
     std::string out;
     long code;
@@ -127,7 +127,7 @@ TEST_F(user_tests, logout_user) {
 }
 
 // GET /user/{userId} Find user by ID
-TEST_F(user_tests, get_user) {
+TEST_F(rest_user_tests, get_user) {
     std::string url("http://localhost:8910/v2/user/string");
     std::string out;
     long code;
@@ -147,7 +147,7 @@ TEST_F(user_tests, get_user) {
 }
 
 // PUT /user Update an existing user
-TEST_F(user_tests, update_user) {
+TEST_F(rest_user_tests, update_user) {
     Json::Value user;
     USER(user)
     user["userStatus"] = 2;
@@ -172,7 +172,7 @@ TEST_F(user_tests, update_user) {
 }
 
 // DELETE /user/{userId} Deletes a user
-TEST_F(user_tests, delete_user) {
+TEST_F(rest_user_tests, delete_user) {
     std::ostringstream os;
     std::string url("http://localhost:8910/v2/user/string");
     std::string out;

@@ -12,7 +12,7 @@
 
 #include "macros.hpp"
 
-class store_tests : public ::testing::Test {
+class rest_store_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
         cURLpp::initialize();
@@ -24,7 +24,7 @@ protected:
 };
 
 // POST /store/store/order Place an order for a pet
-TEST_F(store_tests, create_store_order) {
+TEST_F(rest_store_tests, create_store_order) {
     Json::Value order;
     order["id"] = 2;
     order["petId"] = 1;
@@ -45,7 +45,7 @@ R"({"complete":false,"id":2,"petId":1,"quantity":1,"shipDate":"2017-08-12T16:23:
 }
 
 // GET /store/store/order/{orderId} Find purchase order by ID
-TEST_F(store_tests, get_store_order) {
+TEST_F(rest_store_tests, get_store_order) {
     std::string url("http://localhost:8910/v2/store/order/1");
     std::string out;
     long code;
@@ -62,7 +62,7 @@ TEST_F(store_tests, get_store_order) {
 }
 
 // DELETE /store/store/order/{orderId} Delete purchase order by ID
-TEST_F(store_tests, delete_store_order) {
+TEST_F(rest_store_tests, delete_store_order) {
     std::ostringstream os;
     std::string url("http://localhost:8910/v2/store/order/2");
     std::string out;
@@ -74,7 +74,7 @@ TEST_F(store_tests, delete_store_order) {
 }
 
 // GET /store/store/inventory Returns pet inventories by status
-TEST_F(store_tests, list_store_inventory) {
+TEST_F(rest_store_tests, list_store_inventory) {
     std::string url("http://localhost:8910/v2/store/inventory");
     std::string out;
     long code;

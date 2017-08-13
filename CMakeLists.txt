@@ -24,10 +24,10 @@ target_link_libraries(sandbox-cppcms
 add_subdirectory(scripts/thirdparty/googletest)
 enable_testing()
 file(GLOB TEST
-        test/src/v2_tests.cpp
-        test/src/pet_tests.cpp
-        test/src/store_tests.cpp
-        test/src/user_tests.cpp
+        test/src/rest/rest_v2_tests.cpp
+        test/src/rest/rest_pet_tests.cpp
+        test/src/rest/rest_store_tests.cpp
+        test/src/rest/rest_user_tests.cpp
 )
 add_executable(sandbox-cppcms-test ${TEST})
 target_include_directories(sandbox-cppcms-test PUBLIC

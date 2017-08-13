@@ -12,7 +12,7 @@
 
 #include "macros.hpp"
 
-class pet_tests : public ::testing::Test {
+class rest_pet_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
         cURLpp::initialize();
@@ -24,7 +24,7 @@ protected:
 };
 
 // POST /pet Add a new pet to the store
-TEST_F(pet_tests, create_pet) {
+TEST_F(rest_pet_tests, create_pet) {
     Json::Value pet;
     pet["id"] = 2;
     pet["category"]["id"] = 0;
@@ -46,7 +46,7 @@ TEST_F(pet_tests, create_pet) {
 }
 
 // GET /pet/{petId} Find pet by ID                      //
-TEST_F(pet_tests, get_pet) {
+TEST_F(rest_pet_tests, get_pet) {
     std::string url("http://localhost:8910/v2/pet/1");
     std::string out;
     long code;
@@ -63,7 +63,7 @@ TEST_F(pet_tests, get_pet) {
 }
 
 // PUT /pet Update an existing pet                      //
-TEST_F(pet_tests, update_pet) {
+TEST_F(rest_pet_tests, update_pet) {
     Json::Value pet;
     pet["id"] = 2;
     pet["category"]["id"] = 0;
@@ -85,7 +85,7 @@ TEST_F(pet_tests, update_pet) {
 }
 
 // DELETE /pet/{petId} Deletes a pet                    //
-TEST_F(pet_tests, delete_pet) {
+TEST_F(rest_pet_tests, delete_pet) {
     std::ostringstream os;
     std::string url("http://localhost:8910/v2/pet/2");
     std::string out;
@@ -96,7 +96,7 @@ TEST_F(pet_tests, delete_pet) {
     EXPECT_STREQ(out.c_str(), "");
 }
 
-TEST_F(pet_tests, list_pet) {
+TEST_F(rest_pet_tests, list_pet) {
     std::string url("http://localhost:8910/v2/pet");
     std::string out;
     long code;
@@ -107,7 +107,7 @@ TEST_F(pet_tests, list_pet) {
 }
 
 // GET /pet/findByStatus Finds Pets by status           //
-TEST_F(pet_tests, search_pet_by_status) {
+TEST_F(rest_pet_tests, search_pet_by_status) {
     std::string url("http://localhost:8910/v2/pet/findByStatus?status=available,new");
     std::string out;
     long code;
@@ -124,7 +124,7 @@ TEST_F(pet_tests, search_pet_by_status) {
 }
 
 // GET /pet/findByTags Finds Pets by tags               //
-TEST_F(pet_tests, search_pet_by_tags) {
+TEST_F(rest_pet_tests, search_pet_by_tags) {
     std::string url("http://localhost:8910/v2/pet/findByTags?tags=string,foo,bar");
     std::string out;
     long code;
