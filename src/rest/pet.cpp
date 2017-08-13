@@ -27,7 +27,7 @@ namespace sandbox_cppcms {
         dispatcher().map("GET", "/(\\d+)", &pet::read_pet, this, 1);
         dispatcher().map("PUT", "", &pet::update_pet, this);
         dispatcher().map("DELETE", "/(\\d+)", &pet::delete_pet, this, 1);
-        dispatcher().map("GET", "", &pet::list_pet, this);
+        dispatcher().map("GET", "", &pet::list_pets, this);
         dispatcher().map("GET", "/findByStatus", &pet::search_pet_by_status, this);
         dispatcher().map("GET", "/findByTags", &pet::search_pet_by_tags, this);
     }
@@ -70,7 +70,7 @@ namespace sandbox_cppcms {
         response().status(200);
     }
 
-    void pet::list_pet() {
+    void pet::list_pets() {
         cppcms::json::value pets;
         pets[0]["id"] = 1;
         pets[0]["name"] = "doggie";

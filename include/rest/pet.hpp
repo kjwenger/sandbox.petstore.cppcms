@@ -31,7 +31,7 @@ namespace sandbox_cppcms {
         void update_pet();                                      // U
         // DELETE /pet/{petId} Deletes a pet                    //
         void delete_pet(int id);                                // D
-        void list_pet();                                        // L
+        void list_pets();                                       // L
         // GET /pet/findByStatus Finds Pets by status           //
         void search_pet_by_status();                            // S
         // GET /pet/findByTags Finds Pets by tags               //

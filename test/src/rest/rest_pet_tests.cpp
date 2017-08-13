@@ -91,7 +91,7 @@ TEST_F(rest_pet_tests, delete_pet) {
     EXPECT_STREQ(out.c_str(), "");
 }
 
-TEST_F(rest_pet_tests, list_pet) {
+TEST_F(rest_pet_tests, list_pets) {
     std::string url("http://localhost:8910/v2/pet");
     std::string out;
     long code;
