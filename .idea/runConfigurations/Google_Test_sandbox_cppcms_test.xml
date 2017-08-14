@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Google Test sandbox-cppcms-test" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sandbox-cppcms" TARGET_NAME="sandbox-cppcms-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sandbox-cppcms" RUN_TARGET_NAME="sandbox-cppcms-test" TEST_MODE="SUITE_TEST">
+    <envs />
+    <method />
+  </configuration>
+</component>

@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sandbox-cppcms" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="-c config.json" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sandbox-cppcms" TARGET_NAME="sandbox-cppcms" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sandbox-cppcms" RUN_TARGET_NAME="sandbox-cppcms">
+    <envs />
+    <method />
+  </configuration>
+</component>
