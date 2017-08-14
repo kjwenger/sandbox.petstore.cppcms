@@ -31,6 +31,21 @@ namespace model {
 } /* namespace model */
 } /* namespace sandbox_cppcms */
 
+const char * to_string(const sandbox_cppcms::model::pet_status & pet_status) {
+    switch (pet_status) {
+        case sandbox_cppcms::model::pet_status::available:
+            return "available";
+        case sandbox_cppcms::model::pet_status::pending:
+            return "pending";
+        case sandbox_cppcms::model::pet_status::sold:
+            return "sold";
+    }
+}
+
+std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet_status & pet_status) {
+    return os << to_string(pet_status);
+}
+
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet) {
     return os << pet.id << ",\"" << pet.name << "\"";
 }
@@ -51,6 +66,7 @@ cppcms::json::value & operator<<(cppcms::json::value & value, const sandbox_cppc
             iterator ++, index ++) {
         value["tag"][index] = *iterator;
     }
+    value["status"] = to_string(pet.status);
     return value;
 }
 

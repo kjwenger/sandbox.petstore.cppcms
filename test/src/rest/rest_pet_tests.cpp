@@ -32,6 +32,7 @@
     pet.id = 1;\
     pet.name = "doggie";\
     pet.photoUrls = {"string"};\
+    pet.status = sandbox_cppcms::model::pet_status::available;\
 
 class rest_pet_tests : public ::testing::Test {
 public:
@@ -84,7 +85,9 @@ TEST_F(rest_pet_tests, get_pet) {
     EXPECT_STREQ(out.c_str(),
 "{\"id\":1,\
 \"name\":\"doggie\",\
-\"photoUrls\":[\"string\"]}");
+\"photoUrls\":[\"string\"],\
+\"status\":\"available\"\
+}");
 }
 
 // PUT /pet Update an existing pet                      //
