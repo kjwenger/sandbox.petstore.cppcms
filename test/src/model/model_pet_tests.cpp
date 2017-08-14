@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "model/Pet.hpp"
+#include "model/pet.hpp"
 
 class model_pet_tests : public ::testing::Test {
 protected:
@@ -14,7 +14,7 @@ protected:
 };
 
 TEST_F(model_pet_tests, new_pet_initialized_zero) {
-    sandbox_cppcms::model::Pet * pet = new sandbox_cppcms::model::Pet();
+    sandbox_cppcms::model::pet * pet = new sandbox_cppcms::model::pet();
 
     EXPECT_EQ(pet->id, 0);
     EXPECT_STREQ(pet->name.c_str(), "");
@@ -25,13 +25,13 @@ TEST_F(model_pet_tests, new_pet_initialized_zero) {
 }
 
 TEST_F(model_pet_tests, new_pet_initialized_default) {
-    sandbox_cppcms::model::Pet * pet = new sandbox_cppcms::model::Pet;
+    sandbox_cppcms::model::pet * pet = new sandbox_cppcms::model::pet;
 
     delete pet;
 }
 
 TEST_F(model_pet_tests, construct_pet_initialized_zero) {
-    sandbox_cppcms::model::Pet pet{
+    sandbox_cppcms::model::pet pet{
             0,
             ""
 //            {},
@@ -45,5 +45,5 @@ TEST_F(model_pet_tests, construct_pet_initialized_zero) {
 }
 
 TEST_F(model_pet_tests, construct_pet_initialized_default) {
-    sandbox_cppcms::model::Pet pet;
+    sandbox_cppcms::model::pet pet;
 }

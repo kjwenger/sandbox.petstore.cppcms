@@ -5,12 +5,12 @@
 #include <string>
 #include <vector>
 
-#include "model/Pet.hpp"
+#include "model/pet.hpp"
 
 namespace sandbox_cppcms {
 namespace persistence {
 
-class Pet : public model::Pet {
+class pet : public model::pet {
     friend class hiberlite::access;
     template<class Archive>
     void hibernate(Archive& ar) {

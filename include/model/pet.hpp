@@ -7,29 +7,29 @@
 namespace sandbox_cppcms {
 namespace model {
 
-class Category {
+class category {
 public:
     int id;
     std::string name;
 };
 
-enum PetStatus {
+enum pet_status {
     available,
     pending,
     sold
 };
 
-class Pet {
+class pet {
 public:
     int id;
-//    Category category;
+//    category category;
     std::string name;
 //    std::vector<std::string> photoUrls;
 //    std::vector<std::string> tags;
-//    PetStatus status;
+//    pet_status status;
 };
 
 } /* namespace model */
 } /* namespace sandbox_cppcms */
 
-std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::Pet & pet);
+std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet);

@@ -6,7 +6,7 @@
 
 #define private public
 
-#include "persistence/Pet.hpp"
+#include "persistence/pet.hpp"
 #include "persistence/database.hpp"
 
 class persistence_pet_tests : public ::testing::Test {
@@ -23,7 +23,7 @@ public:
 };
 
 TEST_F(persistence_pet_tests, new_pet_initialized_zero) {
-    sandbox_cppcms::persistence::Pet * pet = new sandbox_cppcms::persistence::Pet();
+    sandbox_cppcms::persistence::pet * pet = new sandbox_cppcms::persistence::pet();
 
     EXPECT_EQ(pet->id, 0);
     EXPECT_STREQ(pet->name.c_str(), "");
@@ -34,15 +34,15 @@ TEST_F(persistence_pet_tests, new_pet_initialized_zero) {
 }
 
 TEST_F(persistence_pet_tests, new_pet_initialized_default) {
-    sandbox_cppcms::persistence::Pet * pet = new sandbox_cppcms::persistence::Pet;
+    sandbox_cppcms::persistence::pet * pet = new sandbox_cppcms::persistence::pet;
 
     delete pet;
 }
 
-// persistence_pet_tests.cpp:34:55: error: no matching function for call to ‘sandbox_cppcms::persistence::Pet::Pet(<brace-enclosed initializer list>)’
-//     sandbox_cppcms::persistence::Pet pet{0, "", {}, {}};
+// persistence_pet_tests.cpp:34:55: error: no matching function for call to ‘sandbox_cppcms::persistence::pet::pet(<brace-enclosed initializer list>)’
+//     sandbox_cppcms::persistence::pet pet{0, "", {}, {}};
 //TEST_F(persistence_pet_tests, construct_pet_initialized_zero) {
-//    sandbox_cppcms::persistence::Pet pet{0, "", {}, {}};
+//    sandbox_cppcms::persistence::pet pet{0, "", {}, {}};
 //
 //    EXPECT_EQ(pet.id, 0);
 //    EXPECT_STREQ(pet.name.c_str(), "");
@@ -51,25 +51,25 @@ TEST_F(persistence_pet_tests, new_pet_initialized_default) {
 //}
 
 TEST_F(persistence_pet_tests, construct_pet_initialized_default) {
-    sandbox_cppcms::persistence::Pet pet;
+    sandbox_cppcms::persistence::pet pet;
 }
 
 TEST_F(persistence_pet_tests, hiberlite_get_classname_for_pet) {
-    std::string className = hiberlite::Database::getClassName<sandbox_cppcms::persistence::Pet>();
+    std::string className = hiberlite::Database::getClassName<sandbox_cppcms::persistence::pet>();
     std::cerr << "persistence_pet_tests::hiberlite_get_classname_for_pet() className: " << className << std::endl;
 
-    EXPECT_STREQ(className.c_str(), "sandbox_cppcms::persistence::Pet");
+    EXPECT_STREQ(className.c_str(), "sandbox_cppcms::persistence::pet");
 }
 
 TEST_F(persistence_pet_tests, database_create_pet) {
     try {
-        sandbox_cppcms::model::Pet pet{
+        sandbox_cppcms::model::pet pet{
                 1,
                 "doggie",
 //                {},
 //                {}
         };
-        sandbox_cppcms::model::Pet createdPet = service_database->create_pet(pet);
+        sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
         std::cerr << "persistence_pet_tests::database_create_pet() createdPet: " << createdPet << std::endl;
 
         EXPECT_EQ(createdPet.id, 1);
@@ -81,7 +81,7 @@ TEST_F(persistence_pet_tests, database_create_pet) {
 }
 
 TEST_F(persistence_pet_tests, database_list_pets) {
-    std::vector<sandbox_cppcms::model::Pet> pets;
+    std::vector<sandbox_cppcms::model::pet> pets;
     service_database->list_pets(pets);
     std::cerr << "persistence_pet_tests::database_list_pets() pets.size(): " << pets.size() << std::endl;
 

@@ -25,17 +25,20 @@ if [ ! -f sqitch.conf ]; then
     sqitch add pet -n "Creates table to track our pet." \
                    --requires category \
                    --requires tag
+    sqitch target add petstore_test db:sqlite:petstore_test.db
+    sqitch engine add sqlite petstore_test
 fi
-sqitch target add petstore_dev db:sqlite:petstore_dev.db
-sqitch engine add sqlite petstore_dev
 sqitch deploy
+sqitch deploy db:sqlite:petstore_dev.db
 sqitch deploy db:sqlite:petstore_test.db
 sqitch deploy db:sqlite:petstore_prod.db
 sqlite3 petstore_test.db '.tables'
 sqitch verify
+sqitch verify db:sqlite:petstore_dev.db
 sqitch verify db:sqlite:petstore_test.db
 sqitch verify db:sqlite:petstore_prod.db
 sqitch status
+sqitch status db:sqlite:petstore_dev.db
 sqitch status db:sqlite:petstore_test.db
 sqitch status db:sqlite:petstore_prod.db
 popd

@@ -4,7 +4,7 @@
 
 #include <hiberlite/hiberlite.h>
 
-#include "model/Pet.hpp"
+#include "model/pet.hpp"
 
 namespace sandbox_cppcms {
 namespace persistence {
@@ -14,8 +14,8 @@ public:
     database(const std::string & target);
     virtual ~database();
 
-    model::Pet create_pet(const model::Pet & pet);
-    void list_pets(std::vector<model::Pet> & pets);
+    model::pet create_pet(const model::pet & pet);
+    void list_pets(std::vector<model::pet> & pets);
 private:
     void init();
 
