@@ -1,15 +1,16 @@
 #include <gtest/gtest.h>
 
 #include "persistence/Pet.hpp"
+#include "persistence/database.hpp"
 
 class persistence_pet_tests : public ::testing::Test {
 protected:
     virtual void SetUp() {
-
+        service_database = new sandbox_cppcms::persistence::database("petstore_test");
     }
 
     virtual void TearDown() {
-
+        delete service_database;
     }
 };
 

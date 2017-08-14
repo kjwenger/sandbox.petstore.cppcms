@@ -18,12 +18,16 @@ file(GLOB INCLUDE
 file(GLOB SRC
         src/application_utility.cpp
         src/*.cpp
-        src/persistence/*.cpp
         src/rest/*.cpp
+)
+file(GLOB SRC_PERSISTENCE
+        src/persistence/database.cpp
+        src/persistence/Pet.cpp
 )
 add_executable(sandbox-cppcms
         ${INCLUDE}
         ${SRC}
+        ${SRC_PERSISTENCE}
 )
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
@@ -45,7 +49,10 @@ target_link_libraries(sandbox-cppcms
 
 add_subdirectory(scripts/thirdparty/googletest)
 enable_testing()
-file(GLOB TEST
+file(GLOB TEST_INCLUDE
+        test/include/rest/*.hpp
+)
+file(GLOB TEST_SRC
         test/src/model/model_pet_tests.cpp
         test/src/persistence/persistence_pet_tests.cpp
         test/src/rest/rest_v2_tests.cpp
@@ -54,8 +61,9 @@ file(GLOB TEST
         test/src/rest/rest_user_tests.cpp
 )
 add_executable(sandbox-cppcms-test
-        test/include/rest/http_macros.hpp
-        ${TEST}
+        ${TEST_INCLUDE}
+        ${SRC_PERSISTENCE}
+        ${TEST_SRC}
 )
 target_include_directories(sandbox-cppcms-test PUBLIC
         ${gtest_SOURCE_DIR}/include
@@ -67,11 +75,12 @@ target_link_libraries(sandbox-cppcms-test
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
         ${CMAKE_PREFIX_PATH}/lib/libcurl.a
         ${CMAKE_PREFIX_PATH}/lib/libz.a
+        gtest_main
+        gtest
         jsoncpp
         crypto
         ssl
-        gtest
-        gtest_main)
+        dl)
 add_test(
         NAME sandbox-cppcms-test
         COMMAND sandbox-cppcms-test

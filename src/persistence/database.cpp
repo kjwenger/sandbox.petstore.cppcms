@@ -40,4 +40,4 @@ void database::init() {
 } /* namespace persistence */
 } /* namespace sandbox_cppcms */
 
-extern sandbox_cppcms::persistence::database * service_database = nullptr;
+sandbox_cppcms::persistence::database * service_database = nullptr;

@@ -23,5 +23,3 @@ class Pet : public model::Pet {
 
 } /* namespace persistence */
 } /* namespace sandbox_cppcms */
-
-HIBERLITE_EXPORT_CLASS(sandbox_cppcms::persistence::Pet)
