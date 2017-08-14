@@ -23,4 +23,9 @@ namespace hiberlite {
     }
 }
 
+pet::pet() : sandbox_cppcms::model::pet() { }
+
+pet::pet(const sandbox_cppcms::model::pet & origin)
+        : sandbox_cppcms::model::pet(origin) { }
+
 HIBERLITE_EXPORT_CLASS(pet)

@@ -40,7 +40,7 @@ void database::list_pets(std::vector<model::pet> &pets) {
 }
 
 model::pet database::create_pet(const model::pet & pet) {
-    ::pet newPet;
+    ::pet newPet(pet);
     newPet.id = pet.id;
     newPet.name = pet.name;
     newPet.photoUrls = pet.photoUrls;

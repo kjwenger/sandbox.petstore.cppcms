@@ -21,6 +21,14 @@ enum class pet_status {
 
 class pet {
 public:
+    pet();
+    pet(const int id,
+        const std::string & name,
+        const std::vector<std::string> & photoUrls,
+        const std::vector<std::string> & tags,
+        const model::pet_status status);
+    pet(const pet & origin);
+
     int id;
 //    model::category category;
     std::string name;
