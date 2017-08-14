@@ -16,6 +16,7 @@ file(GLOB INCLUDE
         include/rest/*.hpp
 )
 file(GLOB SRC
+        src/application_utility.cpp
         src/*.cpp
         src/persistence/*.cpp
         src/rest/*.cpp

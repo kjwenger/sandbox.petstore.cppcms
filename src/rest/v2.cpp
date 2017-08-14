@@ -1,17 +1,19 @@
+#include <cppcms/url_dispatcher.h>
+#include <cppcms/url_mapper.h>
+#include <cppcms/http_response.h>
+
+#include <cppcms/json.h>
+
 #include "rest/v2.hpp"
 #include "rest/pet.hpp"
 #include "rest/store.hpp"
 #include "rest/user.hpp"
 
-#include <cppcms/url_dispatcher.h>
-#include <cppcms/url_mapper.h>
-#include <cppcms/http_request.h>
-#include <cppcms/http_response.h>
-#include <cppcms/json.h>
-
 namespace sandbox_cppcms {
 
-    v2::v2(cppcms::service& srv) : cppcms::application(srv) {
+    v2::v2(cppcms::service & srv)
+            : cppcms::application(srv)
+            , settings(srv.settings()) {
         cppcms::application::attach(new pet(srv),
                 "pet",
                 "/pet{1}", // mapping
@@ -36,10 +38,8 @@ namespace sandbox_cppcms {
     }
 
     void v2::get_info() {
-        cppcms::json::value info;
-        info["name"] = "sandbox-cppcms";
-        info["version"] = "0.1.0";
-
+        std::cerr << "v2::get_info() settings: " << settings;
+        cppcms::json::value info = settings.find("application.info");
         response().out() << info;
     }
 

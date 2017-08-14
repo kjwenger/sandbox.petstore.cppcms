@@ -1,16 +1,17 @@
 #pragma once
 
-#include <hiberlite/hiberlite.h>
-
 #include <vector>
+
+#include <hiberlite/hiberlite.h>
 
 #include "model/Pet.hpp"
 
 namespace sandbox_cppcms {
+namespace persistence {
 
 class database {
 public:
-    database();
+    database(const std::string & target);
     virtual ~database();
 
 //    Pet & createPet(const Pet const & pet);
@@ -21,4 +22,7 @@ private:
     hiberlite::Database db;
 };
 
+} /* namespace persistence */
 } /* namespace sandbox_cppcms */
+
+extern sandbox_cppcms::persistence::database * service_database;

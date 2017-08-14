@@ -7,6 +7,8 @@
 #include <cppcms/url_dispatcher.h>
 #include <cppcms/url_mapper.h>
 
+#include "persistence/database.hpp"
+
 namespace sandbox_cppcms {
 
 /**
@@ -19,6 +21,8 @@ public:
      * @param srv
      */
     applications(cppcms::service& srv);
+private:
+    persistence::database database;
 };
 
 } /* namespace sandbox_cppcms */

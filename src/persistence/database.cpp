@@ -3,8 +3,10 @@
 #include "persistence/Pet.hpp"
 
 namespace sandbox_cppcms {
+namespace persistence {
 
-database::database() : db("petstore.db") {
+database::database(const std::string & target)
+        : db(target + std::string(".db")) {
     db.registerBeanClass<persistence::Pet>();
 }
 
@@ -35,4 +37,7 @@ void database::init() {
     db.createModel();
 }
 
+} /* namespace persistence */
 } /* namespace sandbox_cppcms */
+
+extern sandbox_cppcms::persistence::database * service_database = nullptr;
