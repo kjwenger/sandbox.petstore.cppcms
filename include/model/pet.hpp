@@ -24,8 +24,8 @@ public:
     int id;
 //    model::category category;
     std::string name;
-//    std::vector<std::string> photoUrls;
-//    std::vector<std::string> tags;
+    std::vector<std::string> photoUrls;
+    std::vector<std::string> tags;
 //    model::pet_status status;
 };
 
