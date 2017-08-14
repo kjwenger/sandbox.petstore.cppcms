@@ -16,7 +16,7 @@ file(GLOB SRC
 )
 add_executable(sandbox-cppcms
         ${SRC}
-)
+        include/application_utility.hpp)
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
