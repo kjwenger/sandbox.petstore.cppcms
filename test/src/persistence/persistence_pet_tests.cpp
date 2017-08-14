@@ -117,6 +117,50 @@ TEST_F(persistence_pet_tests, database_read_pet) {
     EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::sold);
 }
 
+TEST_F(persistence_pet_tests, database_update_pet) {
+    sandbox_cppcms::model::pet pet{
+            1,
+            "doggie",
+            {},
+            {},
+            sandbox_cppcms::model::pet_status::sold
+    };
+    sandbox_cppcms::model::pet updatePet{
+            1,
+            "kittie",
+            {},
+            {},
+            sandbox_cppcms::model::pet_status::pending
+    };
+    sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
+//    std::cerr << "persistence_pet_tests::database_read_pet() createdPet: " << createdPet << std::endl;
+
+    {
+        sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
+        EXPECT_EQ(readPet.id, 1);
+        EXPECT_STREQ(readPet.name.c_str(), "doggie");
+        EXPECT_EQ(readPet.photoUrls.size(), 0);
+        EXPECT_EQ(readPet.tags.size(), 0);
+        EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::sold);
+
+        sandbox_cppcms::model::pet updatedPet = service_database->update_pet(updatePet);
+        EXPECT_EQ(updatedPet.id, 1);
+        EXPECT_STREQ(updatedPet.name.c_str(), "kittie");
+        EXPECT_EQ(updatedPet.photoUrls.size(), 0);
+        EXPECT_EQ(updatedPet.tags.size(), 0);
+        EXPECT_EQ(updatedPet.status, sandbox_cppcms::model::pet_status::pending);
+    }
+
+    {
+        sandbox_cppcms::model::pet readPet = service_database->read_pet(updatePet.id);
+        EXPECT_EQ(readPet.id, 1);
+        EXPECT_STREQ(readPet.name.c_str(), "kittie");
+        EXPECT_EQ(readPet.photoUrls.size(), 0);
+        EXPECT_EQ(readPet.tags.size(), 0);
+        EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::pending);
+    }
+}
+
 TEST_F(persistence_pet_tests, database_delete_pet) {
     sandbox_cppcms::model::pet pet{
             1,

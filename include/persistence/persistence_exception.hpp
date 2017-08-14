@@ -13,8 +13,7 @@ namespace persistence {
     public:
         virtual const char* what() const throw() override;
     private:
-        persistence_exception(const std::string & what);
-        persistence_exception(const char * what);
+        persistence_exception();
         persistence_exception(const persistence_exception & origin);
     };
 

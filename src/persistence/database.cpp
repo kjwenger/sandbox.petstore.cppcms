@@ -44,27 +44,32 @@ namespace persistence {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
 //        std::cerr << "model::pet database::read_pet(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
-            std::ostringstream os;
-            os << "Could not load bean with id: " << id;
-            throw new persistence_exception(os.str());
+            throw new persistence_exception();
         }
 //        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
-        ::pet newPet;
         model::pet returnPet(*loadedBean);
         return returnPet;
     }
 
     model::pet database::update_pet(const model::pet & pet) {
-
+        hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) pet.id);
+        std::cerr << "model::pet database::update_pet(" << pet << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+        if (loadedBean.destroyed()) {
+            throw new persistence_exception();
+        }
+        loadedBean->name = pet.name;
+        loadedBean->photoUrls = pet.photoUrls;
+        loadedBean->tags = pet.tags;
+        loadedBean->status = pet.status;
+        model::pet returnPet(*loadedBean);
+        return returnPet;
     }
 
     model::pet database::delete_pet(int id) {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
         std::cerr << "model::pet database::delete_pet(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
-            std::ostringstream os;
-            os << "Could not destroy bean with id: " << id;
-            throw new persistence_exception(os.str());
+            throw new persistence_exception();
         }
         model::pet returnPet(*loadedBean);
         loadedBean.destroy();
