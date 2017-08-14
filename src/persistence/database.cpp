@@ -24,11 +24,11 @@ namespace persistence {
         std::vector<hiberlite::bean_ptr<pet>> allBeans =
                 db.getAllBeans<pet>();
         pets.clear();
-        for (std::vector<hiberlite::bean_ptr<pet>>::iterator
+        for (auto // std::vector<hiberlite::bean_ptr<pet>>::iterator
                 iterator = allBeans.begin();
                 iterator != allBeans.end();
                 iterator ++) {
-            hiberlite::bean_ptr<pet> & pet = *iterator;
+            hiberlite::bean_ptr<::pet> & pet = *iterator;
             pets.push_back(model::pet{
                     pet->id,
                     pet->name,
@@ -42,17 +42,13 @@ namespace persistence {
     model::pet database::create_pet(const model::pet & pet) {
         ::pet newPet(pet);
         hiberlite::bean_ptr<::pet> copiedBean = db.copyBean(newPet);
-        newPet.id = copiedBean->id;
-        newPet.name = copiedBean->name;
-        newPet.photoUrls = copiedBean->photoUrls;
-        newPet.tags = copiedBean->tags;
-        newPet.status = copiedBean->status;
-        return newPet;
+        model::pet returnPet(*copiedBean);
+        return returnPet;
     }
 
     model::pet database::read_pet(int id) {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
-        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
+//        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
         ::pet newPet;
         newPet.id = loadedBean->id;
         newPet.name = loadedBean->name;

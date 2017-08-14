@@ -64,7 +64,7 @@ TEST_F(persistence_pet_tests, construct_pet_initialized_zero) {
 }
 
 TEST_F(persistence_pet_tests, construct_pet_initialized_default) {
-    pet pet;
+    ::pet pet;
 }
 
 TEST_F(persistence_pet_tests, hiberlite_get_classname_for_pet) {
