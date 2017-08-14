@@ -45,21 +45,23 @@ TEST_F(persistence_pet_tests, new_pet_initialized_zero) {
 }
 
 TEST_F(persistence_pet_tests, new_pet_initialized_default) {
-    pet * pet = new ::pet;
+    ::pet * pet = new ::pet;
 
     delete pet;
 }
 
-// persistence_pet_tests.cpp:34:55: error: no matching function for call to ‘pet::pet(<brace-enclosed initializer list>)’
-//     pet pet{0, "", {}, {}};
-//TEST_F(persistence_pet_tests, construct_pet_initialized_zero) {
-//    pet pet{0, "", {}, {}};
-//
-//    EXPECT_EQ(pet.id, 0);
-//    EXPECT_STREQ(pet.name.c_str(), "");
-//    EXPECT_EQ(pet.photoUrls.size(), 0);
-//    EXPECT_EQ(pet.tags.size(), 0);
-//}
+TEST_F(persistence_pet_tests, construct_pet_initialized_zero) {
+    ::pet pet(0,
+              "",
+              std::vector<std::string>(),
+              std::vector<std::string>(),
+              sandbox_cppcms::model::pet_status::pending);
+
+    EXPECT_EQ(pet.id, 0);
+    EXPECT_STREQ(pet.name.c_str(), "");
+    EXPECT_EQ(pet.photoUrls.size(), 0);
+    EXPECT_EQ(pet.tags.size(), 0);
+}
 
 TEST_F(persistence_pet_tests, construct_pet_initialized_default) {
     pet pet;

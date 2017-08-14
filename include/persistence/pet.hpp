@@ -12,12 +12,15 @@ class pet : public sandbox_cppcms::model::pet {
     template<class Archive>
     void hibernate(Archive& ar) {
         ar & HIBERLITE_NVP(name);
-//        ar & HIBERLITE_NVP(category);
         ar & HIBERLITE_NVP(photoUrls);
         ar & HIBERLITE_NVP(tags);
-        ar & HIBERLITE_NVP(status);
     }
 public:
     pet();
+    pet(const int id,
+        const std::string & name,
+        const std::vector<std::string> & photoUrls,
+        const std::vector<std::string> & tags,
+        const sandbox_cppcms::model::pet_status status);
     pet(const sandbox_cppcms::model::pet & origin);
 };
