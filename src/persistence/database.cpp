@@ -1,5 +1,7 @@
 #include <iostream>
 
+#include <sqlite3.h>
+
 #include "persistence/database.hpp"
 
 #include "persistence/pet.hpp"
@@ -10,6 +12,7 @@ namespace persistence {
 database::database(const std::string & target)
         : db(target + std::string(".db")) {
     std::cerr << "database::database(\"" << target << "\")" << std::endl;
+    sqlite3_config(SQLITE_CONFIG_URI, 0);
     db.registerBeanClass<persistence::pet>();
 }
 
