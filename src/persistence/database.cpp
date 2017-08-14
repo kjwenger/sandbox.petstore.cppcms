@@ -11,7 +11,7 @@ namespace persistence {
 
     database::database(const std::string & target)
             : db(target + std::string(".db")) {
-        std::cerr << "database::database(\"" << target << "\")" << std::endl;
+//        std::cerr << "database::database(\"" << target << "\")" << std::endl;
         sqlite3_config(SQLITE_CONFIG_URI, 0);
         db.registerBeanClass<pet>();
     }
@@ -52,6 +52,7 @@ namespace persistence {
 
     model::pet database::read_pet(int id) {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
+        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
         ::pet newPet;
         newPet.id = loadedBean->id;
         newPet.name = loadedBean->name;

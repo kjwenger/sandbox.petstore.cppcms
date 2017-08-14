@@ -57,11 +57,11 @@ namespace sandbox_cppcms {
     void pet::update_pet() {
         std::pair<void *, size_t> raw_post_data = request().raw_post_data();
         std::string content((const char *) raw_post_data.first, raw_post_data.second);
-        std::cerr << "pet::update_pet() content: " << content << std::endl;
+//        std::cerr << "pet::update_pet() content: " << content << std::endl;
         std::istringstream is(content);
         cppcms::json::value pet;
         is >> pet;
-        std::cerr << "pet::update_pet() pet: " << pet << std::endl;
+//        std::cerr << "pet::update_pet() pet: " << pet << std::endl;
 
         response().out() << pet;
     }
@@ -80,7 +80,7 @@ namespace sandbox_cppcms {
 
     void pet::search_pet_by_status() {
         const std::string & query_string = request().query_string();
-        std::cerr << "pet::search_pet_by_status() query_string: " << query_string << std::endl;
+//        std::cerr << "pet::search_pet_by_status() query_string: " << query_string << std::endl;
         const std::string equals("=");
         size_t end;
         std::string statuses;
@@ -88,7 +88,7 @@ namespace sandbox_cppcms {
             size_t count = query_string.length() - end - 1;
             statuses = query_string.substr(end + 1, count);
         }
-        std::cerr << "pet::search_pet_by_status() statuses: " << statuses << std::endl;
+//        std::cerr << "pet::search_pet_by_status() statuses: " << statuses << std::endl;
         std::vector<std::string> tokens;
         const std::string comma(",");
         size_t begin = 0;
@@ -103,13 +103,13 @@ namespace sandbox_cppcms {
         }
         std::ostringstream os;
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
-        std::cerr << "pet::search_pet_by_status() tokens: " << os.str() << std::endl;
+//        std::cerr << "pet::search_pet_by_status() tokens: " << os.str() << std::endl;
 
         cppcms::json::value pets;
         pets[0]["id"] = 1;\
         PET_DOGGIE(pets[0])
         const std::string & status = pets[0]["status"].str();
-        std::cerr << "pet::search_pet_by_status() status: " << status << std::endl;
+//        std::cerr << "pet::search_pet_by_status() status: " << status << std::endl;
         if (std::find(tokens.begin(), tokens.end(), status) != tokens.end()) {
             response().out() << pets;
         } else {
@@ -119,7 +119,7 @@ namespace sandbox_cppcms {
 
     void pet::search_pet_by_tags() {
         const std::string & query_string = request().query_string();
-        std::cerr << "pet::search_pet_by_tag() query_string: " << query_string << std::endl;
+//        std::cerr << "pet::search_pet_by_tag() query_string: " << query_string << std::endl;
         const std::string equals("=");
         size_t end;
         std::string tags;
@@ -127,7 +127,7 @@ namespace sandbox_cppcms {
             size_t count = query_string.length() - end - 1;
             tags = query_string.substr(end + 1, count);
         }
-        std::cerr << "pet::search_pet_by_tag() tags: " << tags << std::endl;
+//        std::cerr << "pet::search_pet_by_tag() tags: " << tags << std::endl;
         std::vector<std::string> tokens;
         const std::string comma(",");
         size_t begin = 0;
@@ -142,13 +142,13 @@ namespace sandbox_cppcms {
         }
         std::ostringstream os;
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
-        std::cerr << "pet::search_pet_by_tag() tokens: " << os.str() << std::endl;
+//        std::cerr << "pet::search_pet_by_tag() tokens: " << os.str() << std::endl;
 
         cppcms::json::value pets;
         pets[0]["id"] = 1;
         PET_DOGGIE(pets[0])
         const std::string & tag = pets[0]["tag"][0]["name"].str();
-        std::cerr << "pet::search_pet_by_tag() tag: " << tag << std::endl;
+//        std::cerr << "pet::search_pet_by_tag() tag: " << tag << std::endl;
         if (std::find(tokens.begin(), tokens.end(), tag) != tokens.end()) {
             response().out() << pets;
         } else {

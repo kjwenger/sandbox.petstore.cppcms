@@ -34,7 +34,7 @@ public:
     std::string name;
     std::vector<std::string> photoUrls;
     std::vector<std::string> tags;
-    model::pet_status status;
+    pet_status status;
 };
 
 } /* namespace model */
