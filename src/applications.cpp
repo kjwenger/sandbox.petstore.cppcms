@@ -8,7 +8,7 @@ applications::applications(cppcms::service& srv)
         : cppcms::application(srv)
         , database(
                 application_utility::get_string(
-                        srv.settings(), "", "")) {
+                        srv.settings(), "application.database.target", "")) {
     service_database = & database;
     cppcms::application::attach(new v2(srv),
             "v2",

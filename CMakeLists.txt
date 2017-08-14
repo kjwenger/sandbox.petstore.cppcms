@@ -20,14 +20,15 @@ file(GLOB SRC
         src/*.cpp
         src/rest/*.cpp
 )
-file(GLOB SRC_PERSISTENCE
+file(GLOB SRC_SHARED
+        src/model/Pet.cpp
         src/persistence/database.cpp
         src/persistence/Pet.cpp
 )
 add_executable(sandbox-cppcms
         ${INCLUDE}
         ${SRC}
-        ${SRC_PERSISTENCE}
+        ${SRC_SHARED}
 )
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
@@ -62,7 +63,7 @@ file(GLOB TEST_SRC
 )
 add_executable(sandbox-cppcms-test
         ${TEST_INCLUDE}
-        ${SRC_PERSISTENCE}
+        ${SRC_SHARED}
         ${TEST_SRC}
 )
 target_include_directories(sandbox-cppcms-test PUBLIC

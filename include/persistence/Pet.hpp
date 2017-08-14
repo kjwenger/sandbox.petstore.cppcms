@@ -15,8 +15,8 @@ class Pet : public model::Pet {
     template<class Archive>
     void hibernate(Archive& ar) {
         ar & HIBERLITE_NVP(name);
-        ar & HIBERLITE_NVP(photoUrls);
-        ar & HIBERLITE_NVP(tags);
+//        ar & HIBERLITE_NVP(photoUrls);
+//        ar & HIBERLITE_NVP(tags);
 //        ar & HIBERLITE_NVP(status);
     }
 };

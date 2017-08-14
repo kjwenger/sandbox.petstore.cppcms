@@ -14,8 +14,8 @@ public:
     database(const std::string & target);
     virtual ~database();
 
-//    Pet & createPet(const Pet const & pet);
-    void list_pets(std::vector<model::Pet> &pets);
+    model::Pet create_pet(const model::Pet & pet);
+    void list_pets(std::vector<model::Pet> & pets);
 private:
     void init();
 
