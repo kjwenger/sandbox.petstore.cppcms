@@ -10,8 +10,11 @@ namespace persistence {
 
     class persistence_exception : public std::exception {
         friend class database;
+    public:
+        virtual const char* what() const throw() override;
     private:
         persistence_exception(const std::string & what);
+        persistence_exception(const char * what);
         persistence_exception(const persistence_exception & origin);
     };
 

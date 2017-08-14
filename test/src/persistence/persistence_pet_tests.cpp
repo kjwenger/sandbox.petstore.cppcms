@@ -146,20 +146,19 @@ TEST_F(persistence_pet_tests, database_delete_pet) {
 
     {
         try {
-
+            sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
+            FAIL();
         }
-        catch (const persistence_e) {
-
+        catch (...) {
+            // all is well
         }
-
-        sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
-
-        sandbox_cppcms::model::pet deletedPet = service_database->delete_pet(readPet.id);
-//        EXPECT_EQ(deletedPet.id, 1);
-//        EXPECT_STREQ(deletedPet.name.c_str(), "doggie");
-//        EXPECT_EQ(deletedPet.photoUrls.size(), 0);
-//        EXPECT_EQ(deletedPet.tags.size(), 0);
-//        EXPECT_EQ(deletedPet.status, sandbox_cppcms::model::pet_status::sold);
+        try {
+            sandbox_cppcms::model::pet deletedPet = service_database->delete_pet(createdPet.id);
+            FAIL();
+        }
+        catch (...) {
+            // all is well
+        }
     }
 }
 
