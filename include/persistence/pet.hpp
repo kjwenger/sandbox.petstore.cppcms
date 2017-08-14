@@ -7,6 +7,12 @@
 
 #include "model/pet.hpp"
 
+enum class pet_status {
+    available,
+    pending,
+    sold
+};
+
 class pet : public sandbox_cppcms::model::pet {
     friend class hiberlite::access;
     template<class Archive>

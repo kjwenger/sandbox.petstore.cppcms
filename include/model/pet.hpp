@@ -13,7 +13,7 @@ public:
     std::string name;
 };
 
-enum pet_status {
+enum class pet_status {
     available,
     pending,
     sold
@@ -26,7 +26,7 @@ public:
     std::string name;
     std::vector<std::string> photoUrls;
     std::vector<std::string> tags;
-//    model::pet_status status;
+    model::pet_status status;
 };
 
 } /* namespace model */

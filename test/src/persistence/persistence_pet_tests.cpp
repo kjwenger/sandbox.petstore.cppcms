@@ -77,13 +77,16 @@ TEST_F(persistence_pet_tests, database_create_pet) {
                 1,
                 "doggie",
                 {},
-                {}
+                {},
+                sandbox_cppcms::model::pet_status::available
         };
         sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
         std::cerr << "persistence_pet_tests::database_create_pet() createdPet: " << createdPet << std::endl;
 
         EXPECT_EQ(createdPet.id, 1);
         EXPECT_STREQ(createdPet.name.c_str(), "doggie");
+        EXPECT_EQ(createdPet.photoUrls.size(), 0);
+        EXPECT_EQ(createdPet.tags.size(), 0);
 
         std::vector<hiberlite::bean_ptr<::pet>> allBeans =
                 service_database->db.getAllBeans<::pet>();
