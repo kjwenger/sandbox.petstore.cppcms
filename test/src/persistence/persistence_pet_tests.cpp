@@ -75,31 +75,45 @@ TEST_F(persistence_pet_tests, hiberlite_get_classname_for_pet) {
 }
 
 TEST_F(persistence_pet_tests, database_create_pet) {
-    try {
-        sandbox_cppcms::model::pet pet{
-                1,
-                "doggie",
-                {},
-                {},
-                sandbox_cppcms::model::pet_status::sold
-        };
-        sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
-        std::cerr << "persistence_pet_tests::database_create_pet() createdPet: " << createdPet << std::endl;
+    sandbox_cppcms::model::pet pet{
+            1,
+            "doggie",
+            {},
+            {},
+            sandbox_cppcms::model::pet_status::sold
+    };
+    sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
+    std::cerr << "persistence_pet_tests::database_create_pet() createdPet: " << createdPet << std::endl;
 
-        EXPECT_EQ(createdPet.id, 1);
-        EXPECT_STREQ(createdPet.name.c_str(), "doggie");
-        EXPECT_EQ(createdPet.photoUrls.size(), 0);
-        EXPECT_EQ(createdPet.tags.size(), 0);
-        EXPECT_EQ(createdPet.status, sandbox_cppcms::model::pet_status::sold);
+    EXPECT_EQ(createdPet.id, 1);
+    EXPECT_STREQ(createdPet.name.c_str(), "doggie");
+    EXPECT_EQ(createdPet.photoUrls.size(), 0);
+    EXPECT_EQ(createdPet.tags.size(), 0);
+    EXPECT_EQ(createdPet.status, sandbox_cppcms::model::pet_status::sold);
 
-        std::vector<hiberlite::bean_ptr<::pet>> allBeans =
-                service_database->db.getAllBeans<::pet>();
-        std::cerr << "persistence_pet_tests::database_create_pet() allBeans.size(): " << allBeans.size() << std::endl;
-        EXPECT_EQ(allBeans.size(), 1);
-    }
-    catch (const std::exception & e) {
-        std::cerr << "persistence_pet_tests::database_create_pet() e.what(): " << e.what() << std::endl;
-    }
+    std::vector<hiberlite::bean_ptr<::pet>> allBeans =
+            service_database->db.getAllBeans<::pet>();
+    std::cerr << "persistence_pet_tests::database_create_pet() allBeans.size(): " << allBeans.size() << std::endl;
+    EXPECT_EQ(allBeans.size(), 1);
+}
+
+TEST_F(persistence_pet_tests, database_read_pet) {
+    sandbox_cppcms::model::pet pet{
+            1,
+            "doggie",
+            {},
+            {},
+            sandbox_cppcms::model::pet_status::sold
+    };
+    sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
+    std::cerr << "persistence_pet_tests::database_read_pet() createdPet: " << createdPet << std::endl;
+
+    sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
+    EXPECT_EQ(readPet.id, 1);
+    EXPECT_STREQ(readPet.name.c_str(), "doggie");
+    EXPECT_EQ(readPet.photoUrls.size(), 0);
+    EXPECT_EQ(readPet.tags.size(), 0);
+    EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::sold);
 }
 
 TEST_F(persistence_pet_tests, database_list_pets) {

@@ -15,6 +15,9 @@ public:
     virtual ~database();
 
     model::pet create_pet(const model::pet & pet);
+    model::pet read_pet(int id);
+    model::pet update_pet(const model::pet & pet);
+    model::pet delete_pet(int id);
     void list_pets(std::vector<model::pet> & pets);
 private:
     void init();
