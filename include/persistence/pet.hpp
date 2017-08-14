@@ -7,19 +7,14 @@
 
 #include "model/pet.hpp"
 
-namespace sandbox_cppcms {
-namespace persistence {
-
-class pet : public model::pet {
+class pet : public sandbox_cppcms::model::pet {
     friend class hiberlite::access;
     template<class Archive>
     void hibernate(Archive& ar) {
         ar & HIBERLITE_NVP(name);
+//        ar & HIBERLITE_NVP(category);
 //        ar & HIBERLITE_NVP(photoUrls);
 //        ar & HIBERLITE_NVP(tags);
 //        ar & HIBERLITE_NVP(status);
     }
 };
-
-} /* namespace persistence */
-} /* namespace sandbox_cppcms */

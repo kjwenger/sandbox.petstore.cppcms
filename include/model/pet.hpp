@@ -22,11 +22,11 @@ enum pet_status {
 class pet {
 public:
     int id;
-//    category category;
+//    model::category category;
     std::string name;
 //    std::vector<std::string> photoUrls;
 //    std::vector<std::string> tags;
-//    pet_status status;
+//    model::pet_status status;
 };
 
 } /* namespace model */

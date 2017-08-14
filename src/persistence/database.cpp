@@ -13,7 +13,7 @@ database::database(const std::string & target)
         : db(target + std::string(".db")) {
     std::cerr << "database::database(\"" << target << "\")" << std::endl;
     sqlite3_config(SQLITE_CONFIG_URI, 0);
-    db.registerBeanClass<persistence::pet>();
+    db.registerBeanClass<pet>();
 }
 
 database::~database() {
@@ -21,14 +21,14 @@ database::~database() {
 }
 
 void database::list_pets(std::vector<model::pet> &pets) {
-    std::vector<hiberlite::bean_ptr<persistence::pet>> allBeans =
-            db.getAllBeans<persistence::pet>();
+    std::vector<hiberlite::bean_ptr<pet>> allBeans =
+            db.getAllBeans<pet>();
 //    pets.clear();
-//    for (std::vector<hiberlite::bean_ptr<persistence::pet>>::iterator
+//    for (std::vector<hiberlite::bean_ptr<pet>>::iterator
 //            iterator = allBeans.begin();
 //            iterator != allBeans.end();
 //            iterator ++) {
-//        hiberlite::bean_ptr<persistence::pet> & pet = *iterator;
+//        hiberlite::bean_ptr<pet> & pet = *iterator;
 //        pets.push_back(model::pet{
 //                pet->id,
 //                pet->name
@@ -39,12 +39,12 @@ void database::list_pets(std::vector<model::pet> &pets) {
 }
 
 model::pet database::create_pet(const model::pet & pet) {
-    persistence::pet newPet;
+    ::pet newPet;
     newPet.id = pet.id;
     newPet.name = pet.name;
 //    newPet.photoUrls = pet.photoUrls;
 //    newPet.tags = pet.tags;
-    hiberlite::bean_ptr<persistence::pet> copiedBean = db.copyBean(newPet);
+    hiberlite::bean_ptr<::pet> copiedBean = db.copyBean(newPet);
     newPet.id = copiedBean->id;
     newPet.name = copiedBean->name;
 //    newPet.photoUrls = copiedBean->photoUrls;
