@@ -9,14 +9,21 @@ endif (NOT DEFINED CMAKE_PREFIX_PATH)
 #set(CMAKE_CXX_STANDARD 17)
 #set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #set(CMAKE_CXX_EXTENSIONS ON)
+file(GLOB INCLUDE
+        include/*.hpp
+        include/model/*.hpp
+        include/persistence/*.hpp
+        include/rest/*.hpp
+)
 file(GLOB SRC
         src/*.cpp
         src/persistence/*.cpp
         src/rest/*.cpp
 )
 add_executable(sandbox-cppcms
+        ${INCLUDE}
         ${SRC}
-        include/application_utility.hpp)
+)
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
