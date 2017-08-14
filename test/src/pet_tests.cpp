@@ -10,7 +10,7 @@
 
 #include <json/value.h>
 
-#include "macros.hpp"
+#include "http_macros.hpp"
 
 class pet_tests : public ::testing::Test {
 protected:
