@@ -36,11 +36,14 @@ file(GLOB TEST
         test/src/store_tests.cpp
         test/src/user_tests.cpp
 )
-add_executable(sandbox-cppcms-test ${TEST})
+add_executable(sandbox-cppcms-test
+        test/include/http_macros.hpp
+        ${TEST}
+)
 target_include_directories(sandbox-cppcms-test PUBLIC
         ${gtest_SOURCE_DIR}/include
         ${gtest_SOURCE_DIR}
-        test
+        test/include
 )
 target_link_libraries(sandbox-cppcms-test
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
