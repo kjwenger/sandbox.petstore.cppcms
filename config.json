@@ -1,7 +1,7 @@
 {
   "application" : {
     "database" : {
-      "target" : "petstore_test"
+      "target" : "petstore_dev"
     },
     "info" : {
       "name" : "sandbox-cppcms",

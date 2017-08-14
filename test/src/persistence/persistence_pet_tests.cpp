@@ -12,7 +12,7 @@
 class persistence_pet_tests : public ::testing::Test {
 public:
     static void SetUpTestCase() {
-        service_database = new sandbox_cppcms::persistence::database("petstore_test");
+        service_database = new sandbox_cppcms::persistence::database("petstore_dev");
         std::cerr << "persistence_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
     }
 
