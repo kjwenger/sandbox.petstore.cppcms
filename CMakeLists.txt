@@ -5,6 +5,7 @@ if (NOT DEFINED CMAKE_PREFIX_PATH)
 endif (NOT DEFINED CMAKE_PREFIX_PATH)
 file(GLOB INCLUDE
         include/*.hpp
+        include/rest/*.hpp
 )
 file(GLOB SRC
         src/*.cpp
