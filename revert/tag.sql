@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE tags;
+DROP TABLE 'tag';
 
 COMMIT;

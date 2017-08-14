@@ -7,9 +7,9 @@ PROJECT_DIR="$(dirname "${SCRIPTS_DIR}")"
 
 # Create databases
 pushd "${PROJECT_DIR}"
+rm -f petstore_dev.db
 touch petstore_dev.db
-touch petstore_test.db
-touch petstore_prod.db
+rm -f sqitch.db
 touch sqitch.db
 if [ ! -f sqitch.conf ]; then
     sqitch init "sandbox.cppcms" \
@@ -25,17 +25,11 @@ if [ ! -f sqitch.conf ]; then
     sqitch add pet -n "Creates table to track our pet." \
                    --requires category \
                    --requires tag
+    sqitch target add petstore_dev db:sqlite:petstore_dev.db
+    sqitch engine add sqlite petstore_dev
 fi
-sqitch target add petstore_dev db:sqlite:petstore_dev.db
-sqitch engine add sqlite petstore_dev
 sqitch deploy
-sqitch deploy db:sqlite:petstore_test.db
-sqitch deploy db:sqlite:petstore_prod.db
-sqlite3 petstore_test.db '.tables'
+sqlite3 petstore_dev.db '.tables'
 sqitch verify
-sqitch verify db:sqlite:petstore_test.db
-sqitch verify db:sqlite:petstore_prod.db
 sqitch status
-sqitch status db:sqlite:petstore_test.db
-sqitch status db:sqlite:petstore_prod.db
 popd

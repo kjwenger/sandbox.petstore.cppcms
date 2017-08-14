@@ -3,16 +3,16 @@
 BEGIN;
 
 SELECT
-        id                              ,
-        username                        ,
-        firstName                       ,
-        lastName                        ,
-        email                           ,
-        password                        ,
-        phone                           ,
-        userStatus
+        'id'                              ,
+        'username'                        ,
+        'firstName'                       ,
+        'lastName'                        ,
+        'email'                           ,
+        'password'                        ,
+        'phone'                           ,
+        'userStatus'
 FROM
-        users
+        'user'
 WHERE
         0;
 

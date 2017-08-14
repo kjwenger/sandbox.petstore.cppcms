@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE pets;
+DROP TABLE 'pet';
 
 COMMIT;

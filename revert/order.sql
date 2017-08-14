@@ -2,6 +2,6 @@
 
 BEGIN;
 
-DROP TABLE orders;
+DROP TABLE 'order';
 
 COMMIT;
