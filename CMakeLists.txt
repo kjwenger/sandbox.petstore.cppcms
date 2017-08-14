@@ -67,6 +67,8 @@ target_include_directories(sandbox-cppcms-test PUBLIC
         test/include
 )
 target_link_libraries(sandbox-cppcms-test
+        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
+        ${CMAKE_PREFIX_PATH}/lib/libbooster.so
         ${CMAKE_PREFIX_PATH}/lib/libhiberlite.a
         ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
         ${CMAKE_PREFIX_PATH}/lib/libcurl.a

@@ -4,6 +4,8 @@
 #include <vector>
 #include <ostream>
 
+#include <cppcms/json.h>
+
 namespace sandbox_cppcms {
 namespace model {
 
@@ -41,3 +43,5 @@ public:
 } /* namespace sandbox_cppcms */
 
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet);
+cppcms::json::value & operator<<(cppcms::json::value & value, const sandbox_cppcms::model::pet & pet);
+sandbox_cppcms::model::pet & operator<<(sandbox_cppcms::model::pet & pet, const cppcms::json::value & value);

@@ -7,10 +7,50 @@
 
 #include "rest/http_macros.hpp"
 
+#include "persistence/database.hpp"
+
+#define VALUE_DOGGIE(pet) \
+    pet["category"]["id"] = 1;\
+    pet["category"]["name"] = "string";\
+    pet["name"] = "doggie";\
+    pet["photoUrls"][0] = "string";\
+    pet["tag"][0]["id"] = 0;\
+    pet["tag"][0]["name"] = "string";\
+    pet["status"] = "available";\
+
+#define VALUE_KITTIE(pet) \
+    pet["id"] = 2;\
+    pet["category"]["id"] = 0;\
+    pet["category"]["name"] = "string";\
+    pet["name"] = "kittie";\
+    pet["photoUrls"][0] = "string";\
+    pet["tag"]["id"] = 0;\
+    pet["tag"]["name"] = "string";\
+    pet["status"] = "new";\
+
+#define PET_DOGGIE(pet) \
+    pet.id = 1;\
+    pet.name = "doggie";\
+    pet.photoUrls = {"string"};\
+
 class rest_pet_tests : public ::testing::Test {
+public:
+    static void SetUpTestCase() {
+        service_database = new sandbox_cppcms::persistence::database("petstore_dev");
+//        std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+        service_database->init();
+    }
+
+    static void TearDownTestCase() {
+//        std::cerr << "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+        delete service_database;
+    }
 protected:
     virtual void SetUp() {
         INITIALIZE()
+        sandbox_cppcms::model::pet pet;
+        PET_DOGGIE(pet)
+        service_database->create(pet);
     }
 
     virtual void TearDown() {
@@ -21,14 +61,7 @@ protected:
 // POST /pet Add a new pet to the store
 TEST_F(rest_pet_tests, create_pet) {
     Json::Value pet;
-    pet["id"] = 2;
-    pet["category"]["id"] = 0;
-    pet["category"]["name"] = "string";
-    pet["name"] = "kittie";
-    pet["photoUrls"][0] = "string";
-    pet["tag"]["id"] = 0;
-    pet["tag"]["name"] = "string";
-    pet["status"] = "new";
+    VALUE_KITTIE(pet)
     std::ostringstream os;
     os << pet.toStyledString();
     std::string url("http://localhost:8910/v2/pet");
@@ -49,12 +82,9 @@ TEST_F(rest_pet_tests, get_pet) {
 
     EXPECT_EQ(code, 200L);
     EXPECT_STREQ(out.c_str(),
-"{\"category\":{\"id\":0,\"name\":\"string\"},\
-\"id\":1,\
+"{\"id\":1,\
 \"name\":\"doggie\",\
-\"photoUrls\":[\"string\"],\
-\"status\":\"available\",\
-\"tag\":[{\"id\":0,\"name\":\"string\"}]}");
+\"photoUrls\":[\"string\"]}");
 }
 
 // PUT /pet Update an existing pet                      //

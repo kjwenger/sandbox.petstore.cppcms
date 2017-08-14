@@ -11,6 +11,10 @@
 
 #include "rest/pet.hpp"
 
+#include "model/pet.hpp"
+#include "persistence/database.hpp"
+#include "persistence/pet.hpp"
+
 #define PET_DOGGIE(pet) \
     pet["category"]["id"] = 0;\
     pet["category"]["name"] = "string";\
@@ -40,18 +44,32 @@ namespace sandbox_cppcms {
         std::pair<void *, size_t> raw_post_data = request().raw_post_data();
         std::string string((const char *) raw_post_data.first, raw_post_data.second);
         std::istringstream is(string);
-        cppcms::json::value pet;
-        is >> pet;
+        cppcms::json::value value;
+        is >> value;
+        model::pet pet;
+        pet << value;
+        try {
+            model::pet created = service_database->create<model::pet>(pet);
+            value << created;
 
-        response().out() << pet;
+            response().out() << value;
+        }
+        catch (...) {
+            response().status(500);
+        }
     }
 
     void pet::read_pet(int id) {
-        cppcms::json::value pet;
-        pet["id"] = id;\
-        PET_DOGGIE(pet)
+        try {
+            model::pet pet = service_database->read<model::pet>(id);
+            cppcms::json::value value;
+            value << pet;
 
-        response().out() << pet;
+            response().out() << value;
+        }
+        catch (...) {
+            response().status(404);
+        }
     }
 
     void pet::update_pet() {
@@ -59,11 +77,11 @@ namespace sandbox_cppcms {
         std::string content((const char *) raw_post_data.first, raw_post_data.second);
 //        std::cerr << "pet::update_pet() content: " << content << std::endl;
         std::istringstream is(content);
-        cppcms::json::value pet;
-        is >> pet;
-//        std::cerr << "pet::update_pet() pet: " << pet << std::endl;
+        cppcms::json::value value;
+        is >> value;
+//        std::cerr << "pet::update_pet() value: " << value << std::endl;
 
-        response().out() << pet;
+        response().out() << value;
     }
 
     void pet::delete_pet(int id) {
@@ -71,11 +89,11 @@ namespace sandbox_cppcms {
     }
 
     void pet::list_pets() {
-        cppcms::json::value pets;
-        pets[0]["id"] = 1;
-        pets[0]["name"] = "doggie";
+        cppcms::json::value value;
+        value[0]["id"] = 1;
+        value[0]["name"] = "doggie";
 
-        response().out() << pets;
+        response().out() << value;
     }
 
     void pet::search_pet_by_status() {
@@ -105,13 +123,13 @@ namespace sandbox_cppcms {
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
 //        std::cerr << "pet::search_pet_by_status() tokens: " << os.str() << std::endl;
 
-        cppcms::json::value pets;
-        pets[0]["id"] = 1;\
-        PET_DOGGIE(pets[0])
-        const std::string & status = pets[0]["status"].str();
+        cppcms::json::value value;
+        value[0]["id"] = 1;\
+        PET_DOGGIE(value[0])
+        const std::string & status = value[0]["status"].str();
 //        std::cerr << "pet::search_pet_by_status() status: " << status << std::endl;
         if (std::find(tokens.begin(), tokens.end(), status) != tokens.end()) {
-            response().out() << pets;
+            response().out() << value;
         } else {
             response().out() << "[]";
         }
@@ -144,13 +162,13 @@ namespace sandbox_cppcms {
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
 //        std::cerr << "pet::search_pet_by_tag() tokens: " << os.str() << std::endl;
 
-        cppcms::json::value pets;
-        pets[0]["id"] = 1;
-        PET_DOGGIE(pets[0])
-        const std::string & tag = pets[0]["tag"][0]["name"].str();
+        cppcms::json::value value;
+        value[0]["id"] = 1;
+        PET_DOGGIE(value[0])
+        const std::string & tag = value[0]["tag"][0]["name"].str();
 //        std::cerr << "pet::search_pet_by_tag() tag: " << tag << std::endl;
         if (std::find(tokens.begin(), tokens.end(), tag) != tokens.end()) {
-            response().out() << pets;
+            response().out() << value;
         } else {
             response().out() << "[]";
         }

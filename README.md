@@ -16,3 +16,5 @@ Sandbox for C++/CppCMS/Boost/Node.js
 ## Part 6: Adding Database
 
 ## Part 7: Adding Object-relational mapping (ORM)
+
+## Part 8: Connecting REST API Handlers and ORM

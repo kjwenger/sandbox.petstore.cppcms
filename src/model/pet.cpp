@@ -34,3 +34,28 @@ namespace model {
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet) {
     return os << pet.id << ",\"" << pet.name << "\"";
 }
+
+cppcms::json::value & operator<<(cppcms::json::value & value, const sandbox_cppcms::model::pet & pet) {
+    value["id"] = pet.id;
+    value["name"] = pet.name;
+    int index = 0;
+    for (auto
+            iterator = pet.photoUrls.begin();
+            iterator != pet.photoUrls.end();
+            iterator ++, index ++) {
+        value["photoUrls"][index] = *iterator;
+    }
+    for (auto
+            iterator = pet.tags.begin();
+            iterator != pet.tags.end();
+            iterator ++, index ++) {
+        value["tag"][index] = *iterator;
+    }
+    return value;
+}
+
+sandbox_cppcms::model::pet & operator<<(sandbox_cppcms::model::pet & pet, const cppcms::json::value & value) {
+    pet.id = value["id"].number();
+    pet.name = value["name"].str();
+    return pet;
+}
