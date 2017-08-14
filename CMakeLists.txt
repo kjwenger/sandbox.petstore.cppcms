@@ -21,9 +21,8 @@ file(GLOB SRC
         src/rest/*.cpp
 )
 file(GLOB SRC_SHARED
-        src/model/pet.cpp
-        src/persistence/database.cpp
-        src/persistence/pet.cpp
+        src/model/*.cpp
+        src/persistence/*.cpp
 )
 add_executable(sandbox-cppcms
         ${INCLUDE}
