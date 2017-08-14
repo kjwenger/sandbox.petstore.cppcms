@@ -16,7 +16,6 @@ file(GLOB INCLUDE
         include/rest/*.hpp
 )
 file(GLOB SRC
-        src/application_utility.cpp
         src/*.cpp
         src/rest/*.cpp
 )
@@ -53,12 +52,9 @@ file(GLOB TEST_INCLUDE
         test/include/rest/*.hpp
 )
 file(GLOB TEST_SRC
-        test/src/model/model_pet_tests.cpp
-        test/src/persistence/persistence_pet_tests.cpp
-        test/src/rest/rest_v2_tests.cpp
-        test/src/rest/rest_pet_tests.cpp
-        test/src/rest/rest_store_tests.cpp
-        test/src/rest/rest_user_tests.cpp
+        test/src/model/*.cpp
+        test/src/persistence/*.cpp
+        test/src/rest/*.cpp
 )
 add_executable(sandbox-cppcms-test
         ${TEST_INCLUDE}
