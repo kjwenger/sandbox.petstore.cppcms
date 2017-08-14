@@ -14,11 +14,16 @@ public:
     database(const std::string & target);
     virtual ~database();
 
-    model::pet create_pet(const model::pet & pet);
-    model::pet read_pet(int id);
-    model::pet update_pet(const model::pet & pet);
-    model::pet delete_pet(int id);
-    void list_pets(std::vector<model::pet> & pets);
+    template <class T, class C>
+    T create(const T & pet);
+    template <class T, class C>
+    T read(int id);
+    template <class T, class C>
+    T update(const T & pet);
+    template <class T, class C>
+    T delet(int id);
+    template <class T, class C>
+    void list(std::vector<T> & pets);
 private:
     void init();
 

@@ -6,6 +6,7 @@
 #include "persistence/database.hpp"
 #include "persistence/persistence_exception.hpp"
 #include "persistence/pet.hpp"
+#include "persistence/user.hpp"
 
 namespace sandbox_cppcms {
 namespace persistence {
@@ -21,39 +22,71 @@ namespace persistence {
 
     }
 
-    void database::list_pets(std::vector<model::pet> &pets) {
-        std::vector<hiberlite::bean_ptr<pet>> allBeans = db.getAllBeans<pet>();
+    template <class T, class C>
+    void database::list(std::vector<T> &pets) {
+        std::vector<hiberlite::bean_ptr<pet>> allBeans = db.getAllBeans<C>();
         pets.clear();
-        for (auto // std::vector<hiberlite::bean_ptr<pet>>::iterator
+        for (auto // std::vector<hiberlite::bean_ptr<C>>::iterator
                 iterator = allBeans.begin();
                 iterator != allBeans.end();
                 iterator ++) {
-            hiberlite::bean_ptr<::pet> & bean_ptr = *iterator;
-            pets.push_back(model::pet(*bean_ptr));
+            hiberlite::bean_ptr<C> & bean_ptr = *iterator;
+            pets.push_back(T(*bean_ptr));
         }
     }
 
-    model::pet database::create_pet(const model::pet & pet) {
-        ::pet newPet(pet);
-        hiberlite::bean_ptr<::pet> copiedBean = db.copyBean(newPet);
-        model::pet returnPet(*copiedBean);
+    template <class T, class C>
+    T database::create(const T & pet) {
+        C newPet(pet);
+        hiberlite::bean_ptr<C> copiedBean = db.copyBean(newPet);
+        T returnPet(*copiedBean);
         return returnPet;
     }
 
-    model::pet database::read_pet(int id) {
-        hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
-//        std::cerr << "model::pet database::read_pet(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+    template <class T, class C>
+    T database::read(int id) {
+        hiberlite::bean_ptr<C> loadedBean = db.loadBean<C>((hiberlite::sqlid_t) id);
+//        std::cerr << "T database::read(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
             throw new persistence_exception();
         }
-//        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
-        model::pet returnPet(*loadedBean);
+//        std::cerr << "T database::read(" << id << ") *loadedBean: " << *loadedBean << std::endl;
+        T returnPet(*loadedBean);
         return returnPet;
     }
 
-    model::pet database::update_pet(const model::pet & pet) {
+    template <class T, class C>
+    T database::update(const T & pet) {
+        hiberlite::bean_ptr<C> loadedBean = db.loadBean<C>((hiberlite::sqlid_t) pet.id);
+//        std::cerr << "T database::update(" << pet << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+        if (loadedBean.destroyed()) {
+            throw new persistence_exception();
+        }
+        T returnPet(*loadedBean);
+        return returnPet;
+    }
+
+    template <class T, class C>
+    T database::delet(int id) {
+        hiberlite::bean_ptr<C> loadedBean = db.loadBean<C>((hiberlite::sqlid_t) id);
+//        std::cerr << "T database::delete(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+        if (loadedBean.destroyed()) {
+            throw new persistence_exception();
+        }
+        T returnPet(*loadedBean);
+        loadedBean.destroy();
+        return returnPet;
+    }
+
+    void database::init() {
+        db.dropModel();
+        db.createModel();
+    }
+
+    template <>
+    model::pet database::update<model::pet, ::pet>(const model::pet & pet) {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) pet.id);
-        std::cerr << "model::pet database::update_pet(" << pet << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+//        std::cerr << "model::pet database::update(" << pet << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
             throw new persistence_exception();
         }
@@ -64,22 +97,29 @@ namespace persistence {
         model::pet returnPet(*loadedBean);
         return returnPet;
     }
-
-    model::pet database::delete_pet(int id) {
-        hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
-        std::cerr << "model::pet database::delete_pet(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+    template <>
+    model::user database::update<model::user, ::user>(const model::user & user) {
+        hiberlite::bean_ptr<::user> loadedBean = db.loadBean<::user>((hiberlite::sqlid_t) user.id);
+//        std::cerr << "model::user database::update(" << user << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
             throw new persistence_exception();
         }
-        model::pet returnPet(*loadedBean);
-        loadedBean.destroy();
+        loadedBean->username = user.username;
+        loadedBean->firstName = user.firstName;
+        loadedBean->lastName = user.lastName;
+        loadedBean->email = user. email;
+        loadedBean->password = user.password;
+        loadedBean->phone = user.phone;
+        loadedBean->userStatus = user.userStatus;
+        model::user returnPet(*loadedBean);
         return returnPet;
     }
 
-    void database::init() {
-        db.dropModel();
-        db.createModel();
-    }
+    template model::pet database::create<model::pet, ::pet>(const model::pet & pet);
+    template model::pet database::read<model::pet, ::pet>(int id);
+    template model::pet database::update<model::pet, ::pet>(const model::pet & pet);
+    template model::pet database::delet<model::pet, ::pet>(int id);
+    template void database::list<model::pet, ::pet>(std::vector<model::pet> & pets);
 
 } /* namespace persistence */
 } /* namespace sandbox_cppcms */

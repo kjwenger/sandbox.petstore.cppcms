@@ -7,18 +7,6 @@
 namespace sandbox_cppcms {
 namespace model {
 
-class category {
-public:
-    int id;
-    std::string name;
-};
-
-enum class user_status {
-    available,
-    pending,
-    sold
-};
-
 class user {
 public:
     user();
