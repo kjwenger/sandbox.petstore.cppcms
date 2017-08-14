@@ -1,9 +1,10 @@
 #include <iostream>
+#include <sstream>
 
 #include <sqlite3.h>
 
 #include "persistence/database.hpp"
-
+#include "persistence/persistence_exception.hpp"
 #include "persistence/pet.hpp"
 
 namespace sandbox_cppcms {
@@ -48,14 +49,16 @@ namespace persistence {
 
     model::pet database::read_pet(int id) {
         hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
-//        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
+        std::cerr << "model::pet database::read_pet(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
+        if (loadedBean.destroyed()) {
+            std::ostringstream os;
+            os << "Could not load bean with id: " << id;
+            throw new persistence_exception(os.str());
+        }
+        std::cerr << "model::pet database::read_pet(" << id << ") *loadedBean: " << *loadedBean << std::endl;
         ::pet newPet;
-        newPet.id = loadedBean->id;
-        newPet.name = loadedBean->name;
-        newPet.photoUrls = loadedBean->photoUrls;
-        newPet.tags = loadedBean->tags;
-        newPet.status = loadedBean->status;
-        return newPet;
+        model::pet returnPet(*loadedBean);
+        return returnPet;
     }
 
     model::pet database::update_pet(const model::pet & pet) {
@@ -63,7 +66,10 @@ namespace persistence {
     }
 
     model::pet database::delete_pet(int id) {
-
+        hiberlite::bean_ptr<::pet> loadedBean = db.loadBean<::pet>((hiberlite::sqlid_t) id);
+        model::pet returnPet(*loadedBean);
+        loadedBean.destroy();
+        return returnPet;
     }
 
     void database::init() {

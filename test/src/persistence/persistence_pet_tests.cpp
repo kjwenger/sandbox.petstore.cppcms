@@ -8,27 +8,28 @@
 
 #include "persistence/pet.hpp"
 #include "persistence/database.hpp"
+#include "persistence/persistence_exception.hpp"
 
 class persistence_pet_tests : public ::testing::Test {
 public:
     static void SetUpTestCase() {
         service_database = new sandbox_cppcms::persistence::database("petstore_dev");
-    //    std::cerr << "persistence_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+//        std::cerr << "persistence_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         service_database->init();
     }
 
     static void TearDownTestCase() {
-    //    std::cerr << "persistence_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+//        std::cerr << "persistence_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         delete service_database;
     }
 protected:
     virtual void SetUp() {
-    //    std::cerr << "persistence_pet_tests::SetUpTestCase()" << std::endl;
+//        std::cerr << "persistence_pet_tests::SetUpTestCase()" << std::endl;
         service_database->init();
     }
 
     virtual void TearDown() {
-    //    std::cerr << "persistence_pet_tests::TearDown()" << std::endl;
+//        std::cerr << "persistence_pet_tests::TearDown()" << std::endl;
     }
 };
 
@@ -67,9 +68,9 @@ TEST_F(persistence_pet_tests, construct_pet_initialized_default) {
     ::pet pet;
 }
 
-TEST_F(persistence_pet_tests, hiberlite_get_classname_for_pet) {
+TEST_F(persistence_pet_tests, hiberlite_get_class_name_for_pet) {
     std::string className = hiberlite::Database::getClassName<pet>();
-//    std::cerr << "persistence_pet_tests::hiberlite_get_classname_for_pet() className: " << className << std::endl;
+//    std::cerr << "persistence_pet_tests::hiberlite_get_class_name_for_pet() className: " << className << std::endl;
 
     EXPECT_STREQ(className.c_str(), "pet");
 }
@@ -114,6 +115,52 @@ TEST_F(persistence_pet_tests, database_read_pet) {
     EXPECT_EQ(readPet.photoUrls.size(), 0);
     EXPECT_EQ(readPet.tags.size(), 0);
     EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::sold);
+}
+
+TEST_F(persistence_pet_tests, database_delete_pet) {
+    sandbox_cppcms::model::pet pet{
+            1,
+            "doggie",
+            {},
+            {},
+            sandbox_cppcms::model::pet_status::sold
+    };
+    sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
+//    std::cerr << "persistence_pet_tests::database_read_pet() createdPet: " << createdPet << std::endl;
+
+    {
+        sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
+        EXPECT_EQ(readPet.id, 1);
+        EXPECT_STREQ(readPet.name.c_str(), "doggie");
+        EXPECT_EQ(readPet.photoUrls.size(), 0);
+        EXPECT_EQ(readPet.tags.size(), 0);
+        EXPECT_EQ(readPet.status, sandbox_cppcms::model::pet_status::sold);
+
+        sandbox_cppcms::model::pet deletedPet = service_database->delete_pet(readPet.id);
+        EXPECT_EQ(deletedPet.id, 1);
+        EXPECT_STREQ(deletedPet.name.c_str(), "doggie");
+        EXPECT_EQ(deletedPet.photoUrls.size(), 0);
+        EXPECT_EQ(deletedPet.tags.size(), 0);
+        EXPECT_EQ(deletedPet.status, sandbox_cppcms::model::pet_status::sold);
+    }
+
+    {
+        try {
+
+        }
+        catch (const persistence_e) {
+
+        }
+
+        sandbox_cppcms::model::pet readPet = service_database->read_pet(createdPet.id);
+
+        sandbox_cppcms::model::pet deletedPet = service_database->delete_pet(readPet.id);
+//        EXPECT_EQ(deletedPet.id, 1);
+//        EXPECT_STREQ(deletedPet.name.c_str(), "doggie");
+//        EXPECT_EQ(deletedPet.photoUrls.size(), 0);
+//        EXPECT_EQ(deletedPet.tags.size(), 0);
+//        EXPECT_EQ(deletedPet.status, sandbox_cppcms::model::pet_status::sold);
+    }
 }
 
 TEST_F(persistence_pet_tests, database_list_pets) {
