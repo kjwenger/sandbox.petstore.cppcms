@@ -39,6 +39,7 @@ TEST_F(persistence_pet_tests, new_pet_initialized_zero) {
     EXPECT_STREQ(pet->name.c_str(), "");
     EXPECT_EQ(pet->photoUrls.size(), 0);
     EXPECT_EQ(pet->tags.size(), 0);
+    EXPECT_EQ(pet->status, sandbox_cppcms::model::pet_status::available);
 
     delete pet;
 }
@@ -78,7 +79,7 @@ TEST_F(persistence_pet_tests, database_create_pet) {
                 "doggie",
                 {},
                 {},
-                sandbox_cppcms::model::pet_status::available
+                sandbox_cppcms::model::pet_status::pending
         };
         sandbox_cppcms::model::pet createdPet = service_database->create_pet(pet);
         std::cerr << "persistence_pet_tests::database_create_pet() createdPet: " << createdPet << std::endl;
@@ -87,6 +88,7 @@ TEST_F(persistence_pet_tests, database_create_pet) {
         EXPECT_STREQ(createdPet.name.c_str(), "doggie");
         EXPECT_EQ(createdPet.photoUrls.size(), 0);
         EXPECT_EQ(createdPet.tags.size(), 0);
+        EXPECT_EQ(createdPet.status, sandbox_cppcms::model::pet_status::pending);
 
         std::vector<hiberlite::bean_ptr<::pet>> allBeans =
                 service_database->db.getAllBeans<::pet>();

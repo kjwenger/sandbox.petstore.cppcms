@@ -33,7 +33,8 @@ void database::list_pets(std::vector<model::pet> &pets) {
                 pet->id,
                 pet->name,
                 pet->photoUrls,
-                pet->tags
+                pet->tags,
+                pet->status
         });
     }
 }
@@ -44,11 +45,13 @@ model::pet database::create_pet(const model::pet & pet) {
     newPet.name = pet.name;
     newPet.photoUrls = pet.photoUrls;
     newPet.tags = pet.tags;
+    newPet.status = pet.status;
     hiberlite::bean_ptr<::pet> copiedBean = db.copyBean(newPet);
     newPet.id = copiedBean->id;
     newPet.name = copiedBean->name;
     newPet.photoUrls = copiedBean->photoUrls;
     newPet.tags = copiedBean->tags;
+    newPet.status = copiedBean->status;
     return newPet;
 }
 
