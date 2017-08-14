@@ -5,7 +5,7 @@
 
 #include <json/value.h>
 
-#include "rest_macros.hpp"
+#include "rest/http_macros.hpp"
 
 class rest_pet_tests : public ::testing::Test {
 protected:

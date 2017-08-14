@@ -5,7 +5,7 @@
 
 #include <json/value.h>
 
-#include "rest_macros.hpp"
+#include "rest/http_macros.hpp"
 
 #define USER(user)\
     user["id"] = 1;\
