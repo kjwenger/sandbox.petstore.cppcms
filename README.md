@@ -199,3 +199,7 @@ Sandbox for C++/CppCMS/Boost PetStore
     - Add CppCMS to CMake Build File as Sub-directory: `add_subdirectory(thridparty/cppcms)`
 
 ## Part 3: Setting up Cross-Compilation
+
+- Package Management:
+    - Add Target Architecture: `dpkg --add-architecture armhf && apt update`
+    - Install Compiler for Architecture: `apt install crossbuild-essential-armhf -y`
