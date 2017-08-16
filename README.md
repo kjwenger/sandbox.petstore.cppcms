@@ -97,7 +97,7 @@ Sandbox for C++/CppCMS/Boost PetStore
             add_executable(sandbox-cppcms src/main.cpp)
             ```
         - Add: source file [main](./src/main.cpp)
-            ```
+            ```cpp
             int main(int argc, const char* argv[]) {
                 return 0;
             }
