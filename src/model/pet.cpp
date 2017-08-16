@@ -47,7 +47,7 @@ const std::string & to_string(const sandbox_cppcms::model::pet_status & pet_stat
 }
 
 sandbox_cppcms::model::pet_status to_pet_status(const std::string & string) {
-                                                                                                                        //std::cerr "to_pet_status(" << string << ")" << std::endl;
+                                                                                                                        //std::cerr << "to_pet_status(" << string << ")" << std::endl;
     sandbox_cppcms::model::pet_status result;
     if (string == to_string(sandbox_cppcms::model::pet_status::available))
         result = sandbox_cppcms::model::pet_status::available;
@@ -57,7 +57,7 @@ sandbox_cppcms::model::pet_status to_pet_status(const std::string & string) {
         result = sandbox_cppcms::model::pet_status::sold;
     else
         result = sandbox_cppcms::model::pet_status::available;
-                                                                                                                        //std::cerr "to_pet_status(..) result: " << result << std::endl;
+                                                                                                                        //std::cerr << "to_pet_status(..) result: " << result << std::endl;
     return result;
 }
 

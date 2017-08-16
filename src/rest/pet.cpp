@@ -51,13 +51,14 @@ namespace sandbox_cppcms {
             std::istringstream is(string);
             cppcms::json::value value;
             is >> value;
-            json_utility::copy(pet, value);
+            json_utility::copy(value, pet);
         }
         try {
             cppcms::json::value value;
             model::pet created = service_database->create<model::pet>(pet);
-            json_utility::copy(value, created);
+            json_utility::copy(created, value);
 
+            response().status(201);
             response().out() << value;
         }
         catch (...) {
@@ -69,7 +70,7 @@ namespace sandbox_cppcms {
         try {
             model::pet pet = service_database->read<model::pet>(id);
             cppcms::json::value value;
-            json_utility::copy(value, pet);
+            json_utility::copy(pet, value);
 
             response().out() << value;
         }
@@ -79,19 +80,43 @@ namespace sandbox_cppcms {
     }
 
     void pet::update_pet() {
-        std::pair<void *, size_t> raw_post_data = request().raw_post_data();
-        std::string content((const char *) raw_post_data.first, raw_post_data.second);
-                                                                                                                        //std::cerr "pet::update_pet() content: " << content << std::endl;
-        std::istringstream is(content);
-        cppcms::json::value value;
-        is >> value;
-                                                                                                                        //std::cerr "pet::update_pet() value: " << value << std::endl;
+        try {
+            std::pair<void *, size_t> raw_post_data = request().raw_post_data();
+            std::string content((const char *) raw_post_data.first, raw_post_data.second);
+                                                                                                                        //std::cerr << "pet::update_pet() content: " << content << std::endl;
+            std::istringstream is(content);
+            cppcms::json::value value;
+            is >> value;
 
-        response().out() << value;
+            model::pet pet;
+            json_utility::copy(value, pet);
+
+            try {
+                service_database->update<model::pet>(pet);
+            }
+            catch (...) {
+                response().status(404);
+                return;
+            }
+            model::pet updated = service_database->update<model::pet>(pet);
+            json_utility::copy(updated, value);
+
+            response().out() << value;
+        }
+        catch (...) {
+            response().status(500);
+        }
     }
 
     void pet::delete_pet(int id) {
-        response().status(200);
+        try {
+            service_database->delet<model::pet>(id);
+
+            response().status(200);
+        }
+        catch (...) {
+            response().status(404);
+        }
     }
 
     void pet::list_pets() {
@@ -104,7 +129,7 @@ namespace sandbox_cppcms {
 
     void pet::search_pet_by_status() {
         const std::string & query_string = request().query_string();
-                                                                                                                        //std::cerr "pet::search_pet_by_status() query_string: " << query_string << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_status() query_string: " << query_string << std::endl;
         const std::string equals("=");
         size_t end;
         std::string statuses;
@@ -112,7 +137,7 @@ namespace sandbox_cppcms {
             size_t count = query_string.length() - end - 1;
             statuses = query_string.substr(end + 1, count);
         }
-                                                                                                                        //std::cerr "pet::search_pet_by_status() statuses: " << statuses << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_status() statuses: " << statuses << std::endl;
         std::vector<std::string> tokens;
         const std::string comma(",");
         size_t begin = 0;
@@ -127,13 +152,13 @@ namespace sandbox_cppcms {
         }
         std::ostringstream os;
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
-                                                                                                                        //std::cerr "pet::search_pet_by_status() tokens: " << os.str() << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_status() tokens: " << os.str() << std::endl;
 
         cppcms::json::value value;
         value[0]["id"] = 1;\
         PET_DOGGIE(value[0])
         const std::string & status = value[0]["status"].str();
-                                                                                                                        //std::cerr "pet::search_pet_by_status() status: " << status << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_status() status: " << status << std::endl;
         if (std::find(tokens.begin(), tokens.end(), status) != tokens.end()) {
             response().out() << value;
         } else {
@@ -143,7 +168,7 @@ namespace sandbox_cppcms {
 
     void pet::search_pet_by_tags() {
         const std::string & query_string = request().query_string();
-                                                                                                                        //std::cerr "pet::search_pet_by_tag() query_string: " << query_string << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_tag() query_string: " << query_string << std::endl;
         const std::string equals("=");
         size_t end;
         std::string tags;
@@ -151,7 +176,7 @@ namespace sandbox_cppcms {
             size_t count = query_string.length() - end - 1;
             tags = query_string.substr(end + 1, count);
         }
-                                                                                                                        //std::cerr "pet::search_pet_by_tag() tags: " << tags << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_tag() tags: " << tags << std::endl;
         std::vector<std::string> tokens;
         const std::string comma(",");
         size_t begin = 0;
@@ -166,13 +191,13 @@ namespace sandbox_cppcms {
         }
         std::ostringstream os;
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
-                                                                                                                        //std::cerr "pet::search_pet_by_tag() tokens: " << os.str() << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_tag() tokens: " << os.str() << std::endl;
 
         cppcms::json::value value;
         value[0]["id"] = 1;
         PET_DOGGIE(value[0])
         const std::string & tag = value[0]["tag"][0]["name"].str();
-                                                                                                                        //std::cerr "pet::search_pet_by_tag() tag: " << tag << std::endl;
+                                                                                                                        //std::cerr << "pet::search_pet_by_tag() tag: " << tag << std::endl;
         if (std::find(tokens.begin(), tokens.end(), tag) != tokens.end()) {
             response().out() << value;
         } else {

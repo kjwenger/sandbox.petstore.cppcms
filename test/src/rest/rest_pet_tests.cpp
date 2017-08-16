@@ -38,12 +38,12 @@ class rest_pet_tests : public ::testing::Test {
 public:
     static void SetUpTestCase() {
         service_database = new sandbox_cppcms::persistence::database("petstore_dev");
-                                                                                                                        //std::cerr "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        //std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         service_database->init();
     }
 
     static void TearDownTestCase() {
-                                                                                                                        //std::cerr "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        //std::cerr << "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         delete service_database;
     }
 protected:
@@ -70,7 +70,7 @@ TEST_F(rest_pet_tests, create_pet) {
     long code;
     POST(url, os.str(), out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 201);
     EXPECT_STREQ(out.c_str(), R"({"id":2,"name":"kittie","photoUrls":["string"],"status":"sold"})");
 }
 
@@ -81,7 +81,7 @@ TEST_F(rest_pet_tests, get_pet) {
     long code;
     GET(url, out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(),
 "{\"id\":1,\
 \"name\":\"doggie\",\
@@ -108,7 +108,7 @@ TEST_F(rest_pet_tests, update_pet) {
     long code;
     PUT(url, os.str(), out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(), R"({"category":{"id":0,"name":"string"},"id":2,"name":"kittie","photoUrls":["string"],"status":"available","tag":{"id":0,"name":"string"}})");
 }
 
@@ -120,7 +120,7 @@ TEST_F(rest_pet_tests, delete_pet) {
     long code;
     DELETE(url, os.str(), out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(), "");
 }
 
@@ -130,7 +130,7 @@ TEST_F(rest_pet_tests, list_pets) {
     long code;
     GET(url, out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(), "[{\"id\":1,\"name\":\"doggie\"}]");
 }
 
@@ -141,7 +141,7 @@ TEST_F(rest_pet_tests, search_pet_by_status) {
     long code;
     GET(url, out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(),
 "[{\"category\":{\"id\":0,\"name\":\"string\"},\
 \"id\":1,\
@@ -158,7 +158,7 @@ TEST_F(rest_pet_tests, search_pet_by_tags) {
     long code;
     GET(url, out, code)
 
-    EXPECT_EQ(code, 200L);
+    EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(),
 "[{\"category\":{\"id\":0,\"name\":\"string\"},\
 \"id\":1,\

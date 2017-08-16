@@ -38,7 +38,7 @@ namespace sandbox_cppcms {
     }
 
     void v2::get_info() {
-                                                                                                                        //std::cerr "v2::get_info() settings: " << settings;
+                                                                                                                        //std::cerr << "v2::get_info() settings: " << settings;
         cppcms::json::value info = settings.find("application.info");
         response().out() << info;
     }

@@ -12,7 +12,7 @@ int main(int argc, char* argv[]) {
                 sandbox_cppcms::applications>());
         srv.run();
     } catch (std::exception const &e) {
-                                                                                                                        //std::cerr "e=" << e.what();
+                                                                                                                        //std::cerr << "e=" << e.what();
         return 1;
     }
     return 0;
