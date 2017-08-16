@@ -99,7 +99,7 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 2: Setting up CppCMS Framework
 
-- Strange Name ... Weird Choice?
+- Strange Name ... Weird Choice? not a Content Management System (CMS) ... never heard
     - The Good
         - Fast: ... [real fast](http://cppcms.com/wikipp/en/page/benchmarks_all)
         - Standards: ... can use [Boost](http://www.boost.org/)
@@ -108,6 +108,21 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Intuitive: ... comparatively `dispatcher().map("PUT", "/todo/(\\d+)", &my_app::update_todo, this, 1);`
     - The Bad
         - Slow: ... to develop for
+        - Limited Support
         - No Standard: ... in itself ... [Wt](https://www.webtoolkit.eu/wt), and others compete
     - The Ugly
         - Long Release Cycles:
+    - The How
+        - For CppCMS
+            - Get: `git clone https://github.com/artyom-beilis/cppcms.git && cd cppcms`
+            - Prepare: `apt install libpcre3-dev zlib1g-dev libgcrypt11-dev libicu-dev`
+            - Create: destination directory `mkdir -p ./build && cd ./build`
+            - Configure: `cmake ..`
+            - Build: `make`
+        - For App
+            - Add REST API:
+                - Declarations: header file [rests.hpp](./include/rests.hpp)
+                - Definitions: source file  [rests.cpp](./include/rests.cpp)
+            - Modify: build file [CMakeLists](./CMakeLists.txt)
+                - New Sources
+                - Definitions: source file  [rests.cpp](./include/rests.cpp)
