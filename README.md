@@ -159,13 +159,6 @@ Sandbox for C++/CppCMS/Boost PetStore
             }    
             ```
     - Modify: build file [CMakeLists](./CMakeLists.txt)
-        - Create: settings [`config.json`](./config.json)
-            ```json
-            {
-              "service": {"api": "http", "port": 8910},
-              "http": {"script_names": ["/"]}
-            }
-            ```
         - Add: REST API headers and sources
             ```cmake
             file(GLOB INCLUDE include/*.hpp)
@@ -190,10 +183,17 @@ Sandbox for C++/CppCMS/Boost PetStore
                     pcre
             )
             ```
-        - GoTo: destination directory `mkdir -p ./build && cd ./build`
-        - Configure: `cmake ..`
-        - Build: `make`
-        - Run: `./sandbox-cppcms -c ../config.json`
+    - Create: settings [`config.json`](./config.json)
+        ```json
+        {
+          "service": {"api": "http", "port": 8910},
+          "http": {"script_names": ["/"]}
+        }
+        ```
+    - GoTo: destination directory `mkdir -p ./build && cd ./build`
+    - Configure: `cmake ..`
+    - Build: `make`
+    - Run: `./sandbox-cppcms -c ../config.json`
 - Future Improvements:
     - Add CppCMS as Git Sub-module: `./thridparty/cppcms`
     - Add CppCMS to CMake Build File as Sub-directory: `add_subdirectory(thridparty/cppcms)`
