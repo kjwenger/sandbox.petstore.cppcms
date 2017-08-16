@@ -15,12 +15,13 @@ add_executable(sandbox-cppcms
 )
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
+        ${CMAKE_PREFIX_PATH}/usr/local/include
+        ${CMAKE_PREFIX_PATH}/usr/include
         /usr/local/include
         /usr/include
-        ${CMAKE_SOURCE_DIR}/include
 )
 target_link_libraries(sandbox-cppcms
+        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
         ${CMAKE_PREFIX_PATH}/lib/libbooster.so
         pcre
-        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
 )
