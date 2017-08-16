@@ -158,7 +158,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                 response().out() << info;
             }    
             ```
-    - Modify: build file [CMakeLists](./CMakeLists.txt)
+    - Modify: build file [`CMakeLists.txt`](./CMakeLists.txt)
         - Add: REST API headers and sources
             ```cmake
             file(GLOB INCLUDE include/*.hpp)
