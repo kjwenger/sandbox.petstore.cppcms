@@ -38,12 +38,12 @@ class rest_pet_tests : public ::testing::Test {
 public:
     static void SetUpTestCase() {
         service_database = new sandbox_cppcms::persistence::database("petstore_dev");
-//        std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        //std::cerr "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         service_database->init();
     }
 
     static void TearDownTestCase() {
-//        std::cerr << "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        //std::cerr "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         delete service_database;
     }
 protected:

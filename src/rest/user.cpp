@@ -73,7 +73,7 @@ namespace sandbox_cppcms {
 
     void user::login_user() {
         const std::string & query_string = request().query_string();
-//        std::cerr << "user::login_user() query_string: " << query_string << std::endl;
+                                                                                                                        //std::cerr "user::login_user() query_string: " << query_string << std::endl;
         const std::string ampersand("&");
         std::vector<std::string> tokens;
         size_t begin = 0, end;
@@ -88,7 +88,7 @@ namespace sandbox_cppcms {
         }
         std::ostringstream os;
         std::copy(tokens.begin(), tokens.end(), std::ostream_iterator<std::string>(os, ","));
-//        std::cerr << "user::login_user() tokens: " << os.str() << std::endl;
+                                                                                                                        //std::cerr "user::login_user() tokens: " << os.str() << std::endl;
         cppcms::json::value login;
         const std::string equals("=");
         for(std::vector<std::string>::const_iterator
@@ -100,10 +100,10 @@ namespace sandbox_cppcms {
             std::string value;
             if ((end = token.find(equals)) != std::string::npos) {
                 key = token.substr(0, end);
-//                std::cerr << "user::login_user key: " << key << std::endl;
+                                                                                                                        //std::cerr "user::login_user key: " << key << std::endl;
                 size_t count = token.length() - end - 1;
                 value = token.substr(end + 1, count);
-//                std::cerr << "user::login_user value: " << value << std::endl;
+                                                                                                                        //std::cerr "user::login_user value: " << value << std::endl;
                 login[key] = value;
             }
         }
@@ -133,11 +133,11 @@ namespace sandbox_cppcms {
     void user::update_user(const std::string & username) {
         std::pair<void *, size_t> raw_post_data = request().raw_post_data();
         std::string content((const char *) raw_post_data.first, raw_post_data.second);
-//        std::cerr << "user::update_user() content: " << content << std::endl;
+                                                                                                                        //std::cerr "user::update_user() content: " << content << std::endl;
         std::istringstream is(content);
         cppcms::json::value user;
         is >> user;
-//        std::cerr << "user::update_user() user: " << user << std::endl;
+                                                                                                                        //std::cerr "user::update_user() user: " << user << std::endl;
 
         response().out() << user;
     }
