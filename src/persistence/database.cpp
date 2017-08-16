@@ -26,7 +26,7 @@ namespace persistence {
     void database::_list(std::vector<T> &pets) {
         std::vector<hiberlite::bean_ptr<pet>> allBeans = db.getAllBeans<C>();
         pets.clear();
-        for (auto // std::vector<hiberlite::bean_ptr<C>>::iterator
+        for (typename std::vector<hiberlite::bean_ptr<C>>::iterator
                 iterator = allBeans.begin();
                 iterator != allBeans.end();
                 iterator ++) {

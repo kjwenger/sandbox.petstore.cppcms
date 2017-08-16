@@ -42,7 +42,8 @@ public:
 } /* namespace model */
 } /* namespace sandbox_cppcms */
 
-const char * to_string(const sandbox_cppcms::model::pet_status & pet_status);
+const std::string & to_string(const sandbox_cppcms::model::pet_status & pet_status);
+sandbox_cppcms::model::pet_status to_pet_status(const std::string & string);
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet_status & pet_status);
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet);
 cppcms::json::value & operator<<(cppcms::json::value & value, const sandbox_cppcms::model::pet & pet);

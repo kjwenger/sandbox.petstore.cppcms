@@ -26,7 +26,7 @@
     pet["photoUrls"][0] = "string";\
     pet["tag"]["id"] = 0;\
     pet["tag"]["name"] = "string";\
-    pet["status"] = "new";\
+    pet["status"] = "sold";\
 
 #define PET_DOGGIE(pet) \
     pet.id = 1;\
@@ -71,7 +71,7 @@ TEST_F(rest_pet_tests, create_pet) {
     POST(url, os.str(), out, code)
 
     EXPECT_EQ(code, 200L);
-    EXPECT_STREQ(out.c_str(), R"({"category":{"id":0,"name":"string"},"id":2,"name":"kittie","photoUrls":["string"],"status":"new","tag":{"id":0,"name":"string"}})");
+    EXPECT_STREQ(out.c_str(), R"({"id":2,"name":"kittie","photoUrls":["string"],"status":"sold"})");
 }
 
 // GET /pet/{petId} Find pet by ID                      //
@@ -136,7 +136,7 @@ TEST_F(rest_pet_tests, list_pets) {
 
 // GET /pet/findByStatus Finds Pets by status           //
 TEST_F(rest_pet_tests, search_pet_by_status) {
-    std::string url("http://localhost:8910/v2/pet/findByStatus?status=available,new");
+    std::string url("http://localhost:8910/v2/pet/findByStatus?status=available,sold");
     std::string out;
     long code;
     GET(url, out, code)

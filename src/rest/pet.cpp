@@ -41,14 +41,17 @@ namespace sandbox_cppcms {
     }
 
     void pet::create_pet() {
-        std::pair<void *, size_t> raw_post_data = request().raw_post_data();
-        std::string string((const char *) raw_post_data.first, raw_post_data.second);
-        std::istringstream is(string);
-        cppcms::json::value value;
-        is >> value;
         model::pet pet;
-        pet << value;
+        {
+            std::pair<void *, size_t> raw_post_data = request().raw_post_data();
+            std::string string((const char *) raw_post_data.first, raw_post_data.second);
+            std::istringstream is(string);
+            cppcms::json::value value;
+            is >> value;
+            pet << value;
+        }
         try {
+            cppcms::json::value value;
             model::pet created = service_database->create<model::pet>(pet);
             value << created;
 
