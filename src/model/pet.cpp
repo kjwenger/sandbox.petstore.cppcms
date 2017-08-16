@@ -47,7 +47,7 @@ const std::string & to_string(const sandbox_cppcms::model::pet_status & pet_stat
 }
 
 sandbox_cppcms::model::pet_status to_pet_status(const std::string & string) {
-    std::cerr << "to_pet_status(" << string << ")" << std::endl;
+//    std::cerr << "to_pet_status(" << string << ")" << std::endl;
     sandbox_cppcms::model::pet_status result;
     if (string == to_string(sandbox_cppcms::model::pet_status::available))
         result = sandbox_cppcms::model::pet_status::available;
@@ -57,7 +57,7 @@ sandbox_cppcms::model::pet_status to_pet_status(const std::string & string) {
         result = sandbox_cppcms::model::pet_status::sold;
     else
         result = sandbox_cppcms::model::pet_status::available;
-    std::cerr << "to_pet_status(..) result: " << result << std::endl;
+//    std::cerr << "to_pet_status(..) result: " << result << std::endl;
     return result;
 }
 
@@ -90,36 +90,36 @@ cppcms::json::value & operator<<(cppcms::json::value & value, const sandbox_cppc
 }
 
 sandbox_cppcms::model::pet & operator<<(sandbox_cppcms::model::pet & pet, const cppcms::json::value & value) {
-    std::cerr << "operator<<(.., " << value << ")" << std::endl;
-    std::cerr << "operator<<(.., ..) value[\"id\"].type(): " << value["id"].type() << std::endl;
+//    std::cerr << "operator<<(.., " << value << ")" << std::endl;
+//    std::cerr << "operator<<(.., ..) value[\"id\"].type(): " << value["id"].type() << std::endl;
     pet.id = value["id"].type() != cppcms::json::is_number ? 0: (int)value["id"].number();
-    std::cerr << "operator<<(.., ..) pet.id: " << pet.id << std::endl;
-    std::cerr << "operator<<(.., ..) value[\"name\"].type(): " << value["name"].type() << std::endl;
+//    std::cerr << "operator<<(.., ..) pet.id: " << pet.id << std::endl;
+//    std::cerr << "operator<<(.., ..) value[\"name\"].type(): " << value["name"].type() << std::endl;
     pet.name = value["name"].type() != cppcms::json::is_string ? "" : value["name"].str();
-    std::cerr << "operator<<(.., ..) pet.name: " << pet.name << std::endl;
-    std::cerr << "operator<<(.., ..) value[\"photoUrls\"].type(): " << value["photoUrls"].type() << std::endl;
+//    std::cerr << "operator<<(.., ..) pet.name: " << pet.name << std::endl;
+//    std::cerr << "operator<<(.., ..) value[\"photoUrls\"].type(): " << value["photoUrls"].type() << std::endl;
     if (value["photoUrls"].type() == cppcms::json::is_array) {
         const cppcms::json::array & photoUrls = value["photoUrls"].array();
         for (auto iterator = photoUrls.begin(); iterator != photoUrls.end(); iterator ++) {
             const cppcms::json::value & item = *iterator;
-            std::cerr << "operator<<(.., ..) item.type(): " << item.type() << std::endl;
+//            std::cerr << "operator<<(.., ..) item.type(): " << item.type() << std::endl;
             const std::string & photoUrl = item.type() != cppcms::json::is_string ? "" : item.str();
-            std::cerr << "operator<<(.., ..) photoUrl: " << photoUrl << std::endl;
+//            std::cerr << "operator<<(.., ..) photoUrl: " << photoUrl << std::endl;
             pet.photoUrls.push_back(photoUrl);
         }
     }
-    std::cerr << "operator<<(.., ..) value[\"tag\"].type(): " << value["tag"].type() << std::endl;
+//    std::cerr << "operator<<(.., ..) value[\"tag\"].type(): " << value["tag"].type() << std::endl;
     if (value["tag"].type() == cppcms::json::is_array) {
         const cppcms::json::array & tags = value["tag"].array();
         for (auto iterator = tags.begin(); iterator != tags.end(); iterator ++) {
             const cppcms::json::value & item = *iterator;
-            std::cerr << "operator<<(.., ..) item.type(): " << item.type() << std::endl;
+//            std::cerr << "operator<<(.., ..) item.type(): " << item.type() << std::endl;
             const std::string & tag = item.type() != cppcms::json::is_string ? "" : item.str();
-            std::cerr << "operator<<(.., ..) tag: " << tag << std::endl;
+//            std::cerr << "operator<<(.., ..) tag: " << tag << std::endl;
             pet.tags.push_back(tag);
         }
     }
     pet.status = to_pet_status(value["status"].type() != cppcms::json::is_string ? "" : value["status"].str());
-    std::cerr << "operator<<(.., ..) pet.status: " << pet.status << std::endl;
+//    std::cerr << "operator<<(.., ..) pet.status: " << pet.status << std::endl;
     return pet;
 }
