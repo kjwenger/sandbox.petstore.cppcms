@@ -194,3 +194,6 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Configure: `cmake ..`
         - Build: `make`
         - Run: `./sandbox-cppcms -c ../config.json`
+- Future Improvements:
+    - Add CppCMS as Git Sub-module: `./thridparty/cppcms`
+    - Add CppCMS to CMake Build File as Sub-directory: `add_subdirectory(thridparty/cppcms)`
