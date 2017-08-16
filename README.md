@@ -60,3 +60,15 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Building: `make`
 
 ## Part 2: Setting up CppCMS Framework
+
+- Strange Name ... Weird Choice?
+    - The Good
+        - Fast: ... real fast
+        - Standards: ... can use Boost
+        - Small: ... use Booster
+        - Stable: ... not seen it crash once
+        - Intuitive: ... comparatively
+    - The Bad
+        - No Standard: ... in itself ... Wt, and others compete
+    - The Ugly
+        - Long Development Cycles:
