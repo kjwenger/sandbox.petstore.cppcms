@@ -126,74 +126,73 @@ Sandbox for C++/CppCMS/Boost PetStore
         - No Standard: ... in itself ... [Wt](https://www.webtoolkit.eu/wt), and others compete
     - The Ugly
         - Long Release Cycles:
-    - The How
-        - For CppCMS
-            - Get: `git clone https://github.com/artyom-beilis/cppcms.git && cd cppcms`
-            - Prepare: `apt install libpcre3-dev zlib1g-dev libgcrypt11-dev libicu-dev`
-            - Create: destination directory `mkdir -p ./build && cd ./build`
-            - Configure: `cmake ..`
-            - Build: `make`
-        - For App
-            - Add REST API:
-                - Declarations: header file [`rests.hpp`](./include/rests.hpp)
-                    ```cpp
-                    class rests : public cppcms::application {
-                    public:
-                        rests(cppcms::service& srv);
-                        virtual ~rests();
-                    
-                        void get_info();
-                    };    
-                    ```
-                - Definitions: source file  [`rests.cpp`](./include/rests.cpp)
-                    ```cpp
-                    rests::rests(cppcms::service& srv) : cppcms::application(srv) {
-                        dispatcher().map("GET","", &rests::get_info, this);
-                    };
-                    
-                    void rests::get_info() {
-                        cppcms::json::value info;
-                        info["name"] = "sandbox-cppcms";
-                        info["version"] = "0.1.0";
-                    
-                        response().out() << info;
-                    }    
-                    ```
-            - Modify: build file [CMakeLists](./CMakeLists.txt)
-                - Create: settings [`config.json`](./config.json)
-                    ```json
-                    {
-                      "service": {"api": "http", "port": 8910},
-                      "http": {"script_names": ["/"]}
-                    }
-                    ```
-                - Add: REST API headers and sources
-                    ```cmake
-                    file(GLOB INCLUDE include/*.hpp)
-                    file(GLOB SRC src/*.cpp)
-                    add_executable(sandbox-cppcms ${INCLUDE} ${SRC})
-                    include_directories(${CMAKE_SOURCE_DIR}/include)
-                    ```
-                - Add: CppCMS, Booster and dependency headers
-                    ```cmake
-                    include_directories(
-                            ${CMAKE_SOURCE_DIR}/usr/local/include
-                            ${CMAKE_SOURCE_DIR}/usr/include
-                            /usr/local/include
-                            /usr/include
-                    )
-                    ```
-                - Add: CppCMS, Booster and dependency libraries
-                    ```cmake
-                    target_link_libraries(sandbox-cppcms
-                            ${CMAKE_SOURCE_DIR}/usr/lib/libcppcms.so
-                            ${CMAKE_SOURCE_DIR}/usr/lib/libbooster.so
-                            pcre
-                    )
-                    ```
-                - GoTo: destination directory `mkdir -p ./build && cd ./build`
-                - Configure: `cmake ..`
-                - Build: `make`
-                - Run: `./sandbox-cppcms -c ../config.json`
+- Building: ... show me more code!
+    - Get: `git clone https://github.com/artyom-beilis/cppcms.git && cd cppcms`
+    - Prepare: `apt install libpcre3-dev zlib1g-dev libgcrypt11-dev libicu-dev`
+    - Create: destination directory `mkdir -p ./build && cd ./build`
+    - Configure: `cmake ..`
+    - Build: `make`
+- Development: ... show me more code!
+    - Add REST API:
+        - Declarations: header file [`rests.hpp`](./include/rests.hpp)
+            ```cpp
+            class rests : public cppcms::application {
+            public:
+                rests(cppcms::service& srv);
+                virtual ~rests();
+            
+                void get_info();
+            };    
+            ```
+        - Definitions: source file  [`rests.cpp`](./include/rests.cpp)
+            ```cpp
+            rests::rests(cppcms::service& srv) : cppcms::application(srv) {
+                dispatcher().map("GET","", &rests::get_info, this);
+            };
+            
+            void rests::get_info() {
+                cppcms::json::value info;
+                info["name"] = "sandbox-cppcms";
+                info["version"] = "0.1.0";
+            
+                response().out() << info;
+            }    
+            ```
+    - Modify: build file [CMakeLists](./CMakeLists.txt)
+        - Create: settings [`config.json`](./config.json)
+            ```json
+            {
+              "service": {"api": "http", "port": 8910},
+              "http": {"script_names": ["/"]}
+            }
+            ```
+        - Add: REST API headers and sources
+            ```cmake
+            file(GLOB INCLUDE include/*.hpp)
+            file(GLOB SRC src/*.cpp)
+            add_executable(sandbox-cppcms ${INCLUDE} ${SRC})
+            include_directories(${CMAKE_SOURCE_DIR}/include)
+            ```
+        - Add: CppCMS, Booster and dependency headers
+            ```cmake
+            include_directories(
+                    ${CMAKE_SOURCE_DIR}/usr/local/include
+                    ${CMAKE_SOURCE_DIR}/usr/include
+                    /usr/local/include
+                    /usr/include
+            )
+            ```
+        - Add: CppCMS, Booster and dependency libraries
+            ```cmake
+            target_link_libraries(sandbox-cppcms
+                    ${CMAKE_SOURCE_DIR}/usr/lib/libcppcms.so
+                    ${CMAKE_SOURCE_DIR}/usr/lib/libbooster.so
+                    pcre
+            )
+            ```
+        - GoTo: destination directory `mkdir -p ./build && cd ./build`
+        - Configure: `cmake ..`
+        - Build: `make`
+        - Run: `./sandbox-cppcms -c ../config.json`
 
 ## Part 3: Setting up Cross-Compilation
