@@ -99,12 +99,13 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 - Strange Name ... Weird Choice?
     - The Good
-        - Fast: ... real fast
-        - Standards: ... can use Boost
-        - Small: ... use Booster
+        - Fast: ... [real fast](http://cppcms.com/wikipp/en/page/benchmarks_all)
+        - Standards: ... can use [Boost](http://www.boost.org/)
+        - Small: ... use Booster (a reduced Boost)
         - Stable: ... not seen it crash once
-        - Intuitive: ... comparatively
+        - Intuitive: ... comparatively `dispatcher().map("PUT", "/todo/(\\d+)", &my_app::update_todo, this, 1);`
     - The Bad
-        - No Standard: ... in itself ... Wt, and others compete
+        - Slow: ... to develop for
+        - No Standard: ... in itself ... [Wt](https://www.webtoolkit.eu/wt), and others compete
     - The Ugly
-        - Long Development Cycles:
+        - Long Release Cycles:
