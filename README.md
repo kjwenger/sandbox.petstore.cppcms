@@ -91,7 +91,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Discrepancies in Package Management
     - The How
         - Write: build file [CMakeLists](./CMakeLists.txt)
-            ```
+            ```cmake
             cmake_minimum_required(VERSION 2.6)
             project(sandbox-cppcms)
             add_executable(sandbox-cppcms src/main.cpp)
