@@ -90,19 +90,23 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Learning Curve
         - Discrepancies in Package Management
     - The How
-        - Write: build file [CMakeLists](./CMakeLists.txt)
-            ```cmake
-            cmake_minimum_required(VERSION 2.6)
-            project(sandbox-cppcms)
-            add_executable(sandbox-cppcms src/main.cpp)
-            ```
-        - Add: source file [main](./src/main.cpp)
-            ```cpp
-            int main(int argc, const char* argv[]) {
-                return 0;
-            }
-            ```
-        - Create: destination directory `mkdir -p ./build && cd ./build`
-        - Configure: `cmake ..`
-        - Build: `make`
-        - Run: `./sandbox-cppcms`
+        - Maintain Build File
+        - Configure
+        - Make
+- Development: ... show me some code!
+    - Write: build file [CMakeLists](./CMakeLists.txt)
+        ```cmake
+        cmake_minimum_required(VERSION 2.6)
+        project(sandbox-cppcms)
+        add_executable(sandbox-cppcms src/main.cpp)
+        ```
+    - Add: source file [main](./src/main.cpp)
+        ```cpp
+        int main(int argc, const char* argv[]) {
+            return 0;
+        }
+        ```
+    - Create: destination directory `mkdir -p ./build && cd ./build`
+    - Configure: `cmake ..`
+    - Build: `make`
+    - Run: `./sandbox-cppcms`
