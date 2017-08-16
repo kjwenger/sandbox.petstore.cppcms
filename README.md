@@ -63,7 +63,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         - [Debian](https://www.debian.org/) rules
     - The Bad
         - Frequent Clashes
-        - Repository Hell (FrankenDebian)
+        - Repository Hell: [FrankenDebian](https://wiki.debian.org/DontBreakDebian)
         - [Ubuntu](https://www.ubuntu.com/) sucks at Cross-Compiling
     - The How
         - Install Prerequisites:
@@ -94,7 +94,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Configure
         - Make
 - Development: ... show me some code!
-    - Write: build file [CMakeLists](./CMakeLists.txt)
+    - Write: build file [`CMakeLists.txt`](./CMakeLists.txt)
         ```cmake
         cmake_minimum_required(VERSION 2.6)
         project(sandbox-cppcms)
@@ -158,7 +158,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                 response().out() << info;
             }    
             ```
-    - Modify: build file [CMakeLists](./CMakeLists.txt)
+    - Modify: build file [`CMakeLists.txt`](./CMakeLists.txt)
         - Add: REST API headers and sources
             ```cmake
             file(GLOB INCLUDE include/*.hpp)
