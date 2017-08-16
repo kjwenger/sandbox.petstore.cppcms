@@ -134,5 +134,27 @@ Sandbox for C++/CppCMS/Boost PetStore
                 - Declarations: header file [rests.hpp](./include/rests.hpp)
                 - Definitions: source file  [rests.cpp](./include/rests.cpp)
             - Modify: build file [CMakeLists](./CMakeLists.txt)
-                - New Sources
-                - Definitions: source file  [rests.cpp](./include/rests.cpp)
+                - Add: REST API headers and sources
+                    ```
+                    file(GLOB INCLUDE include/*.hpp)
+                    file(GLOB SRC src/*.cpp)
+                    add_executable(sandbox-cppcms ${INCLUDE} ${SRC})
+                    include_directories(${CMAKE_SOURCE_DIR}/include)
+                    ```
+                - Add: CppCMS, Booster and dependency headers
+                    ```
+                    include_directories(
+                            ${CMAKE_SOURCE_DIR}/usr/local/include
+                            ${CMAKE_SOURCE_DIR}/usr/include
+                            /usr/local/include
+                            /usr/include
+                    )
+                    ```
+                - Add: CppCMS, Booster and dependency libraries
+                    ```
+                    target_link_libraries(sandbox-cppcms
+                            ${CMAKE_SOURCE_DIR}/usr/lib/libcppcms.so
+                            ${CMAKE_SOURCE_DIR}/usr/lib/libbooster.so
+                            pcre
+                    )
+                    ```
