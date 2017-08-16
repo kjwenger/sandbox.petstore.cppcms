@@ -126,7 +126,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         - No Standard: ... in itself ... [Wt](https://www.webtoolkit.eu/wt), and others compete
     - The Ugly
         - Long Release Cycles:
-- Building: ... show me more code!
+- Building:
     - Get: `git clone https://github.com/artyom-beilis/cppcms.git && cd cppcms`
     - Prepare: `apt install libpcre3-dev zlib1g-dev libgcrypt11-dev libicu-dev`
     - Create: destination directory `mkdir -p ./build && cd ./build`
