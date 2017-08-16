@@ -200,6 +200,10 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 3: Setting up Cross-Compilation
 
+- Make on Build System, Run on Target System
 - Package Management:
     - Add Target Architecture: `dpkg --add-architecture armhf && apt update`
     - Install Compiler for Architecture: `apt install crossbuild-essential-armhf -y`
+- Package Management:
+    - Install Dependencies for Architecture: `apt install libpcre3-dev:armhf zlib1g-dev:armhf libgcrypt11-dev:armhf libicu-dev:armhf -y`
+
