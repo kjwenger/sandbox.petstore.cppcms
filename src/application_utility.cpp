@@ -11,10 +11,10 @@ namespace sandbox_cppcms {
             const cppcms::json::value & settings,
             const std::string & path,
             const std::string & default_value) {
-                                                                                                                        //std::cerr << "application_utility::get_string(..) settings: " << settings << std::endl;
-                                                                                                                        //std::cerr << "application_utility::get_string(..) path: " << path << std::endl;
+                                                                                                                        std::cerr << "application_utility::get_string(...) settings: " << settings << std::endl;
+                                                                                                                        std::cerr << "application_utility::get_string(...) path: " << path << std::endl;
         cppcms::json::value found_value = settings.find(path);
-                                                                                                                        //std::cerr << "application_utility::get_string(..) found_value: " << found_value << std::endl;
+                                                                                                                        std::cerr << "application_utility::get_string(...) found_value: " << found_value << std::endl;
         if (found_value.is_undefined() ||
             found_value.is_null()) {
             return default_value;

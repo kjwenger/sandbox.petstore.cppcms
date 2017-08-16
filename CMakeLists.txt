@@ -20,6 +20,7 @@ file(GLOB SRC
         src/rest/*.cpp
 )
 file(GLOB SRC_SHARED
+        src/utility.cpp
         src/model/*.cpp
         src/persistence/*.cpp
 )

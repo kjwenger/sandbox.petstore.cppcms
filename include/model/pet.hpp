@@ -28,6 +28,7 @@ public:
         const std::vector<std::string> & tags,
         const model::pet_status status);
     pet(const pet & origin);
+    bool operator==(const pet & that) const;
 
     int id;
 //    model::category category;
@@ -44,3 +45,4 @@ const std::string & to_string(const sandbox_cppcms::model::pet_status & pet_stat
 sandbox_cppcms::model::pet_status to_pet_status(const std::string & string);
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet_status & pet_status);
 std::ostream & operator<<(std::ostream & os, const sandbox_cppcms::model::pet & pet);
+std::ostream & operator<<(std::ostream & os, const std::vector<sandbox_cppcms::model::pet> & pets);
