@@ -12,6 +12,9 @@
 #include "rest/pet.hpp"
 
 #include "model/pet.hpp"
+
+#include "json_utility.hpp"
+
 #include "persistence/database.hpp"
 #include "persistence/pet.hpp"
 
@@ -48,12 +51,12 @@ namespace sandbox_cppcms {
             std::istringstream is(string);
             cppcms::json::value value;
             is >> value;
-            pet << value;
+            json_utility::copy(pet, value);
         }
         try {
             cppcms::json::value value;
             model::pet created = service_database->create<model::pet>(pet);
-            value << created;
+            json_utility::copy(value, created);
 
             response().out() << value;
         }
@@ -66,7 +69,7 @@ namespace sandbox_cppcms {
         try {
             model::pet pet = service_database->read<model::pet>(id);
             cppcms::json::value value;
-            value << pet;
+            json_utility::copy(value, pet);
 
             response().out() << value;
         }
