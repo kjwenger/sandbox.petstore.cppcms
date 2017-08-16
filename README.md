@@ -143,6 +143,19 @@ Sandbox for C++/CppCMS/Boost PetStore
     
                     ```
                 - Definitions: source file  [rests.cpp](./include/rests.cpp)
+                    ```cpp
+                    rests::rests(cppcms::service& srv) : cppcms::application(srv) {
+                        dispatcher().map("GET","", &rests::get_info, this);
+                    };
+                    
+                    void rests::get_info() {
+                        cppcms::json::value info;
+                        info["name"] = "sandbox-cppcms";
+                        info["version"] = "0.1.0";
+                    
+                        response().out() << info;
+                    }    
+                    ```
             - Modify: build file [CMakeLists](./CMakeLists.txt)
                 - Create: settings `config.json`
                     ```json
@@ -159,7 +172,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                     include_directories(${CMAKE_SOURCE_DIR}/include)
                     ```
                 - Add: CppCMS, Booster and dependency headers
-                    ```
+                    ```cmake
                     include_directories(
                             ${CMAKE_SOURCE_DIR}/usr/local/include
                             ${CMAKE_SOURCE_DIR}/usr/include
@@ -168,7 +181,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                     )
                     ```
                 - Add: CppCMS, Booster and dependency libraries
-                    ```
+                    ```cmake
                     target_link_libraries(sandbox-cppcms
                             ${CMAKE_SOURCE_DIR}/usr/lib/libcppcms.so
                             ${CMAKE_SOURCE_DIR}/usr/lib/libbooster.so
