@@ -11,6 +11,7 @@
 
 #define private public
 
+#include "persistence/pet.hpp"
 #include "persistence/database.hpp"
 
 #define VALUE_DOGGIE(pet) \
@@ -89,14 +90,14 @@ TEST_F(rest_pet_tests, create_pet) {
     EXPECT_STREQ(out.c_str(), R"({"id":2,"name":"kittie","photoUrls":["string"],"status":"sold"})");
 
     try {
-        std::vector<sandbox_cppcms::model::pet> pets;
-        service_database->list<sandbox_cppcms::model::pet>(pets);
-                                                                                                                        std::cerr << "rest_pet_tests::create_pet() pets: " << pets << std::endl;
-        EXPECT_EQ(pets.size(), 1);
-        sandbox_cppcms::model::pet kittie;
+        std::vector<hiberlite::bean_ptr<::pet>> allBeans =
+                service_database->db.getAllBeans<::pet>();
+                                                                                                                        std::cerr << "rest_pet_tests::create_pet() allBeans: " << allBeans << std::endl;
+        EXPECT_EQ(allBeans.size(), 1);
+        ::pet kittie;
         PET_KITTIE(kittie)
                                                                                                                         std::cerr << "rest_pet_tests::create_pet() kittie: " << kittie << std::endl;
-        EXPECT_EQ(pets.front(), kittie);
+        EXPECT_EQ(*allBeans.front(), kittie);
     }
     catch (...) {
         // Ignore clean-up
@@ -112,16 +113,11 @@ TEST_F(rest_pet_tests, create_pet) {
 
 // GET /pet/{petId} Find pet by ID                      //
 TEST_F(rest_pet_tests, get_pet) {
-    try {
-        sandbox_cppcms::model::pet pet;
-        PET_DOGGIE(pet)
+    ::pet pet;
+    PET_DOGGIE(pet)
 
-        service_database->create<sandbox_cppcms::model::pet>(pet);
-        sleep(1);
-    }
-    catch (...) {
-        // Ignore clean-up
-    }
+    service_database->db.copyBean<::pet>(pet);
+    sleep(1);
 
     std::string url("http://localhost:8910/v2/pet/1");
     std::string out;
@@ -130,10 +126,12 @@ TEST_F(rest_pet_tests, get_pet) {
 
     EXPECT_EQ(code, 200);
     EXPECT_STREQ(out.c_str(),
-"{\"id\":1,\
+"{\
+\"id\":1,\
 \"name\":\"doggie\",\
 \"photoUrls\":[\"string\"],\
-\"status\":\"available\"\
+\"status\":\"available\",\
+\"tag\":[\"string\"]\
 }");
 }
 

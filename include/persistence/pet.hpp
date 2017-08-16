@@ -50,3 +50,5 @@ public:
         const sandbox_cppcms::model::pet_status status);
     pet(const sandbox_cppcms::model::pet & origin);
 };
+
+std::ostream & operator<<(std::ostream & os, std::vector<hiberlite::bean_ptr<::pet>> & pets);

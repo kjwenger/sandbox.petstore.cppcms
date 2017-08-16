@@ -32,7 +32,7 @@ private:
     template <class T, class C>
     T _update(const T & pet);
     template <class T, class C>
-    T _delet(int id);
+    T _delete(int id);
     template <class T, class C>
     void _list(std::vector<T> & pets);
 

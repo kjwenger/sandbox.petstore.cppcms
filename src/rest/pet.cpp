@@ -77,7 +77,7 @@ namespace sandbox_cppcms {
                                                                                                                         std::cerr << "pet::read_pet(...) pet: " << pet << std::endl;
             cppcms::json::value value;
             json_utility::copy(pet, value);
-                                                                                                                        std::cerr << "pet::read_pet(...) pet: " << value << std::endl;
+                                                                                                                        std::cerr << "pet::read_pet(...) value: " << value << std::endl;
             response().out() << value;
         }
         catch (...) {

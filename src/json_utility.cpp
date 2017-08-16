@@ -29,14 +29,17 @@ namespace sandbox_cppcms {
             const std::vector<std::string> & properties) {
         if (is_property(id, properties)) value[id] = pet.id;
         if (is_property(name, properties)) value[name] = pet.name;
-        int index = 0;
-        if (is_property(photoUrls, properties)) for (
-                    auto iterator = pet.photoUrls.begin(); iterator != pet.photoUrls.end(); iterator ++, index ++) {
-            value[photoUrls][index] = *iterator;
+        if (is_property(photoUrls, properties)) {
+            int index = 0;
+            for (auto iterator = pet.photoUrls.begin(); iterator != pet.photoUrls.end(); iterator ++, index ++) {
+                value[photoUrls][index] = *iterator;
+            }
         }
-        if (is_property(tag, properties)) for (
-                    auto iterator = pet.tags.begin(); iterator != pet.tags.end(); iterator ++, index ++) {
-            value[tag][index] = *iterator;
+        if (is_property(tag, properties)) {
+            int index = 0;
+            for (auto iterator = pet.tags.begin(); iterator != pet.tags.end(); iterator ++, index ++) {
+                value[tag][index] = *iterator;
+            }
         }
         if (is_property(status, properties)) value[status] = to_string(pet.status);
         return value;
