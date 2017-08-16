@@ -126,7 +126,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         - No Standard: ... in itself ... [Wt](https://www.webtoolkit.eu/wt), and others compete
     - The Ugly
         - Long Release Cycles:
-- Building: ... show me more code!
+- Building:
     - Get: `git clone https://github.com/artyom-beilis/cppcms.git && cd cppcms`
     - Prepare: `apt install libpcre3-dev zlib1g-dev libgcrypt11-dev libicu-dev`
     - Create: destination directory `mkdir -p ./build && cd ./build`
@@ -194,5 +194,8 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Configure: `cmake ..`
         - Build: `make`
         - Run: `./sandbox-cppcms -c ../config.json`
+- Future Improvements:
+    - Add CppCMS as Git Sub-module: `./thridparty/cppcms`
+    - Add CppCMS to CMake Build File as Sub-directory: `add_subdirectory(thridparty/cppcms)`
 
 ## Part 3: Setting up Cross-Compilation
