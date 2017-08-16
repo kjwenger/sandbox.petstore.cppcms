@@ -139,8 +139,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                         virtual ~rests();
                     
                         void get_info();
-                    };
-    
+                    };    
                     ```
                 - Definitions: source file  [rests.cpp](./include/rests.cpp)
                     ```cpp
@@ -165,7 +164,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                     }
                     ```
                 - Add: REST API headers and sources
-                    ```
+                    ```cmake
                     file(GLOB INCLUDE include/*.hpp)
                     file(GLOB SRC src/*.cpp)
                     add_executable(sandbox-cppcms ${INCLUDE} ${SRC})
