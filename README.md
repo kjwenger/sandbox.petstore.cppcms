@@ -1,5 +1,5 @@
 # sandbox.cppcms
-Sandbox for C++/CppCMS/Boost/Node.js
+Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 1: Setting up C++ Development
 

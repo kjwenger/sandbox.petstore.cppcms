@@ -3,10 +3,16 @@ project(sandbox-cppcms)
 if (NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/usr)
 endif (NOT DEFINED CMAKE_PREFIX_PATH)
+file(GLOB INCLUDE
+        include/*.hpp
+)
 file(GLOB SRC
         src/*.cpp
 )
-add_executable(sandbox-cppcms ${SRC})
+add_executable(sandbox-cppcms
+        ${INCLUDE}
+        ${SRC}
+)
 include_directories(
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
