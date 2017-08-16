@@ -131,7 +131,7 @@ Sandbox for C++/CppCMS/Boost PetStore
             - Build: `make`
         - For App
             - Add REST API:
-                - Declarations: header file [rests.hpp](./include/rests.hpp)
+                - Declarations: header file [`rests.hpp`](./include/rests.hpp)
                     ```cpp
                     class rests : public cppcms::application {
                     public:
@@ -141,7 +141,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                         void get_info();
                     };    
                     ```
-                - Definitions: source file  [rests.cpp](./include/rests.cpp)
+                - Definitions: source file  [`rests.cpp`](./include/rests.cpp)
                     ```cpp
                     rests::rests(cppcms::service& srv) : cppcms::application(srv) {
                         dispatcher().map("GET","", &rests::get_info, this);
@@ -156,7 +156,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                     }    
                     ```
             - Modify: build file [CMakeLists](./CMakeLists.txt)
-                - Create: settings `config.json`
+                - Create: settings [`config.json`](./config.json)
                     ```json
                     {
                       "service": {"api": "http", "port": 8910},
