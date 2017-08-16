@@ -106,25 +106,21 @@ namespace persistence {
     }
 
     template <class T, class C>
-    void database::_delet(int id) {
+    T database::_delet(int id) {
         hiberlite::bean_ptr<C> loadedBean = db.loadBean<C>((hiberlite::sqlid_t) id);
                                                                                                                         std::cerr << "void database::_delete(" << id << ") loadedBean.destroyed(): " << loadedBean.destroyed() << std::endl;
         if (loadedBean.destroyed()) {
             throw new persistence_exception();
         }
+        T returnPet(*loadedBean);
         loadedBean.destroy();
-                                                                                                                        std::cerr << "void database::_delete(...) loadedBean.destroy();" << std::endl;
-    }
-
-    void database::init() {
-        db.dropModel();
-        db.createModel();
+        return returnPet;
     }
 
     template model::pet database::_create<model::pet, ::pet>(const model::pet & pet);
     template model::pet database::_read<model::pet, ::pet>(int id);
     template model::pet database::_update<model::pet, ::pet>(const model::pet & pet);
-    template void database::_delet<model::pet, ::pet>(int id);
+    template model::pet database::_delet<model::pet, ::pet>(int id);
     template void database::_list<model::pet, ::pet>(std::vector<model::pet> & pets);
 
     template <> model::pet database::create(const model::pet & pet) {
@@ -136,8 +132,8 @@ namespace persistence {
     template <> model::pet database::update(const model::pet & pet) {
         return database::_update<model::pet, ::pet>(pet);
     }
-    template <> void database::delet<model::pet>(int id) {
-        database::_delet<model::pet, ::pet>(id);
+    template <> model::pet database::delet(int id) {
+        return database::_delet<model::pet, ::pet>(id);
     }
     template <> void database::list<model::pet>(std::vector<model::pet> & pets) {
         return database::_list<model::pet, ::pet>(pets);

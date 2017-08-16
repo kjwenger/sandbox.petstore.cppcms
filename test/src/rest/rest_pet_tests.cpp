@@ -9,6 +9,8 @@
 
 #include "rest/http_macros.hpp"
 
+#define private public
+
 #include "persistence/database.hpp"
 
 #define VALUE_DOGGIE(pet) \
@@ -49,8 +51,8 @@ public:
     static void SetUpTestCase() {
         service_database = new sandbox_cppcms::persistence::database("petstore_dev");
                                                                                                                         std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
-        service_database->init();
-        sleep(1);
+        service_database->db.dropModel();
+        service_database->db.createModel();
     }
 
     static void TearDownTestCase() {
@@ -60,6 +62,9 @@ public:
 protected:
     virtual void SetUp() {
         INITIALIZE()
+
+        service_database->db.dropModel();
+        service_database->db.createModel();
     }
 
     virtual void TearDown() {
