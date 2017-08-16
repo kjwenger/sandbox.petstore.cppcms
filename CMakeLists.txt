@@ -1,9 +1,15 @@
 cmake_minimum_required(VERSION 2.6)
 project(sandbox-cppcms)
-file(GLOB SRC
-        "src/*.cpp"
+file(GLOB INCLUDE
+        include/*.hpp
 )
-add_executable(sandbox-cppcms ${SRC})
+file(GLOB SRC
+        src/*.cpp
+)
+add_executable(sandbox-cppcms
+        ${INCLUDE}
+        ${SRC}
+)
 include_directories(
         ${CMAKE_SOURCE_DIR}/usr/include
         /usr/local/include
