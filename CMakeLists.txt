@@ -30,11 +30,12 @@ add_executable(sandbox-cppcms
         ${SRC_SHARED}
 )
 include_directories(
+        ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_PREFIX_PATH}/local/include
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
         /usr/include/jsoncpp
         /usr/include
-        ${CMAKE_SOURCE_DIR}/include
 )
 find_package(Threads)
 target_link_libraries(sandbox-cppcms
