@@ -277,3 +277,15 @@ Sandbox for C++/CppCMS/Boost PetStore
     - Build: `make`
     - Run: `./sandbox-cppcms -c ../config.json &`
     - Test: `./sandbox-cppcms-test`
+        ```
+        $ ./build/sandbox-cppcms-test 
+        Running main() from gtest_main.cc
+        [==========] Running 1 test from 1 test case.
+        [----------] Global test environment set-up.
+        [----------] 1 test from rest_test
+        [ RUN      ] rest_test.rest_test_case
+        [       OK ] rest_test.rest_test_case (0 ms)
+        [----------] Global test environment tear-down
+        [==========] 1 test from 1 test case ran. (23 ms total)
+        [  PASSED  ] 1 test.
+        ```
