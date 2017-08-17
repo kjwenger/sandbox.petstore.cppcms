@@ -8,8 +8,10 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Definition: [JSON](https://editor.swagger.io/) downloaded to [sandbox.petstore](https://github.com/kjwenger/sandbox.petstore/README.md)
     - [GoLang](https://golang.org/)/[Revel](https://revel.github.io/): goes from _Embedded_ to _Cloud_, replacing C++?
         - Code (auto-generated): [sandbox.petstore.golang](https://github.com/kjwenger/sandbox.petstore.golang/README.md)
-    - [Elixir](https://elixir-lang.org/)/[Phoenix](http://phoenixframework.org/): *the* Formula from _Embedded_ bis _Cloud_? Ruby on Rails w/o Ruby?
+    - [Erlang](https://www.erlang.org/): It Scales!
         - Code (auto-generated): [sandbox.petstore.erlang](https://github.com/kjwenger/sandbox.petstore.erlang/README.md)
+    - [Elixir](https://elixir-lang.org/)/[Phoenix](http://phoenixframework.org/): **the** Formula from _Embedded_ bis _Cloud_? Ruby on Rails w/o Ruby?
+        - Code (auto-generated): [sandbox.petstore.phoenix](https://github.com/kjwenger/sandbox.petstore.phoenix/README.md)
     - [C++](http://www.stroustrup.com/4th.html)/[CppCMS](http://cppcms.com/wikipp/en/page/main): _Embedded_, _Cloud_, anything! ... but at what price?
         - Code (auto-generated): [sandbox.petstore.cppcms](https://github.com/kjwenger/sandbox.petstore.cppcms/README.md)
     - [Kotlin](https://kotlinlang.org/)/[Spring](https://spring.io/): _Embedded_? Certainly _Cloud_! Simpler than [Java Enterprise Edition](http://www.oracle.com/technetwork/java/javaee/overview/index.html)?
