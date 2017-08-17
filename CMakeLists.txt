@@ -16,11 +16,12 @@ add_executable(sandbox-cppcms
         ${SRC}
 )
 include_directories(
+        ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_PREFIX_PATH}/local/include
         ${CMAKE_PREFIX_PATH}/include
         /usr/local/include
         /usr/include/jsoncpp
         /usr/include
-        ${CMAKE_SOURCE_DIR}/include
 )
 target_link_libraries(sandbox-cppcms
         ${CMAKE_PREFIX_PATH}/lib/libcppcms.so

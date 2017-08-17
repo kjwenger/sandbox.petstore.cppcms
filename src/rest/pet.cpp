@@ -48,7 +48,7 @@ namespace sandbox_cppcms {
 
     void pet::read_pet(int id) {
         cppcms::json::value pet;
-        pet["id"] = id;\
+        pet["id"] = id;
         PET_DOGGIE(pet)
 
         response().out() << pet;
