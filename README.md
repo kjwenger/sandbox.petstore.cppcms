@@ -433,7 +433,7 @@ Sandbox for C++/CppCMS/Boost PetStore
             B(); // Constructor Declaration ... no return value marks constructors
             ~B(); // Destructor Declaration ... tilde marks destructors
         protected: // Protected Visibility ... only extending classes
-            A * a; // Object Pointer Field
+            A & a; // Object Reference Field ... cannot be nullptr and must always be initialized
         };
         class C : public B { // Pubic Class Inheritance
         // Header-only Programming ... no source needed
@@ -444,7 +444,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                 { }
             virtual ~C(); // Implicit Virtual Destructor Definition ... automatically calls super-class destructors
         private: // Private Visibility ... only class itself
-            A & a; // Object Reference Field ... cannot be nullptr and must always be initialized
+            A * a; // Object Pointer Field
         };
         namespace z {
             class D : protected 
@@ -456,17 +456,20 @@ Sandbox for C++/CppCMS/Boost PetStore
         int i = 0; // Initialization/Definition of Global Variable
         class B : { // Class Declaration
         B::B() { } // Constructor Definition ... double colon is scope operator
-        B::~B(); // Destructor Declaration
+        B::~B() { } // Destructor Definition
         ```
 - Classes
     - Abstract Classes
     - Multiple Inheritance
 - Objects
 - Templates
-        ```cpp
-        template <typename T> int toInt(const T & t) { return (int) t;} // Function Template
-        template <> int toInt(const std::string & string) { return atoi(string.c_str()); } // Template Specialization
-        int i = toInt(0.0F); // Implicit Template Instantiation
-        template int toInt(const double & d) { return round(d);} // Explicit Template Instantiation
-        ```
+    ```cpp
+    template <typename T> int toInt(const T & t) { return (int) t;} // Function Template
+    template <> int toInt(const std::string & string) { return atoi(string.c_str()); } // Template Specialization
+    int i = toInt(0.0F); // Implicit Template Instantiation
+    template int toInt(const double & d) { return round(d);} // Explicit Template Instantiation
+    template <class C> class Wrapper {
+        C
+    }
+    ```
 - Lambdas
