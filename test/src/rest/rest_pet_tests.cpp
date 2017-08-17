@@ -51,13 +51,13 @@ class rest_pet_tests : public ::testing::Test {
 public:
     static void SetUpTestCase() {
         service_database = new sandbox_cppcms::persistence::database("petstore_dev");
-                                                                                                                        std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        // std::cerr << "rest_pet_tests::SetUpTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         service_database->db.dropModel();
         service_database->db.createModel();
     }
 
     static void TearDownTestCase() {
-                                                                                                                        std::cerr << "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
+                                                                                                                        // std::cerr << "rest_pet_tests::TearDownTestCase() service_database: " << std::hex << service_database << std::dec << std::endl;
         delete service_database;
     }
 protected:
@@ -83,7 +83,7 @@ TEST_F(rest_pet_tests, create_pet) {
     std::string out;
     long code;
     POST(url, os.str(), out, code)
-                                                                                                                        std::cerr << "rest_pet_tests::create_pet() code: " << code << ", out: " << out << std::endl;
+                                                                                                                        // std::cerr << "rest_pet_tests::create_pet() code: " << code << ", out: " << out << std::endl;
     sleep(1);
 
     EXPECT_EQ(code, 201);
@@ -92,11 +92,11 @@ TEST_F(rest_pet_tests, create_pet) {
     try {
         std::vector<hiberlite::bean_ptr<::pet>> allBeans =
                 service_database->db.getAllBeans<::pet>();
-                                                                                                                        std::cerr << "rest_pet_tests::create_pet() allBeans: " << allBeans << std::endl;
+                                                                                                                        // std::cerr << "rest_pet_tests::create_pet() allBeans: " << allBeans << std::endl;
         EXPECT_EQ(allBeans.size(), 1);
         ::pet kittie;
         PET_KITTIE(kittie)
-                                                                                                                        std::cerr << "rest_pet_tests::create_pet() kittie: " << kittie << std::endl;
+                                                                                                                        // std::cerr << "rest_pet_tests::create_pet() kittie: " << kittie << std::endl;
         EXPECT_EQ(*allBeans.front(), kittie);
     }
     catch (...) {
