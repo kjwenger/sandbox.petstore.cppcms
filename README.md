@@ -79,7 +79,7 @@ Sandbox for C++/CppCMS/Boost PetStore
                 - Blogs, Forums, StackOverflow
                 - Many Add-ons
         - Accepted:
-            - C++ Projects world-wide
+            - Used by [C++ Projects](https://en.wikipedia.org/wiki/CMake#Applications_that_use_CMake) World-Wide
         - Powerful:
             - Multi-Module/Target Projects
         - Structured:
