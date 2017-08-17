@@ -352,3 +352,8 @@ Sandbox for C++/CppCMS/Boost PetStore
     - GoTo, Configure, Build, Run, Test
 
 ## Part 6: Adding Database
+
+- Database [SQLite3](https://sqlite.org/index.html): relational and light, self-contained, high-reliability, embedded, full-featured, public-domain
+    - [Appropriate Uses For SQLite](https://sqlite.org/whentouse.html)
+- Database Change Management [Sqitch](http://sqitch.org/)
+    - Not Migration-Style
