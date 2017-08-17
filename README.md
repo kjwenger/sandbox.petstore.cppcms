@@ -200,10 +200,33 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 3: Setting up Cross-Compilation
 
-- Make on Build System, Run on Target System
+- Make on Build System, Run on Target System:
+    - Compiler Suite:
+        - Itself compiled for Build Systems
+        - Compiles Others for Target System
+        - SDK/Libraries for Target System
+    - Toolchains/SDKs:
+        - From Package Management
+        - From Downloads/Manual Installation
+    - Target System of Choice for Talk: BeagleBoneBlack
+        - Target Architecture: ARM HF (Hardware Floating Point)
+        - Target OS: Linux
 - Package Management:
     - Add Target Architecture: `dpkg --add-architecture armhf && apt update`
     - Install Compiler for Architecture: `apt install crossbuild-essential-armhf -y`
-- Package Management:
     - Install Dependencies for Architecture: `apt install libpcre3-dev:armhf zlib1g-dev:armhf libgcrypt11-dev:armhf libicu-dev:armhf -y`
-
+- Project Management:
+    - Provide Toolchain File: [`arm-linux-gnueabihf.cmake`](./toolchains/arm-linux-gnueabihf.cmake)
+        ```cmake
+        set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/usr/arm-linux-gnueabihf)        
+        # which C and C++ compiler to use
+        set(CMAKE_C_COMPILER  /usr/bin/arm-linux-gnueabihf-gcc)
+        set(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnueabihf-g++)
+        ```
+        - In Themselves CMakeLists Files: mostly setting paths and executables names
+        - Often Available On-line
+- Development:
+    - Create: destination directory `mkdir -p ./build-arm-linux-gnueabihf && cd ./build-arm-linux-gnueabihf`
+    - Configure: `cmake -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/arm-linux-gnueabihf.cmake" -DCMAKE_INSTALL_PREFIX="${USR_DIR}/arm-linux-gnueabihf" ..`
+    - Build: `make`
+    - Deploy: `scp ./sandbox-cppcms <user>@<target_host>:/usr/local/bin`
