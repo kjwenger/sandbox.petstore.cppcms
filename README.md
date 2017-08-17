@@ -1,4 +1,4 @@
-# sandbox.cppcms
+# sandbox.petstore.cppcms
 
 Sandbox for C++/CppCMS/Boost PetStore
 
