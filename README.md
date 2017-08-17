@@ -256,8 +256,24 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Add Test Target (Binary): `add_executable(sandbox-cppcms-test ${TEST})`
         - Set Target Link Libraries: `target_link_libraries(sandbox-cppcms-test gtest gtest_main)`
         - Add Test: `add_test(NAME sandbox-cppcms-test COMMAND sandbox-cppcms-test)`
-- Development:
-    - Create: destination directory `mkdir -p ./build-arm-linux-gnueabihf && cd ./build-arm-linux-gnueabihf`
-    - Configure: `cmake -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/arm-linux-gnueabihf.cmake" -DCMAKE_INSTALL_PREFIX="${USR_DIR}/arm-linux-gnueabihf" ..`
+- Development: ... he tests me!
+    - Add: test source file [`rest_test.cpp`](test/src/rest_test.cpp)
+        ```cpp
+        TEST_F(rest_test, rest_test_case)
+        {
+            curlpp::Cleanup cleanup;
+            curlpp::Easy request;
+            request.setOpt<curlpp::options::Url>("http://localhost:8910/rest");
+            std::ostringstream os;
+            curlpp::options::WriteStream ws(&os);
+            request.setOpt(ws);
+            request.perform();
+        
+            EXPECT_STREQ(R"({"name":"sandbox-cppcms","version":"0.1.0"})", os.str().c_str());
+        }
+        ```
+    - GoTo: destination directory `mkdir -p ./build && cd ./build`
+    - Configure: `cmake ..`
     - Build: `make`
-    - Deploy: `scp ./sandbox-cppcms <user>@<target_host>:/usr/local/bin`
+    - Run: `./sandbox-cppcms -c ../config.json &`
+    - Test: `./sandbox-cppcms-test`
