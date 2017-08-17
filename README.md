@@ -430,9 +430,11 @@ Sandbox for C++/CppCMS/Boost PetStore
          */
         class B : { // Class Declaration
         public: // Public Visibility
-            B(); // Constructor Declaration ... no return value marks constructors
+            B(A & a); // Constructor Declaration ... no return value marks constructors
             ~B(); // Destructor Declaration ... tilde marks destructors
-        protected: // Protected Visibility ... only extending classes
+            B(const B & other) = delete; // Delete Copy Constructor: non-construction-copyable
+            B & operator=(const B&) = delete; // Delete Asssignment Operator: non-copyable
+         protected: // Protected Visibility ... only extending classes
             A & a; // Object Reference Field ... cannot be nullptr and must always be initialized
         };
         class C : public B { // Pubic Class Inheritance
@@ -442,7 +444,7 @@ Sandbox for C++/CppCMS/Boost PetStore
             C(const C & c) // Implicit Copy Constructor Definition
                 : a(c.a) //  Field Initialization
                 { }
-            virtual ~C(); // Implicit Virtual Destructor Definition ... automatically calls super-class destructors
+            virtual ~C() { } // Implicit Virtual Destructor Definition ... automatically calls super-class destructors
         private: // Private Visibility ... only class itself
             A * a; // Object Pointer Field
         };
@@ -455,7 +457,7 @@ Sandbox for C++/CppCMS/Boost PetStore
         ```cpp
         int i = 0; // Initialization/Definition of Global Variable
         class B : { // Class Declaration
-        B::B() { } // Constructor Definition ... double colon is scope operator
+        B::B(A & a) : a(a) { } // Constructor Definition ... double colon is scope operator
         B::~B() { } // Destructor Definition
         ```
 - Classes
