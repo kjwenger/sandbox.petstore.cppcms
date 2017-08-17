@@ -232,3 +232,32 @@ Sandbox for C++/CppCMS/Boost PetStore
     - Deploy: `scp ./sandbox-cppcms <user>@<target_host>:/usr/local/bin`
 
 ## Part 4: Setting up Testing
+
+- Test Driven Development
+    - In C++ More .. Most Necessary
+    - Good Available Test Frameworks
+        - [Google Test](https://github.com/google/googletest/blob/master/README.md10)
+        - Boost Test
+        - CppUnit
+    - IDE/CLion Support: at least for Google Test
+- Package Management: ... possible but better building from source
+    - Install Dependencies: `apt install gtest -y`
+    - Install Helper Libraries: `apt install libcurl-dev -y`
+- Building: ... not even that is really needed ... use CMake sub-directory inclusion
+    - Get: `git clone https://github.com/google/googletest.git && cd googletest`
+    - Create: destination directory `mkdir -p ./build && cd ./build`
+    - Configure: `cmake ..`
+    - Build: `make`
+- Project Management:
+    - Modify: build file [`CMakeLists.txt`](./CMakeLists.txt)
+        - Add Sub-Directory: `add_subdirectory(scripts/thirdparty/googletest)`
+        - Enable Testing: `enable_testing()`
+        - Add Test Source Files: `file(GLOB TEST test/src/*.cpp)`
+        - Add Test Target (Binary): `add_executable(sandbox-cppcms-test ${TEST})`
+        - Set Target Link Libraries: `target_link_libraries(sandbox-cppcms-test gtest gtest_main)`
+        - Add Test: `add_test(NAME sandbox-cppcms-test COMMAND sandbox-cppcms-test)`
+- Development:
+    - Create: destination directory `mkdir -p ./build-arm-linux-gnueabihf && cd ./build-arm-linux-gnueabihf`
+    - Configure: `cmake -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/arm-linux-gnueabihf.cmake" -DCMAKE_INSTALL_PREFIX="${USR_DIR}/arm-linux-gnueabihf" ..`
+    - Build: `make`
+    - Deploy: `scp ./sandbox-cppcms <user>@<target_host>:/usr/local/bin`
