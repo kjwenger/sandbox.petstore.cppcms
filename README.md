@@ -318,4 +318,34 @@ Sandbox for C++/CppCMS/Boost PetStore
         - Add Test Source Files
 - Development: ... give it a rest!
     - Add: source file(s) [`pet.cpp`](src/rest/pet.cpp)
+        ```cpp
+        pet::pet(cppcms::service &srv) : cppcms::application(srv) {
+            dispatcher().map("GET", "/(\\d+)", &pet::read_pet, this, 1);
+        }
+        void pet::read_pet(int id) {
+            cppcms::json::value pet;
+            pet["id"] = id;
+            pet["name"] = "doggie";
+            pet["photoUrls"][0] = "string";
+            pet["status"] = "available";
+    
+            response().out() << pet;
+        }
+        ```
     - Add: test file(s) [`pet_tests.cpp`](test/src/pet_tests.cpp)
+        ```cpp
+        TEST_F(pet_tests, get_pet) {
+            std::string url("http://localhost:8910/v2/pet/1"), out;
+            long code;
+            GET(url, out, code)
+        
+            EXPECT_EQ(code, 200L);
+            EXPECT_STREQ(out.c_str(),
+        "{\"category\":{\"id\":0,\"name\":\"string\"},\
+        \"id\":1,\
+        \"name\":\"doggie\",\
+        \"photoUrls\":[\"string\"],\
+        \"status\":\"available\",\
+        \"tag\":[{\"id\":0,\"name\":\"string\"}]}");
+        }
+        ```
