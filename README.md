@@ -409,3 +409,55 @@ Sandbox for C++/CppCMS/Boost PetStore
     - GoTo, Configure, Build, Run, Test
 
 ## Part 8: Connecting REST API Handlers and ORM
+
+...
+
+## Part 99: C++ Developer's Digest
+
+- Header: `*.hpp` `*.hxx`, `*.h`
+    - Declarations:
+        ```cpp
+        // Single-line Comment
+        int i; // Global Variable
+        /*
+         * Multi-line Comment
+         */
+        extern int n; // Out-of Module Scope Global Variable
+        static int z; // Module Scope Global Variable
+        class A; // Forward Declaration ... no size determination
+        /**
+         * Documenting Comment for e.g. doxygen
+         */
+        class B : { // Class Declaration
+        public: // Public Visibility
+            B(); // Constructor Declaration ... no return value marks constructors
+            ~B(); // Destructor Declaration ... tilde marks destructors
+        protected: // Protected Visibility ... only extending classes
+            A * a; // Object Pointer Field
+        };
+        class C : public B { // Pubic Class Inheritance
+        // Header-only Programming ... no source needed
+        public:
+            C(); { } // Implicit Constructor Definition
+            C(const C & c) // Implicit Copy Constructor Definition
+                : a(c.a) //  Field Initialization
+                { }
+            virtual ~C(); // Implicit Virtual Destructor Definition ... automatically calls super-class destructors
+        private: // Private Visibility ... only class itself
+            A & a; // Object Reference Field ... cannot be nullptr and must always be initialized
+        };
+        ```
+- Source: `*.cpp` `*.cxx`
+    - Definitions
+        ```cpp
+        int i = 0; // Initialization/Definition of Global Variable
+        class B : { // Class Declaration
+        B::B() { } // Constructor Definition ... double colon is scope operator
+        B::~B(); // Destructor Declaration
+        ```
+- Classes
+    - Abstract Classes
+    - Multiple Inheritance
+- Objects
+- Templates
+- Lambdas
