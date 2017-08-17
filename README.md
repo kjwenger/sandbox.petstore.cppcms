@@ -26,8 +26,8 @@ Sandbox for C++/CppCMS/Boost PetStore
 - Language: strange choice ... wrong choice?
     - The Good
         - Fast: ... supposedly fastest [object-oriented](https://en.wikipedia.org/wiki/Object-oriented_programming) language
-        - Standards: ... like [Boost Libraries](http://www.boost.org/)
-        - Libraries: ... like [Boost Libraries](http://www.boost.org/)
+        - Standards: ... such as [C++98](http://www.cplusplus.com/doc/oldtutorial/)
+        - Libraries: ... such as [Boost Libraries](http://www.boost.org/)
         - Tested: ... not only by time and [Google Test](https://github.com/google/googletest/blob/master/README.md10)
         - Small: ... [strip it down](http://ptspts.blogspot.de/2013/12/how-to-make-smaller-c-and-c-binaries.html) to kilobytes
         - Stable: ... it can be
