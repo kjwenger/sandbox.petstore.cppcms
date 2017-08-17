@@ -11,7 +11,7 @@ PROJECT_DIR="$(dirname "${SCRIPTS_DIR}")"
 USR_DIR="${PROJECT_DIR}/usr"
 
 cd "${THIRDPARTY_DIR}"
-git clone https://github.com/artyom-beilis/cppcms.git cppcms
+git clone https://github.com/artyom-beilis/cppcms.git cppcms --recursive
 pushd cppcms
 mkdir -p build
 pushd build
