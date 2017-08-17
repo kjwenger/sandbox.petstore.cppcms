@@ -257,7 +257,7 @@ Sandbox for C++/CppCMS/Boost PetStore
 - Package Management: ... possible but better building from source
     - Install Dependencies: `apt install gtest -y`
     - Install Helper Libraries: `apt install libcurl-dev -y`
-- Building: ... not even that is really needed ... use CMake sub-directory inclusion
+- Building: ... not even that is really needed ... use _CMake_ sub-directory inclusion
     - Get: `git clone https://github.com/google/googletest.git && cd googletest`
     - Create: destination directory `mkdir -p ./build && cd ./build`
     - Configure: `cmake ..`
@@ -306,3 +306,15 @@ Sandbox for C++/CppCMS/Boost PetStore
         ```
         
 ## Part 5: Adding REST API Routes
+
+- Applications and Mappings
+    - Hierarchical Structuring
+    - URL/Parameter Pattern Matching
+    - Invoking Handler Methods of Application Class
+- Project Management:
+    - Modify: build file [`CMakeLists.txt`](./CMakeLists.txt)
+        - Add REST API Source Files
+        - Add Test Source Files
+- Development: ... give it a rest!
+    - Add: source file(s) [`pet.cpp`](src/rest/pet.cpp)
+    - Add: test file(s) [`pet_tests.cpp`](test/src/pet_tests.cpp)
