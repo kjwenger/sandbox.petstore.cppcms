@@ -225,6 +225,20 @@ Sandbox for C++/CppCMS/Boost PetStore
         ```
         - In Themselves CMakeLists Files: mostly setting paths and executables names
         - Often Available On-line
+    - Change: location of CppCMS, Booster and dependency headers
+        ```cmake
+        include_directories(
+            ${CMAKE_PREFIX_PATH}/local/include
+            ${CMAKE_PREFIX_PATH}/include
+        )
+        ```
+    - Change: location of CppCMS, Booster and dependency libraries
+        ```cmake
+        target_link_libraries(sandbox-cppcms
+            ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
+            ${CMAKE_PREFIX_PATH}/lib/libbooster.so
+        )
+        ```
 - Development:
     - Create: destination directory `mkdir -p ./build-arm-linux-gnueabihf && cd ./build-arm-linux-gnueabihf`
     - Configure: `cmake -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/arm-linux-gnueabihf.cmake" -DCMAKE_INSTALL_PREFIX="${USR_DIR}/arm-linux-gnueabihf" ..`
