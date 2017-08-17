@@ -349,3 +349,4 @@ Sandbox for C++/CppCMS/Boost PetStore
         \"tag\":[{\"id\":0,\"name\":\"string\"}]}");
         }
         ```
+    - GoTo, Configure, Build, Run, Test
