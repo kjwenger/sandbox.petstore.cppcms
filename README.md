@@ -446,6 +446,9 @@ Sandbox for C++/CppCMS/Boost PetStore
         private: // Private Visibility ... only class itself
             A & a; // Object Reference Field ... cannot be nullptr and must always be initialized
         };
+        namespace z {
+            class D : protected 
+        }
         ```
 - Source: `*.cpp` `*.cxx`
     - Definitions
@@ -460,4 +463,10 @@ Sandbox for C++/CppCMS/Boost PetStore
     - Multiple Inheritance
 - Objects
 - Templates
+        ```cpp
+        template <typename T> int toInt(const T & t) { return (int) t;} // Function Template
+        template <> int toInt(const std::string & string) { return atoi(string.c_str()); } // Template Specialization
+        int i = toInt(0.0F); // Implicit Template Instantiation
+        template int toInt(const double & d) { return round(d);} // Explicit Template Instantiation
+        ```
 - Lambdas
