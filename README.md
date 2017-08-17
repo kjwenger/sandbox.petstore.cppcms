@@ -114,6 +114,7 @@ Sandbox for C++/CppCMS/Boost PetStore
 ## Part 2: Setting up CppCMS Framework
 
 - Strange Name ... Weird Choice? not a Content Management System (CMS) ... never heard
+    - The [Rationale](http://cppcms.com/wikipp/en/page/rationale)
     - The Good
         - Fast: ... [real fast](http://cppcms.com/wikipp/en/page/benchmarks_all)
         - Standards: ... can use [Boost](http://www.boost.org/)
