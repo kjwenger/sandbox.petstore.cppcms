@@ -469,7 +469,11 @@ Sandbox for C++/CppCMS/Boost PetStore
     int i = toInt(0.0F); // Implicit Template Instantiation
     template int toInt(const double & d) { return round(d);} // Explicit Template Instantiation
     template <class C> class Wrapper {
-        C
+    public:
+        Wrapper(C & c) : c(new C) { }
+        ~Wrapper() { delete c; }
+    private:
+        C * c;
     }
     ```
 - Lambdas
