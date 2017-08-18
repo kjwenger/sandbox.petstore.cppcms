@@ -23,4 +23,6 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 8: [Connecting REST API Handlers and ORM](doc/part/08.md)
 
+## Part 9: [Improvements](doc/part/08.md)
+
 ## Appendix: [C++ Developer's Digest](doc/appendix/CPP_DEVELOPERS_DIGEST.md)

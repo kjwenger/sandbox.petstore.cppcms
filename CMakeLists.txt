@@ -48,40 +48,4 @@ target_link_libraries(sandbox-cppcms
         dl
 )
 
-add_subdirectory(scripts/thirdparty/googletest)
-enable_testing()
-file(GLOB TEST_INCLUDE
-        test/include/rest/*.hpp
-)
-file(GLOB TEST_SRC
-        test/src/model/*.cpp
-        test/src/persistence/*.cpp
-        test/src/rest/*.cpp
-)
-add_executable(sandbox-cppcms-test
-        ${TEST_INCLUDE}
-        ${SRC_SHARED}
-        ${TEST_SRC}
-)
-target_include_directories(sandbox-cppcms-test PUBLIC
-        ${gtest_SOURCE_DIR}/include
-        ${gtest_SOURCE_DIR}
-        test/include
-)
-target_link_libraries(sandbox-cppcms-test
-        ${CMAKE_PREFIX_PATH}/lib/libcppcms.so
-        ${CMAKE_PREFIX_PATH}/lib/libbooster.so
-        ${CMAKE_PREFIX_PATH}/lib/libhiberlite.a
-        ${CMAKE_PREFIX_PATH}/lib/libcurlpp.a
-        ${CMAKE_PREFIX_PATH}/lib/libcurl.a
-        ${CMAKE_PREFIX_PATH}/lib/libz.a
-        gtest_main
-        gtest
-        jsoncpp
-        crypto
-        ssl
-        dl)
-add_test(
-        NAME sandbox-cppcms-test
-        COMMAND sandbox-cppcms-test
-)
+add_subdirectory(test)
