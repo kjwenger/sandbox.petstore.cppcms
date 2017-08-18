@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+BRANCH="${GIT_BRANCH}"
 git checkout part/01 && \
 git push
 git checkout part/02 && \
@@ -23,6 +24,10 @@ git push
 git checkout part/08 && \
 git merge part/07 && \
 git push
+git checkout part/08 && \
+git merge part/08 && \
+git push
 git checkout part/99 && \
 git merge part/07 && \
-git push
+git push && \
+git checkout "${BRANCH}"
