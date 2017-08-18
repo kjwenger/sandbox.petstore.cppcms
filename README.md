@@ -17,9 +17,4 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 5: [Adding REST API Routes](doc/part/05.md)
 
-## Part 6: Adding Database
-
-- Database [SQLite3](https://sqlite.org/index.html): relational and light, self-contained, high-reliability, embedded, full-featured, public-domain
-    - [Appropriate Uses For SQLite](https://sqlite.org/whentouse.html)
-- Database Change Management [Sqitch](http://sqitch.org/)
-    - Not Migration-Style
+## Part 6: [Adding Database](doc/part/06.md)
