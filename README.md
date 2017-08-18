@@ -21,4 +21,4 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 7: [Adding Object-relational mapping (ORM)](doc/part/07.md)
 
-## Part 8: Connecting REST API Handlers and ORM
+## Part 8: [Connecting REST API Handlers and ORM](doc/part/08.md)
