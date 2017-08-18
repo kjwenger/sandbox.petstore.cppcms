@@ -412,6 +412,16 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 8: Connecting REST API Handlers and ORM
 
+## Part 9: Improvements
+
+- Adding Dependencies as Sub-module to _Git_, test project to _CMake_, Sub-directory to main _CMake_ project
+    ```bash
+      git submodule add https://github.com/artyom-beilis/cppcms.git thirdparty/cppcms --recursive
+      git submodule add https://github.com/curl/curl.git test/thirdparty/curl --recursive
+      git submodule add https://github.com/jpbarrette/curlpp.git test/thirdparty/curlpp --recursive
+      git submodule add https://github.com/open-source-parsers/jsoncpp.git --recursive
+      git submodule add https://github.com/google/googletest.git test/thirdparty/googletest --recursive
+    ```
 ...
 
 ## Part 99: C++ Developer's Digest
