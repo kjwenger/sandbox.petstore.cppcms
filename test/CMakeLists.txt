@@ -15,10 +15,8 @@ file(GLOB SRC_SHARED
         ../src/persistence/*.cpp
 )
 
-add_subdirectory(thirdparty/curl)
-add_subdirectory(thirdparty/curlpp)
-add_subdirectory(thirdparty/jsoncpp)
-add_subdirectory(thirdparty/googletest)
+add_subdirectory(thirdparty)
+
 enable_testing()
 file(GLOB TEST_INCLUDE
         include/rest/*.hpp
