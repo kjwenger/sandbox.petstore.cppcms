@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 2.6)
 project(sandbox-cppcms)
-#set(CMAKE_VERBOSE_MAKEFILE true)
 if (NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/usr)
 endif (NOT DEFINED CMAKE_PREFIX_PATH)
-#include(CheckCXXCompilerFlag)
-#check_cxx_compiler_flag(-std=c++17 HAVE_FLAG_STD_CXX17)
-#set(CMAKE_CXX_STANDARD 17)
-#set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_CXX_EXTENSIONS ON)
+include(CheckCXXCompilerFlag)
+check_cxx_compiler_flag(-std=c++14 HAVE_FLAG_STD_CXX14)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS ON)
 file(GLOB INCLUDE
         include/*.hpp
         include/model/*.hpp
@@ -48,4 +47,4 @@ target_link_libraries(sandbox-cppcms
         dl
 )
 
-add_subdirectory(test)
+#add_subdirectory(test)

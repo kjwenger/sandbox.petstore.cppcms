@@ -18,31 +18,31 @@
 # This file is part of the Optimized Routines project
 
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
-SET(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_NAME Linux)
 
-SET(triple aarch64-linux-gnu)
+#set(triple aarch64-linux-gnu)
 # The gcc toolchain root folder. This could be your linaro-gcc folder, or /usr/.
-SET(gcc-root /usr)
+set(gcc-root /usr)
 
 # This clang needs to be recent!
-SET(CMAKE_C_COMPILER /usr/bin/clang)
-SET(CMAKE_C_COMPILER_TARGET ${triple})
-SET(CMAKE_C_COMPILER_EXTERNAL_TOOLCHAIN ${gcc-root})
+set(CMAKE_C_COMPILER /usr/bin/clang)
+#set(CMAKE_C_COMPILER_TARGET ${triple})
+set(CMAKE_C_COMPILER_EXTERNAL_TOOLCHAIN ${gcc-root})
 
-SET(CMAKE_CXX_COMPILER /usr/bin/clang++)
-SET(CMAKE_CXX_COMPILER_TARGET ${triple})
-SET(CMAKE_CXX_COMPILER_EXTERNAL_TOOLCHAIN ${gcc-root})
+set(CMAKE_CXX_COMPILER /usr/bin/clang++)
+set(CMAKE_CXX_COMPILER_TARGET ${triple})
+set(CMAKE_CXX_COMPILER_EXTERNAL_TOOLCHAIN ${gcc-root})
 
 if (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 3.5)
     message(STATUS "Warning: clang version < 3.5.0 is known to be problematic")
 endif()
 
-SET(CMAKE_FIND_ROOT_PATH ${gcc-root}/aarch64-linux-gnu)
-SET(CMAKE_SYSROOT ${gcc-root}/aarch64-linux-gnu/libc)
+#set(CMAKE_FIND_ROOT_PATH ${gcc-root}/aarch64-linux-gnu)
+#set(CMAKE_SYSROOT ${gcc-root}/aarch64-linux-gnu/libc)
 
-SET(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
-SET(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-SET(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 # This is a workaround since the LLVM optimiser breaks the code we use to raise
 # exceptions. This forces exceptions to be raised by invoking the C99 function
