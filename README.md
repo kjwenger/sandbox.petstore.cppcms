@@ -25,4 +25,6 @@ Sandbox for C++/CppCMS/Boost PetStore
 
 ## Part 9: [Improvements](doc/part/08.md)
 
+## Appendix: Setting up LLVM Clang C++ Development
+
 ## Appendix: [C++ Developer's Digest](doc/appendix/CPP_DEVELOPERS_DIGEST.md)
