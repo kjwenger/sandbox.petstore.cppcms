@@ -11,10 +11,9 @@ USR_DIR="${PROJECT_DIR}/usr"
 
 cd "${PROJECT_DIR}"
 cppcheck include src
-mkdir -p build-arm-linux-gnueabihf
-pushd build-arm-linux-gnueabihf
-cmake -DCMAKE_VERBOSE_MAKEFILE:BOOL=ON \
-      -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/clang.cmake" \
+mkdir -p build-clang
+pushd build-clang
+cmake -DCMAKE_TOOLCHAIN_FILE="${PROJECT_DIR}/toolchains/clang.cmake" \
       -DCMAKE_INSTALL_PREFIX="${USR_DIR}" \
       ..
 make -j ${CPUS}
