@@ -35,8 +35,12 @@ git checkout part/09 && \
 git pull && \
 git merge part/08 --no-edit && \
 git push && \
+git checkout part/98 && \
+git pull && \
+git merge part/09 --no-edit && \
+git push && \
 git checkout part/99 && \
 git pull && \
-git merge part/08 --no-edit && \
+git merge part/98 --no-edit && \
 git push && \
 git checkout "${BRANCH}"
