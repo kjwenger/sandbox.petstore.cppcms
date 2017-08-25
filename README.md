@@ -24,3 +24,5 @@ Sandbox for C++/CppCMS/Boost PetStore
 ## Part 8: [Connecting REST API Handlers and ORM](doc/part/08.md)
 
 ## Part 9: [Improvements](doc/part/08.md)
+
+## Appendix: Setting up LLVM Clang C++ Development

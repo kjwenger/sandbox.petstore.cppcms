@@ -22,6 +22,12 @@ sudo apt install autoconf -y
 sudo apt install libtool -y
 sudo apt install libpam0g-dev -y
 
+sudo apt install clang-3.9
+sudo apt install clang-3.9-doc
+sudo apt install clang-3.9-examples
+sudo apt install clang-format-3.9
+sudo apt install clang-tidy-3.9
+
 # Get CppCMS prerequisites
 sudo apt install libpcre3-dev -y
 sudo apt install zlib1g-dev -y
