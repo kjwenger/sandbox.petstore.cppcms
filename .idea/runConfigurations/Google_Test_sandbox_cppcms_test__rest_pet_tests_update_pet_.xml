@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Google Test sandbox-cppcms-test (rest_pet_tests.update_pet)" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sandbox-cppcms" TARGET_NAME="sandbox-cppcms-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sandbox-cppcms" RUN_TARGET_NAME="sandbox-cppcms-test" TEST_PATTERN="rest_pet_tests.update_pet" TEST_MODE="PATTERN">
+  <configuration default="false" name="Google Test sandbox-cppcms-test (rest_pet_tests.update_pet)" type="CMakeGoogleTestRunConfigurationType" factoryName="Google Test" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="sandbox-petstore-cppcms" TARGET_NAME="sandbox-cppcms-test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="sandbox-petstore-cppcms" RUN_TARGET_NAME="sandbox-cppcms-test" TEST_PATTERN="rest_pet_tests.update_pet" TEST_MODE="PATTERN">
     <envs />
     <method />
   </configuration>

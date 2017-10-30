@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.6)
-project(sandbox-cppcms)
+project(sandbox-petstore-cppcms)
 #set(CMAKE_VERBOSE_MAKEFILE true)
 if (NOT DEFINED CMAKE_PREFIX_PATH)
     set(CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR}/usr)
